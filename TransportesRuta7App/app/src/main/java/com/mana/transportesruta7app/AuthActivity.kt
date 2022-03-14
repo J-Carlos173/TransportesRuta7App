@@ -1,6 +1,5 @@
 package com.mana.transportesruta7app
 
-import android.R.string
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -10,16 +9,16 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_auth.*
 
 
-class MainActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_auth)
 
         //primero
-        //setup()
+        setup()
     }
 
     private fun setup() {

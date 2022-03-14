@@ -3,9 +3,9 @@ package com.mana.transportesruta7app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class NuevoValeActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nuevo_vale)
+        setContentView(R.layout.activity_login)
     }
 }
