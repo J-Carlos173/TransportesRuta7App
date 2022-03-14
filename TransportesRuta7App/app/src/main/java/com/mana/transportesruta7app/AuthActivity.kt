@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarDirecciones(){
+    fun cargarEmpresas(){
         val docRef = db.collection("Listas").document("Empresas")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarEmpresas(){
+    fun cargarDirecciones(){
         val docRef = db.collection("Listas").document("Direcciones")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
                 spnDirecciones.adapter = adapter
+                spnDirecciones2.adapter = adapter
             }
             else {
                 Log.d("TAG", "No such document")

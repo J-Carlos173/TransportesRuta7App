@@ -13,12 +13,6 @@
             android:name=".NuevoValeActivity"
             android:exported="false" />
         <activity
-            android:name=".ValesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Vales"
-            android:exported="false" />
-        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
