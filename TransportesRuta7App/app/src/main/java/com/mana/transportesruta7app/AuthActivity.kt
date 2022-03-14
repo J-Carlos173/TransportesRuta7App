@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_home)
 
         //primero
-        setup()
+        //setup()
     }
 
     private fun setup() {
