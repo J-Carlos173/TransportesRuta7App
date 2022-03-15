@@ -15,10 +15,10 @@ class AuthActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_login)
 
         //primero
-        setup()
+        //setup()
     }
 
     private fun setup() {
