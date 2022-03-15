@@ -1,6 +1,5 @@
 package com.mana.transportesruta7app
 
-import android.R.string
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -10,16 +9,19 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_auth.*
 
 
-class MainActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_pasajero_new)
 
+
+
         //primero
-        //setup()
+        setup()
     }
 
     private fun setup() {
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarDirecciones(){
+    fun cargarEmpresas(){
         val docRef = db.collection("Listas").document("Empresas")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarEmpresas(){
+    fun cargarDirecciones(){
         val docRef = db.collection("Listas").document("Direcciones")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -95,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
                 spnDirecciones.adapter = adapter
+                spnDirecciones2.adapter = adapter
             }
             else {
                 Log.d("TAG", "No such document")

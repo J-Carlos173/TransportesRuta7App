@@ -13,14 +13,19 @@
             android:name=".PasajeroNewActivity"
             android:exported="false" />
         <activity
-            android:name=".NuevoValeActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:exported="true" >
+=======
+            android:name=".AuthActivity"
+            android:exported="true">
+>>>>>>> 5d91d7ccef279c42e6c209abbb7a197ba633d51e
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
