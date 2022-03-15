@@ -16,12 +16,14 @@ class AuthActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+
         setContentView(R.layout.activity_pasajero_new)
 
 
 
+
         //primero
-        setup()
+        //setup()
     }
 
     private fun setup() {

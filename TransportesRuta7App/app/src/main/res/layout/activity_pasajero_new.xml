@@ -16,17 +16,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="226dp">
+            android:layout_height="239dp">
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="192dp"
+                android:layout_height="162dp"
+                android:padding="50dp"
                 app:srcCompat="@drawable/e"
                 tools:srcCompat="@drawable/e"
-                android:padding="50dp"
                 tools:visibility="visible" />
 
+
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
