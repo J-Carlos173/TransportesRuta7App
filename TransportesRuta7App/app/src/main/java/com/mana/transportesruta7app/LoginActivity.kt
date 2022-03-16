@@ -1,9 +1,11 @@
 package com.mana.transportesruta7app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.mana.transportesruta7app.databinding.ActivityLoginBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,127 +19,66 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = Firebase.auth
+        binding.signInAppCompatButton.setOnClickListener {
+            val mEmail = binding.emailEditText.text.toString()
+            val mPassword = binding.passwordEditText.text.toString()
 
-        /* Prueba Analytics
-        val analytics:FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val bundle = Bundle()
-        bundle.putString("message", "Integracion completa")
-        analytics.logEvent("InitScreen", bundle)
-
-        */
-        //setup()
-    }
-
-    private fun setup() {
-        title = "Login"
-
-
-        signInAppCompatButton.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                signIn(email, password)
-
-            } else {
-                Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+            when {
+                mEmail.isEmpty() || mPassword.isEmpty() -> {
+                    Toast.makeText(baseContext, "Correo o contraseña incorrectos.",
+                        Toast.LENGTH_SHORT).show()
+                } else -> {
+                signIn(mEmail, mPassword)
+                }
             }
+
         }
 
-    }
 
+        binding.recoveryAccountTextView.setOnClickListener {
+            val intent = Intent(this, AccountRecoveryActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
-            reload();
+            if(currentUser.isEmailVerified) {
+                reload()
+            } else {
+                val intent = Intent(this, CheckEmailActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
-
-    // Registro de usuario (no se usa en este caso)
-
-    private fun createAccount(
-        email: String,
-        password: String
-    ) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    val uid = user!!.uid
-
-                    val map = hashMapOf(
-                        "email" to email,
-                        "password" to password
-                    )
-
-                    val db = Firebase.firestore
-
-                    db.collection("users").document(uid).set(map).addOnSuccessListener {
-                        Toast.makeText(this, "Usuario registrado.",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    updateUI(null)
-                }
-            }
-        // [END create_user_with_email]
-    }
-
-
-    private fun signIn(email: String, password: String) {
-        // [START sign_in_with_email]
+    private fun signIn (email : String , password : String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)
+                    Log.d("TAG", "signInWithEmail:success")
+                    reload()
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Log.w("TAG", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Correo o contraseña incorrectos.",
                         Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
-        // [END sign_in_with_email]
-    }
-
-    /*private fun sendEmailVerification() {
-        // [START send_email_verification]
-        val user = auth.currentUser!!
-        user.sendEmailVerification()
-            .addOnCompleteListener(this) { task ->
-                // Email Verification sent
-            }
-        // [END send_email_verification]
-    }
-    */
-
-    private fun updateUI(user: FirebaseUser?) {
-
     }
 
     private fun reload() {
-
-    }
-
-    companion object {
-        private const val TAG = "EmailPassword"
+        val intent = Intent (this, HomeActivity::class.java)
+        this.startActivity(intent)
     }
 }

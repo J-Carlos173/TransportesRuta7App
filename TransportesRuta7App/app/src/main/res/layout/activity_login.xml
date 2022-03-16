@@ -5,7 +5,8 @@
     android:background="@drawable/fondo2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/gray"
-        android:text="Login" />
+        android:text="@string/login" />
     
     <Space
         android:layout_width="wrap_content"
@@ -49,11 +50,10 @@
             android:autofillHints="Email"
             android:background="@drawable/ic_field"
             android:drawableStart="@drawable/ic_email"
-            android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="16dp"
             android:textColor="@color/black"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColorHint="@color/gray" />
@@ -69,10 +69,9 @@
             android:textColor="@color/black"
             android:background="@drawable/ic_field"
             android:drawableStart="@drawable/ic_lock"
-            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:ems="10"
-            android:hint="Contraseña"
+            android:hint="@string/contrasena"
             android:textColorHint="@color/gray"
             android:inputType="textPassword"
             android:padding="16dp" />
@@ -83,24 +82,24 @@
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
 
+            android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
-            android:background="@drawable/ic_field"
-            android:text="Ingresar"
+            android:text="@string/ingresar"
             android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/recoveryAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:linksClickable="false"
             android:padding="13dp"
-            android:text="¿Olvidó su contraseña?"
+            android:text="@string/olvido_contrasena"
             android:textAlignment="center"
             android:textColor="#000000" />
     </LinearLayout>

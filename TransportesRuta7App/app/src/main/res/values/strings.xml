@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">TransportesRuta7App</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="olvido_contrasena">¿Olvidó su contraseña?</string>
+    <string name="subtitle_check_email">Para completar su registro. ¡Por Favor! verifique su correo y después Presione Continuar</string>
+    <string name="title_check_email">Verificación de Email</string>
+    <string name="continue_check_email">Continuar</string>
+    <string name="recovery_account">Enviar</string>
+    <string name="subtitle_account_recovery">Ingresa tu email para que se te pueda enviar un correo con los pasos para cambiar tu contraseña</string>
+    <string name="update_profile">Guardar</string>
+    <string name="repeat_password">Confirma la contraseña</string>
+    <string name="current_password">Contraseña actual</string>
+    <string name="new_password">Nueva contraseña</string>
+    <string name="subtitle_update_password">Por motivos de seguridad para cambiar tu contraseña, primero debes ingresar tu contraseña actual.</string>
+    <string name="title_update_password">Cambio de contraseña</string>
+    <string name="title_account_recovery">Recuperación de la Cuenta</string>
 </resources>

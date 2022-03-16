@@ -16,6 +16,15 @@
 =======
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountRecoveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CheckEmailActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -37,6 +46,7 @@
             android:exported="true" >
 =======
             android:name=".AuthActivity"
+<<<<<<< Updated upstream
             android:exported="true">
 <<<<<<< HEAD
 >>>>>>> 5d91d7ccef279c42e6c209abbb7a197ba633d51e
@@ -48,6 +58,9 @@
 =======
 >>>>>>> be3328264dfe9338348358b48180be8e2ad4e270
         </activity>
+=======
+            android:exported="true" />
+>>>>>>> Stashed changes
     </application>
 
 </manifest>
