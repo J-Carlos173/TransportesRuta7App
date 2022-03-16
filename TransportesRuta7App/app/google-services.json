@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "168608078123",
+    "firebase_url": "https://transportesruta7app-default-rtdb.firebaseio.com",
+    "project_id": "transportesruta7app",
+    "storage_bucket": "transportesruta7app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168608078123:android:f6b12e39194d8ea6460d6e",
+        "android_client_info": {
+          "package_name": "com.mana.transportesruta7app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168608078123-813vj7tecids4kubu2s5uegba0frj5va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq3VWa9-uN1MoZRZvDlSlpaZuOTSiT1L0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168608078123-813vj7tecids4kubu2s5uegba0frj5va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
