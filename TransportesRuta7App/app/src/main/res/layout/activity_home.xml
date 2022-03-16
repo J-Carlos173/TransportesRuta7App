@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/fondo2"
@@ -8,207 +9,89 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="142dp"
-        android:layout_centerInParent="true"
-        android:layout_margin="15dp"
-        android:animateLayoutChanges="false"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        app:cardUseCompatPadding="false">
+        android:layout_height="192dp"
+        app:srcCompat="@drawable/e"
+        tools:srcCompat="@drawable/e"
+        android:padding="50dp"
+        tools:visibility="visible" />
 
 
-        <LinearLayout
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Login" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:hint="Usuario" />
 
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="71dp"
-                android:layout_height="80dp"
-                android:padding="10dp"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingLeft="15dp"
-                android:text="Isaias Andrews Marchant"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="15dp"
-        android:animateLayoutChanges="false"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        app:cardUseCompatPadding="false">
-
-
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="50dp"
+            >
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:paddingLeft="15dp"
-                    android:text="09 de Septiembre"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:paddingLeft="80dp"
-                    android:text="Móvil 15"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                android:background="@android:color/transparent"
+                android:hint="Usuario"
+                />
 
 
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:text="15:50 - 16:00"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="10dp"
-                android:textSize="15sp"
-                android:text="BLUMAR"
-                android:textColor="#FB4F18"
-                android:textStyle="bold" />
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Cliente:"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:paddingLeft="8dp"
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Javier Martinez" />
-
-            </LinearLayout>
+                    android:background="@android:color/transparent"
+                    android:hint="Contraseña"
+                    android:password="true" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Origen:"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Moneda 2245 - Santiago Centro"
-                    android:paddingLeft="8dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:paddingBottom="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Destino:"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vicula Mackenna 5556 - La Florida"
-                    android:paddingLeft="8dp"/>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:paddingBottom="20dp"
-                tools:srcCompat="@android:drawable/ic_menu_mapmode" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#FB4F18"
+        android:text="Ingresar" />
+
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="140dp"
-        android:weightSum="2">
+        android:layout_gravity="center"
+        android:linksClickable="false"
+        android:padding="13dp"
+        android:text="¿Olvidó su contraseña?"
+        android:textAlignment="center"
+        android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="140dp"
-            android:layout_gravity="center"
-            android:layout_height="60dp"
-            android:text="Nuevo Vale" />
-
-    </LinearLayout>
 </LinearLayout>

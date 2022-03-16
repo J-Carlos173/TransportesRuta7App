@@ -1,5 +1,6 @@
 package com.mana.transportesruta7app
 
+import android.R.string
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter

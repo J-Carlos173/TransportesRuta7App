@@ -35,18 +35,13 @@
         </activity>
 >>>>>>> be3328264dfe9338348358b48180be8e2ad4e270
         <activity
-            android:name=".LoginActivity"
+            android:name=".NuevoValeActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-<<<<<<< HEAD
             android:name=".MainActivity"
-            android:exported="true" >
-=======
-            android:name=".AuthActivity"
-<<<<<<< Updated upstream
             android:exported="true">
 <<<<<<< HEAD
 >>>>>>> 5d91d7ccef279c42e6c209abbb7a197ba633d51e
