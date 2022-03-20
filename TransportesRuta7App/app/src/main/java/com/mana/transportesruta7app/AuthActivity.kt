@@ -15,7 +15,7 @@ class AuthActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
         //primero
         //setup()

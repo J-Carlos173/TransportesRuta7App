@@ -59,6 +59,7 @@
             android:textColorHint="@color/gray" />
 
         <EditText
+            android:onClick="forgotPassword"
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/recoveryAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
