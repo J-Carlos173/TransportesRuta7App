@@ -59,6 +59,7 @@
             android:textColorHint="@color/gray" />
 
         <EditText
+            android:onClick="forgotPassword"
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
