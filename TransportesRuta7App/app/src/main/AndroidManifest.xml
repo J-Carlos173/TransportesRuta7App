@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false"
-            android:label="@string/title_activity_register"
-            android:theme="@style/NoActionBar" />
-        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -31,7 +26,11 @@
             android:exported="false" />
         <activity
             android:name=".AuthActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".RegisterActivity"
             android:exported="true"></activity>
+
     </application>
 
 </manifest>

@@ -150,16 +150,15 @@
                     android:gravity="left|center_vertical"
                     android:text="Nombres" />
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnEmpresas"
+                <EditText
+                    android:id="@+id/nombresEditText"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/spinner_bg"
-                    android:clipToPadding="false"
-                    android:popupBackground="@color/naranjo_obscuro"
-                    android:spinnerMode="dropdown" />
+                    android:background="@drawable/spinner_bg" />
+
+
             </LinearLayout>
 
 
@@ -174,16 +173,13 @@
                 android:text="Apellidos" />
 
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spnCentroCosto"
+            <EditText
+                android:id="@+id/apellidosEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg"
-                android:clipToPadding="false"
-                android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown" />
+                android:background="@drawable/spinner_bg" />
 
 
             <TextView
@@ -195,17 +191,13 @@
                 android:layout_marginEnd="20dp"
                 android:text="Email" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/asdasdasd"
+            <EditText
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/spinner_bg"
-                android:clipToPadding="false"
-                android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown" />
+                android:background="@drawable/spinner_bg" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -217,7 +209,7 @@
                 android:text="Tipo de Usuario" />
 
             <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spnDirecciones"
+                android:id="@+id/tipoUsuariospn"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"
@@ -227,7 +219,6 @@
                 android:clipToPadding="false"
                 android:popupBackground="@color/naranjo_obscuro"
                 android:spinnerMode="dropdown" />
-
 
 
         </LinearLayout>
