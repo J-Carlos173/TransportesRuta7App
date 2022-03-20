@@ -10,6 +10,8 @@ import com.mana.transportesruta7app.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_login.*
+
 
 
 class LoginActivity : AppCompatActivity() {
@@ -49,6 +51,13 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        setup()
+    }
+    private fun setup (){
+        testButton.setOnClickListener(){
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     public override fun onStart() {

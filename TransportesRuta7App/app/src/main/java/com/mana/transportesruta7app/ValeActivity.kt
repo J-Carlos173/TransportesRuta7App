@@ -6,10 +6,10 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_auth.*
+import kotlinx.android.synthetic.main.activity_vale.*
 
 // Prueba commit
-class AuthActivity : AppCompatActivity() {
+class ValeActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 

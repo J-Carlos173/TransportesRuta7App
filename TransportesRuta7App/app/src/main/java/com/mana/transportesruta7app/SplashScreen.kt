@@ -30,9 +30,9 @@ class SplashScreen : AppCompatActivity() {
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
         Handler().postDelayed({
-            val intent = Intent(this, AuthActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000) // 3500 es el delay de la app
+        }, 2000) // 3500 es el delay de la app
     }
 }
