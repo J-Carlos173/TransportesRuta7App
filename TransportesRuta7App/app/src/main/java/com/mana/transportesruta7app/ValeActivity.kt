@@ -30,6 +30,7 @@ class ValeActivity : AppCompatActivity() {
         setup()
 
     }
+
     private fun setup() {
         cargarCenctrodeCostos()
         cargarDirecciones()
@@ -39,40 +40,25 @@ class ValeActivity : AppCompatActivity() {
     }
 
     fun crearVale() {
-
-            val posicion = spnEmpresas.selectedItemPosition
-
-
             val vale = hashMapOf(
-                "Fecha" to "20-03-2022",
-                "Chofer" to "German Satula",
-                "Movil" to "3",
-                "Patente" to "XX00XX",
-                "Empresa" to spnEmpresas.getItemAtPosition(posicion),
-                "Centro de costo" to "Soprole",
-                "Hora Inicio" to "13:00",
-                "Hora Termino" to "13:30",
-                "Recorrido" to "Las padredas - chochonco city",
-                "Cliente" to "Rosalia",
-                "Rut" to "18.465.654-9",
-                "Firma" to "Si"
+                "Fecha"             to fechaTextView.text.toString(),
+                "Chofer"            to choferTextView.text.toString(),
+                "Movil"             to movilTextView.text.toString(),
+                "Patente"           to patenteTextView.text.toString(),
+                "Hora Inicio"       to horaTextView.text.toString(),
+                "Hora Termino"      to horaTextView.text.toString(),
+                "Empresa"           to spnEmpresas.getItemAtPosition(spnEmpresas.selectedItemPosition),
+                "Centro de costo"   to spnCentroCosto.getItemAtPosition(spnCentroCosto.selectedItemPosition),
+                "Recorrido"         to spnDirecciones.getItemAtPosition(spnDirecciones.selectedItemPosition),
+                "Cliente"           to "Rosalia",
+                "Rut"               to "18.465.654-9",
+                "Firma"             to "Si"
             )
-            db.collection("Vales").document("test")
-                .set(vale)
-                .addOnSuccessListener {
-                    Toast.makeText(
-                        applicationContext,
-                        "Funciono",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(
-                        applicationContext,
-                        "No Funciono",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            db.collection("Vales").document("test").set(vale).addOnSuccessListener{
+                    Toast.makeText(applicationContext,"Funciono",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                    Toast.makeText( applicationContext, "No Funciono",Toast.LENGTH_SHORT).show()
+            }
     }
     fun cargarCenctrodeCostos(){
         val docRef = db.collection("Listas").document("CC")
