@@ -146,6 +146,8 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         Log.i("mensaje", "texto");
         createAccount("isaiasa42@gmail.com","123456")
+        val intent = Intent(this, CheckEmailActivity::class.java)
+        startActivity(intent)
     }
 
 

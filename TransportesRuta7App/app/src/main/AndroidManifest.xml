@@ -10,7 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CheckEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountRecoveryActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteAccountActivity"
+            android:exported="false"
+            android:label="@string/title_activity_delete_account"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +37,12 @@
         </activity>
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValeActivity"
             android:exported="false" />
     </application>
 
