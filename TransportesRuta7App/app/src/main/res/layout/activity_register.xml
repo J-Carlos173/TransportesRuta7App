@@ -141,6 +141,32 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="left|center_vertical"
+                    android:text="RUT" />
+
+                <EditText
+                    android:id="@+id/rutEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/spinner_bg" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -162,6 +188,8 @@
             </LinearLayout>
 
 
+
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -181,9 +209,29 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/spinner_bg" />
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="left|center_vertical"
+                android:text="Apellidos" />
+
+
+            <EditText
+                android:id="@+id/telefonoEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/spinner_bg" />
+
+
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"
@@ -193,6 +241,23 @@
 
             <EditText
                 android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/spinner_bg" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Password" />
+
+            <EditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"
@@ -218,7 +283,22 @@
                 android:background="@drawable/spinner_bg"
                 android:clipToPadding="false"
                 android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:entries="@array/items"/>
+
+
+            <Button
+                android:onClick="register"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="60dp"
+                android:backgroundTint="#FB4F18"
+                android:paddingLeft="64dp"
+                android:paddingRight="64dp"
+                android:background="@drawable/ic_field"
+                android:text="Ingresar"
+                android:textColor="@color/white" />
+
 
 
         </LinearLayout>

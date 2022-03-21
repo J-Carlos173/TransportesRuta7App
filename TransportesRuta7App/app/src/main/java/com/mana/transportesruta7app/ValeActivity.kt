@@ -36,7 +36,6 @@ class ValeActivity : AppCompatActivity() {
         cargarEmpresas()
         crearVale()
 
-
     }
 
     fun crearVale() {

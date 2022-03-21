@@ -80,6 +80,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInAppCompatButton"
+            android:onClick="Login"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
@@ -94,6 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
         <TextView
+            android:onClick="login"
             android:id="@+id/recoveryAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
