@@ -218,14 +218,6 @@
                 android:popupBackground="@color/naranjo_obscuro"
                 android:spinnerMode="dropdown" />
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Agregar a la Ruta" />
-
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -242,17 +234,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/spinner_bg"
-                android:clipToPadding="false"
-                android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spnDirecciones4"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/spinner_bg"
                 android:clipToPadding="false"
                 android:popupBackground="@color/naranjo_obscuro"
@@ -278,7 +259,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/crearValeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
