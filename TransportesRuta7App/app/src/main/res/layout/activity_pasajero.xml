@@ -58,7 +58,7 @@
             android:padding="16dp" />
 
         <EditText
-            android:id="@+id/rutEditText"
+            android:id="@+id/dniEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
@@ -70,6 +70,24 @@
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="@string/dni_passenger"
+            android:inputType="text"
+            android:maxLength="16"
+            android:padding="16dp" />
+
+
+        <EditText
+            android:id="@+id/telfonoEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="@string/dni_passenger"
+            android:background="@drawable/ic_field"
+            android:textColorHint="@color/gray"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="@string/cellpone"
             android:inputType="text"
             android:maxLength="16"
             android:padding="16dp" />
