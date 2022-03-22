@@ -143,11 +143,15 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     }
 
     fun register(view: View){
-
         Log.i("mensaje", "texto");
         createAccount("isaiasa42@gmail.com","123456")
         val intent = Intent(this, CheckEmailActivity::class.java)
         startActivity(intent)
+    }
+
+    fun cancelar(view: View){
+        onBackPressed()
+
     }
 
 
