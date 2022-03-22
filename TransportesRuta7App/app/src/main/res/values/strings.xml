@@ -42,6 +42,14 @@
     <string name="title_delete_account">Eliminar cuenta</string>
     <string name="subtitle_delete_account">Por motivos de seguridad para eliminar tu cuenta por completo, debes de ingresar tu contraseña.</string>
     <string name="delete">Eliminar</string>
+    <string name="register_passenger">Registrar Pasajero</string>
+    <string name="description_register_passenger">Se debe ingresar: nombre, rut y la firma dibujada en el celular</string>
+    <string name="passenger_name">Nombre pasajero</string>
+    <string name="dni_passenger">Rut pasajero</string>
+    <string name="signature">Firma</string>
+    <string name="canvasContentDescription">Mini Paint is a simple line drawing app.
+   Drag your fingers to draw. Rotate the phone to clear.</string>
+
 
     <string-array name="items">
         <item>Seleccione</item>
