@@ -29,6 +29,8 @@ class ValeActivity : AppCompatActivity() {
 
         setup()
 
+        var msg = intent.getStringExtra("mensaje").toString()
+        Toast.makeText(applicationContext,msg,Toast.LENGTH_SHORT).show()
     }
 
     private fun setup() {

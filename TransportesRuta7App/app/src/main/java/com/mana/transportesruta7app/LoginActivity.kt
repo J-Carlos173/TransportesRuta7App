@@ -20,6 +20,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
+    private var mEmail = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.signInAppCompatButton.setOnClickListener {
-            val mEmail = binding.emailEditText.text.toString()
+            mEmail = binding.emailEditText.text.toString()
             val mPassword = binding.passwordEditText.text.toString()
 
             when {
@@ -57,8 +59,13 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun setup (){
         testButton.setOnClickListener(){
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            /*val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)*/
+
+            val message = mEmail
+            val intent = Intent(this, RegisterActivity::class.java)
+            intent.putExtra("mensaje", message)
+            this.startActivity(intent)
         }
     }
 
@@ -90,7 +97,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun reload() {
-        val intent = Intent (this, CheckEmailActivity::class.java)
+        //val intent = Intent (this, CheckEmailActivity::class.java).apply.putExtra(mEmail)
+
+        val intent = Intent(this, CheckEmailActivity::class.java)
+        intent.putExtra("mensaje", mEmail)
         this.startActivity(intent)
     }
 }
+
+
+
