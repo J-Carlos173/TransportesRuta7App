@@ -18,6 +18,9 @@
             android:name=".PasajeroActivity"
             android:exported="false" />
         <activity
+            android:name=".ViewValesCarouselActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdatePasswordActivity"
             android:exported="false" />
         <activity

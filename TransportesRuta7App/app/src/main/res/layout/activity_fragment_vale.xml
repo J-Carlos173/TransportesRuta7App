@@ -1,76 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    tools:context=".SliderFragment">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="142dp"
-        android:layout_centerInParent="true"
-        android:layout_margin="15dp"
-        android:animateLayoutChanges="false"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        app:cardUseCompatPadding="false">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="71dp"
-                android:layout_height="80dp"
-                android:padding="10dp"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingLeft="15dp"
-                android:text="Isaias Andrews Marchant"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_centerInParent="true"
-        android:layout_margin="15dp"
-        android:animateLayoutChanges="false"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="10dp"
-        app:cardUseCompatPadding="false">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/main_slider2"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -80,15 +29,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+
+
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/slider_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="15dp"
                     android:paddingLeft="15dp"
-                    android:text="09 de Septiembre"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:text="0"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView26"
@@ -198,26 +153,11 @@
                 android:paddingBottom="20dp"
                 tools:srcCompat="@android:drawable/ic_menu_mapmode" />
 
-        </LinearLayout>-->
+        </LinearLayout>
 
     </LinearLayout>
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="140dp"
-        android:weightSum="2">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="140dp"
-            android:layout_gravity="center"
-            android:layout_height="60dp"
-            android:text="Nuevo Vale" />
-
-    </LinearLayout>
 </LinearLayout>

@@ -6,12 +6,14 @@
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.19045120671563484" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_check_email.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_delete_account.xml" value="0.17831813576494426" />
+        <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_fragment_vale.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_home.xml" value="0.378125" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" value="0.20697463768115942" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_splash_screen.xml" value="0.378125" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_update_password.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.18802083333333333" />
+        <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_view_vales_carousel.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/content_register.xml" value="0.378125" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.25" />
         <entry key="..\:/Users/Cato/Desktop/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/spinner_bg.xml" value="0.267" />
@@ -46,18 +48,6 @@
         <entry key="..\:/Users/PC/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/PC/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
         <entry key="..\:/Users/PC/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_account_recovery.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_check_email.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_delete_account.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_home.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_pasajero.xml" value="0.22" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_pasajero2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_register.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_splash_screen.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_update_password.xml" value="0.36102564102564105" />
-        <entry key="..\:/Users/filop/Desktop/app/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/ic_buttom.xml" value="0.1975" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_account_recovery.xml" value="0.33" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.17083333333333334" />

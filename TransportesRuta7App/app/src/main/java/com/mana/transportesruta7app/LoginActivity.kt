@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.mana.transportesruta7app.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.mana.transportesruta7app.databinding.ActivityLoginBinding
+
+
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -55,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun setup (){
         testButton.setOnClickListener(){
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }
@@ -88,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun reload() {
-        val intent = Intent (this, HomeActivity::class.java)
+        val intent = Intent (this, CheckEmailActivity::class.java)
         this.startActivity(intent)
     }
 }
