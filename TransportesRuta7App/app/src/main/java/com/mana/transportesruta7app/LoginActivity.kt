@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)*/
 
             val message = mEmail
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("mensaje", message)
             this.startActivity(intent)
         }
