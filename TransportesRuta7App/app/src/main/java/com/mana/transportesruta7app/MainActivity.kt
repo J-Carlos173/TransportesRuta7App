@@ -28,21 +28,22 @@ class MainActivity : AppCompatActivity() {
     private var mSignature: signature? = null
     private var bitmap: Bitmap? = null
 
-    // Creating Separate Directory for saving Generated Images
+
     companion object {
         const val STROKE_WIDTH = 5f
         const val HALF_STROKE_WIDTH = STROKE_WIDTH / 2
     }
-    var DIRECTORY = Environment.getExternalStorageDirectory().path + "/Signature/"
-    var pic_name = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-    var StoredPath = "$DIRECTORY$pic_name.png"
+    // Creando un Directorio aparte para guardar imagenes generadas
+    private var directory = Environment.getExternalStorageDirectory().path + "/Firma/"
+    private var pic_name = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+    private var StoredPath = "$directory$pic_name.png"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         canvasLL = findViewById<View>(R.id.canvasLL) as LinearLayout
         mSignature = signature(applicationContext, null)
         mSignature!!.setBackgroundColor(Color.WHITE)
-        // Dynamically generating Layout through java code
         canvasLL!!.addView(
             mSignature,
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -55,11 +56,11 @@ class MainActivity : AppCompatActivity() {
         btnSave!!.setOnClickListener {
             view!!.isDrawingCacheEnabled = true
             mSignature!!.save(view, StoredPath)
-            Toast.makeText(applicationContext, "Successfully Saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
         }
 
-        // Method to create Directory, if the Directory doesn't exists
-        file = File(DIRECTORY)
+        // Metodo para crear Directorio , Si el Directorio no exixte
+        file = File(directory)
         if (!file!!.exists()) {
             file!!.mkdir()
         }
@@ -76,21 +77,20 @@ class MainActivity : AppCompatActivity() {
             Log.v("log_tag", "Width: " + v!!.width)
             Log.v("log_tag", "Height: " + v.height)
             if (bitmap == null) {
-                bitmap =
-                    Bitmap.createBitmap(canvasLL!!.width, canvasLL!!.height, Bitmap.Config.RGB_565)
+                bitmap = Bitmap.createBitmap(canvasLL!!.width, canvasLL!!.height, Bitmap.Config.RGB_565)
             }
             val canvas = Canvas(bitmap!!)
             try {
-                // Output the file
+                // exportar el archivo
                 val mFileOutStream = FileOutputStream(StoredPath)
                 v.draw(canvas)
 
-                // Convert the output file to Image such as .png
+                // convertir el archivo exportado a .png
                 bitmap!!.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream)
                 mFileOutStream.flush()
                 mFileOutStream.close()
             } catch (e: Exception) {
-                Log.v("log_tag", e.toString())
+                Log.v(" ", e.toString())
             }
         }
 
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                     path.lineTo(eventX, eventY)
                 }
                 else -> {
-                    debug("Ignored touch event: $event")
+                    debug("Envento tactil ignorado: $event")
                     return false
                 }
             }

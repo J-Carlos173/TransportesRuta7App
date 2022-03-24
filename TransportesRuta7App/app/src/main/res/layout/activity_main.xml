@@ -23,17 +23,27 @@
         android:layout_marginLeft="10dp"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnclear"
-            android:text="limpiar"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnclear"
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FF9800"
+            android:background="@drawable/ic_field"
+            android:text="Limpiar"
+            android:textColor="@color/white" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnsave"
-            android:text="Guardar"/>
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="#FB4F18"
+            android:text="Guardar firma"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

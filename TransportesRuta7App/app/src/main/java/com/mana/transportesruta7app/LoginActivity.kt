@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mana.transportesruta7app.databinding.ActivityLoginBinding
 
@@ -22,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
     private var mEmail = ""
-    val db = Firebase.firestore
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +58,16 @@ class LoginActivity : AppCompatActivity() {
         setup()
     }
     private fun setup (){
-        val intent = Intent(this, HomeActivity::class.java)
-        //intent.putExtra("mensaje", mEmail)
-        this.startActivity(intent)
+        testButton.setOnClickListener(){
+            /*val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)*/
 
+            val message = mEmail
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("mensaje", message)
+            this.startActivity(intent)
+        }
     }
-
 
     public override fun onStart() {
         super.onStart()
@@ -97,7 +100,7 @@ class LoginActivity : AppCompatActivity() {
         //val intent = Intent (this, CheckEmailActivity::class.java).apply.putExtra(mEmail)
 
         val intent = Intent(this, CheckEmailActivity::class.java)
-        //intent.putExtra("mensaje", mEmail)
+        intent.putExtra("mensaje", mEmail)
         this.startActivity(intent)
     }
 }
