@@ -40,7 +40,6 @@ class ValeActivity : AppCompatActivity() {
         cargarDirecciones()
         cargarEmpresas()
         crearVale()
-
     }
 
     fun crearVale() {
