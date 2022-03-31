@@ -45,6 +45,7 @@ class SliderFragment : Fragment() {
                 cadena              = cadena.replace("{", "")
                 var cadenaSeparada  = cadena.split(",","=");
 
+
                 // AGREGADO SEGUN POSICION DE ARRAY
                 textViewValeID.text         = id_list[getInt(ARG_OBJECT)-1]
                 textViewMovil.text          = cadenaSeparada[9]

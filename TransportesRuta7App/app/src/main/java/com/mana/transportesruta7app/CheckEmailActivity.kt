@@ -32,8 +32,7 @@ class CheckEmailActivity : AppCompatActivity() {
                     if(user.isEmailVerified) {
                         reload()
                     } else {
-                        Toast.makeText(this, "Por favor verifica tu correo",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Por favor verifica tu correo", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -48,12 +47,17 @@ class CheckEmailActivity : AppCompatActivity() {
             if(currentUser.isEmailVerified) {
                 reload()
             } else {
-                sendEmailVerification()
+                //sendEmailVerification()
             }
         }
     }
 
-    private fun sendEmailVerification() {
+    override fun onBackPressed() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    /*private fun sendEmailVerification() {
         val user = auth.currentUser
         user!!.sendEmailVerification().addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -61,7 +65,7 @@ class CheckEmailActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             }
         }
-    }
+    }*/
 
     private fun reload() {
         val intent = Intent (this, HomeActivity::class.java)

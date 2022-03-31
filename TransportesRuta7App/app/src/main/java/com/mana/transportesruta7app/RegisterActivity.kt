@@ -18,14 +18,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.mana.transportesruta7app.databinding.ActivityCheckEmailBinding
 import kotlinx.android.synthetic.main.activity_register.*
 import java.lang.ref.PhantomReference
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_vale.*
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     val db = Firebase.firestore
-
+    companion object {
+        private const val TAG = "EmailPassword"
+    }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
 
     }
@@ -51,9 +52,12 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         setContentView(R.layout.activity_register)
 
         auth = Firebase.auth
-
+        setup()
     }
 
+    private fun setup(){
+        cargarPerfiles()
+    }
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -62,25 +66,29 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             reload();
         }
     }
-
     private fun createAccount(email: String, password: String) {
         // [START create_user_with_email]
-        val rut = rutEditText.getText();
-        val name = nombresEditText.getText();
-        val lastName = apellidosEditText.getText();
-        val phone = telefonoEditText.getText();
+        val rut = rutEditText.text
+        val name = nombresEditText.text
+        val lastName = apellidosEditText.text
+        val phone = telefonoEditText.text
         val userType = tipoUsuariospn.selectedItem;
 
-
-
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    user!!.sendEmailVerification().addOnCompleteListener(this) { task ->
+                        Log.d(TAG, "******************SUSSESS******************")
+                        if (task.isSuccessful) {
+                            Log.d(TAG, "******************ENVIAR A******************")
+                            Toast.makeText(this, "Se envio un correo de verificación", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)
-                    sendEmailVerification()
+                    //val user = auth.currentUser
+                    //updateUI(user)
+
                     // Demas datos Persona
                     val persona = hashMapOf(
                         "Nombres" to name.toString(),
@@ -88,48 +96,23 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
                         "RUT" to rut.toString(),
                         "telefono" to phone.toString(),
                         "Tipo de Usuario" to userType.toString()
-
                     )
 
-                    db.collection("Personas").document("test")
-                        .set(persona)
-                        .addOnSuccessListener {
-                            Toast.makeText(
-                                applicationContext,
-                                "Funciono",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(
-                                applicationContext,
-                                "No Funciono",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    db.collection("Personas").document(email).set(persona).addOnSuccessListener {
+                            Toast.makeText(applicationContext, "**********Funciono************", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(applicationContext, "***********No Funciono*********", Toast.LENGTH_SHORT).show()
                         }
 
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    updateUI(null)
+                    //updateUI()
                 }
             }
         // [END create_user_with_email]
     }
 
-    private fun sendEmailVerification() {
-        // [START send_email_verification]
-        val user = auth.currentUser!!
-        user.sendEmailVerification()
-            .addOnCompleteListener(this) { task ->
-                // Email Verification sent
-            }
-        // [END send_email_verification]
-    }
 
-    private fun updateUI(user: FirebaseUser?) {
+    fun updateUI(user: FirebaseUser?) {
 
     }
 
@@ -137,12 +120,10 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     }
 
-    companion object {
-        private const val TAG = "EmailPassword"
-    }
+
 
     fun register(view: View){
-        createAccount("isaiasa42@gmail.com","123456")
+        createAccount(emailEditText.text.toString(),passwordEditText.text.toString())
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
@@ -151,7 +132,29 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         onBackPressed()
 
     }
-
-
+    private fun cargarPerfiles(){
+        val docRef = db.collection("Listas").document("Perfiles")
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var listaPerfil = document.data.toString()
+                listaPerfil = listaPerfil.replace("{", "")
+                listaPerfil = listaPerfil.replace("}", "")
+                val arr = listaPerfil.split(",")
+                println(arr)
+                val list : MutableList<String> = ArrayList()
+                for (pLista in arr) {
+                    val found = pLista.indexOf("=");
+                    list.add(pLista.substring(found + 1))
+                }
+                val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+                tipoUsuariospn.adapter = adapter
+            }
+            else {
+                Log.d("TAG", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "get failed with ", exception)
+        }
+    }
 
 }
