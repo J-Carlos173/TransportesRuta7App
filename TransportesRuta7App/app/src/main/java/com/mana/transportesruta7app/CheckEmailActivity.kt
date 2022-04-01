@@ -26,7 +26,6 @@ class CheckEmailActivity : AppCompatActivity() {
 
         binding.veficateEmailAppCompatButton.setOnClickListener {
             val profileUpdates = userProfileChangeRequest {  }
-
             user!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
                 if(task.isSuccessful) {
                     if(user.isEmailVerified) {
@@ -47,7 +46,7 @@ class CheckEmailActivity : AppCompatActivity() {
             if(currentUser.isEmailVerified) {
                 reload()
             } else {
-                //sendEmailVerification()
+                sendEmailVerification()
             }
         }
     }
@@ -57,7 +56,7 @@ class CheckEmailActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    /*private fun sendEmailVerification() {
+    private fun sendEmailVerification() {
         val user = auth.currentUser
         user!!.sendEmailVerification().addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -65,7 +64,7 @@ class CheckEmailActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             }
         }
-    }*/
+    }
 
     private fun reload() {
         val intent = Intent (this, HomeActivity::class.java)

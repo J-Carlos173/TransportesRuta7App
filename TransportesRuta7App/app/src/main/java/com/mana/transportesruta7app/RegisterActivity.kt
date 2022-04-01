@@ -13,19 +13,18 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
 
+
 class RegisterActivity : AppCompatActivity() {
 
     lateinit var auth:FirebaseAuth
     val db = Firebase.firestore
-    
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
+
+
+    private fun reload() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -50,33 +49,17 @@ class RegisterActivity : AppCompatActivity() {
         val email = emailEditText.text
         val password = passwordEditText.text
 
-
         auth.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this) { resultado ->
-                if (resultado.isSuccessful) {
-                    Log.d(TAG, "Usuario creado")
-                    //***********************************Aqui*****************************
-                    auth.currentUser!!.sendEmailVerification().addOnCompleteListener(this) { verificacion ->
-                        if (verificacion.isSuccessful) {
-                            Log.d("TAG", "******************Se envio correo ******************")
-                            Toast.makeText(this, "Se envio un correo de verificación", Toast.LENGTH_SHORT).show()
-                            crearPeronsa(email.toString())
-                        }else{
-                            Log.d("TAG", "******************Error al enviar correo ******************")
-                            Toast.makeText(this, "Error al enviar correo ", Toast.LENGTH_SHORT).show()
-                        }
-                    //***********************************Aqui*****************************
-                    }
-
-
-
-
-
-                }
-                else {
-                    Log.d("TAG", "******************No se pudo crear la cuenta ******************")
-                    Toast.makeText(this, "No se pudo crear la cuenta", Toast.LENGTH_SHORT).show()
-                }
+            if (resultado.isSuccessful) {
+                Log.d(TAG, "Usuario creado")
+                crearPeronsa(email.toString())
+                reload()
             }
+            else {
+                Log.d("TAG", "******************No se pudo crear la cuenta ******************")
+                Toast.makeText(this, "No se pudo crear la cuenta", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
     private fun crearPeronsa(email :String){

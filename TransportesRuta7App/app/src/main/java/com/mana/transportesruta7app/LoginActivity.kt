@@ -98,10 +98,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun reload() {
         //val intent = Intent (this, CheckEmailActivity::class.java).apply.putExtra(mEmail)
-
-        val intent = Intent(this, CheckEmailActivity::class.java)
-        intent.putExtra("mensaje", mEmail)
-        this.startActivity(intent)
+        val intent = Intent(this, LoginActivity::class.java)
+        /*intent.putExtra("mensaje", mEmail)
+        this.startActivity(intent)*/
     }
 }
 
