@@ -14,7 +14,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
+    <string name="admin">Admin</string>
+    <string name="registrar">Registrar Usuario</string>
+    <string name="eliminar">Eliminar Usuario</string>
+    <string name="modificar">Modificar Usuario</string>
+    <string name="ver_vales">Var Vales</string>
     <string name="password">Contraseña</string>
     <string name="new_password">Nueva contraseña</string>
     <string name="current_password">Contraseña actual</string>
@@ -48,8 +52,6 @@
     <string name="dni_passenger">Rut pasajero</string>
     <string name="cellpone">Nro telefono</string>
     <string name="signature">Firma</string>
-
-
 
 
     <string-array name="items">
