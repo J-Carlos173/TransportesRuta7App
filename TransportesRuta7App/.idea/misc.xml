@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_admin.xml" value="0.17831813576494426" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.19045120671563484" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_check_email.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_delete_account.xml" value="0.17831813576494426" />
@@ -13,18 +14,13 @@
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_update_password.xml" value="0.36666666666666664" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.18802083333333333" />
         <entry key="..\:/App Mobil/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/content_register.xml" value="0.378125" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_account_recovery.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_admin.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_check_email.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_fragment_vale.xml" value="0.33" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_main.xml" value="0.3070652173913043" />
         <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_pasajero.xml" value="0.3070652173913043" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_register.xml" value="0.22" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_update_password.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.211665664461816" />
+        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_register.xml" value="0.14761904761904762" />
+        <entry key="..\:/Users/Cato/Desktop/GIT/GIT/TransportesRuta7App/app/src/main/res/layout/activity_vale.xml" value="0.25" />
         <entry key="..\:/Users/Cato/Desktop/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/spinner_bg.xml" value="0.267" />
         <entry key="..\:/Users/Cato/Desktop/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_account_recovery.xml" value="0.1398148148148148" />
         <entry key="..\:/Users/Cato/Desktop/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.33" />

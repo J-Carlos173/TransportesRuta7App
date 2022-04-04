@@ -91,11 +91,18 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/CrearvaleButton"
             android:layout_width="140dp"
             android:layout_gravity="center"
             android:layout_height="60dp"
             android:text="Nuevo Vale" />
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="140dp"
+            android:layout_gravity="center"
+            android:layout_height="60dp"
+            android:text="TEST" />
 
     </LinearLayout>
 </LinearLayout>

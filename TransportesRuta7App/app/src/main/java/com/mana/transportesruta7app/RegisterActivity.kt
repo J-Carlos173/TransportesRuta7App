@@ -21,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private fun reload() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, AdminActivity::class.java)
         startActivity(intent)
     }
 

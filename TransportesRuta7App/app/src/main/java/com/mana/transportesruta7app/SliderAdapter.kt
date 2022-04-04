@@ -9,7 +9,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SliderAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 4
+    override fun getItemCount(): Int = 0
 
 
 

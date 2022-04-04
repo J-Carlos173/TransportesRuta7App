@@ -5,18 +5,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mana.transportesruta7app.databinding.ActivityLoginBinding
+import kotlinx.android.synthetic.main.activity_fragment_vale.*
+import kotlinx.android.synthetic.main.activity_home.*
 
 
 import kotlinx.android.synthetic.main.activity_login.*
-
+import kotlinx.android.synthetic.main.activity_vale.*
 
 
 class LoginActivity : AppCompatActivity() {
+    val db = Firebase.firestore
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
@@ -33,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
         binding.signInAppCompatButton.setOnClickListener {
             mEmail = binding.emailEditText.text.toString()
             val mPassword = binding.passwordEditText.text.toString()
-
             when {
                 mEmail.isEmpty() || mPassword.isEmpty() -> {
                     Toast.makeText(baseContext, "Correo o contraseña icorrectos.",
@@ -45,11 +50,6 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        /*binding.signUpTextView.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }*/
-
         binding.recoveryAccountTextView.setOnClickListener {
             val intent = Intent(this, AccountRecoveryActivity::class.java)
             startActivity(intent)
@@ -59,17 +59,17 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun setup (){
         testButton.setOnClickListener(){
-            /*val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)*/
-
-            val message = mEmail
-            val intent = Intent(this, RegisterActivity::class.java)
+            /*val message = mEmail
+            val intent = Intent(this, AdminActivity::class.java)
             intent.putExtra("mensaje", message)
-            this.startActivity(intent)
+            this.startActivity(intent)*/
+                /*val mEmail = intent.getStringExtra("email")*/
+
         }
     }
 
     public override fun onStart() {
+
         super.onStart()
         val currentUser = auth.currentUser
         if(currentUser != null){
@@ -97,10 +97,37 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun reload() {
-        //val intent = Intent (this, CheckEmailActivity::class.java).apply.putExtra(mEmail)
-        val intent = Intent(this, LoginActivity::class.java)
-        /*intent.putExtra("mensaje", mEmail)
-        this.startActivity(intent)*/
+        //validacion de admin o chofer
+        val docRef = db.collection("Personas").document("isaiasa42@gmail.com")
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var tipoPerfil = document.data.toString()
+                tipoPerfil              = tipoPerfil.replace("}", "")
+                tipoPerfil              = tipoPerfil.replace("{", "")
+                var cadenaSeparada  = tipoPerfil.split(",","=");
+                var tipoUsuario          = cadenaSeparada[3]
+                Log.d("TAG", tipoUsuario)
+
+                if (tipoUsuario.equals("admin")){
+                    val intent = Intent(this, AdminActivity::class.java)
+                    /*intent.putExtra("email", "isaiasa42@gmail.com")*/
+                    this.startActivity(intent)
+                }
+
+                else if (tipoUsuario.equals("chofer")){
+                    val intent = Intent(this, HomeActivity::class.java)
+                    /*intent.putExtra("email", "isaiasa42@gmail.com")*/
+                    this.startActivity(intent)
+                }else{
+                    Toast.makeText(this, "Perfil no reconocido", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else {
+                Log.d("TAG", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "get failed with ", exception)
+        }
     }
 }
 

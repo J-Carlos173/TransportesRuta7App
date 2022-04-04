@@ -59,6 +59,8 @@ class SliderFragment : Fragment() {
         }
 
 
+
+
         /*arguments?.takeIf { it.containsKey(ARG_OBJECT_MOVIL) }?.apply {
             val slider_text_movil: TextView = view.findViewById(R.id.slider_movil)
             slider_text_movil.text = getInt(ARG_OBJECT_MOVIL).toString()
