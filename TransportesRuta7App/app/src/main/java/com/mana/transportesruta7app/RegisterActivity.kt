@@ -15,9 +15,11 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 
 class RegisterActivity : AppCompatActivity() {
-
-    lateinit var auth:FirebaseAuth
     val db = Firebase.firestore
+    val db2 = Firebase.firestore
+    lateinit var auth:FirebaseAuth
+    lateinit var usuarioCreado:FirebaseAuth
+
 
 
     private fun reload() {
@@ -29,6 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         auth = Firebase.auth
+        usuarioCreado = Firebase.auth
         setup()
     }
     override fun onBackPressed() {
@@ -48,26 +51,34 @@ class RegisterActivity : AppCompatActivity() {
     private fun createAccount() {
         val email = emailEditText.text
         val password = passwordEditText.text
-
-        auth.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this) { resultado ->
+        println("****************** Funcion crear usuario ******************")
+        usuarioCreado.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this) { resultado ->
             if (resultado.isSuccessful) {
                 Log.d(TAG, "Usuario creado")
+                println("******************Usuario creado ******************")
+
                 crearPeronsa(email.toString())
+
                 reload()
             }
             else {
                 Log.d("TAG", "******************No se pudo crear la cuenta ******************")
+                println("******************No se pudo crear la cuenta ******************")
                 Toast.makeText(this, "No se pudo crear la cuenta", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
     private fun crearPeronsa(email :String){
+
+        println("****************** Crear persona ******************")
         val rut = rutEditText.text
         val name = nombresEditText.text
         val lastName = apellidosEditText.text
         val phone = telefonoEditText.text
         val userType = tipoUsuariospn.selectedItem;
+
+        println("****************** Despues de variables *****************")
 
         val persona = hashMapOf(
             "Nombres" to name.toString(),
@@ -77,11 +88,16 @@ class RegisterActivity : AppCompatActivity() {
             "Tipo de Usuario" to userType.toString()
         )
 
-        db.collection("Personas").document(email).set(persona).addOnSuccessListener {
+        println("****************** Despues de hashmap *****************")
+
+        db2.collection("Personas").document(email).set(persona).addOnSuccessListener {
+            println("****************** FUNCIONO *****************")
             Toast.makeText(applicationContext, "**********Funciono************", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(applicationContext, "***********No Funciono*********", Toast.LENGTH_SHORT).show()
+            println("****************** NO FUNCIONO *****************")
         }
+        usuarioCreado.signOut()
     }
     private fun cargarPerfiles(){
         val docRef = db.collection("Listas").document("Perfiles")

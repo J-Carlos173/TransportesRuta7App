@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     val db = Firebase.firestore
 
     private lateinit var auth: FirebaseAuth
+
     private lateinit var binding: ActivityLoginBinding
     private var mEmail = ""
 
@@ -97,39 +98,52 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun reload() {
+        var tipoUsuario = ""
         //validacion de admin o chofer
-        val docRef = db.collection("Personas").document("isaiasa42@gmail.com")
+        val docRef = db.collection("Personas").document(mEmail)
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 var tipoPerfil = document.data.toString()
                 tipoPerfil              = tipoPerfil.replace("}", "")
                 tipoPerfil              = tipoPerfil.replace("{", "")
                 var cadenaSeparada  = tipoPerfil.split(",","=");
-                var tipoUsuario          = cadenaSeparada[3]
-                Log.d("TAG", tipoUsuario)
+                for (i in cadenaSeparada.indices) {
+                    println("**")
+                    println(cadenaSeparada[i])
+                    if (cadenaSeparada[i] == " Tipo de Usuario") {
+                        tipoUsuario     = cadenaSeparada[i+1]
+                        println(cadenaSeparada[i+1])
 
-                if (tipoUsuario.equals("admin")){
-                    val intent = Intent(this, AdminActivity::class.java)
-                    /*intent.putExtra("email", "isaiasa42@gmail.com")*/
-                    this.startActivity(intent)
+                    }
                 }
+                Log.d("TAG", tipoUsuario.toString())
+            }
 
-                else if (tipoUsuario.equals("chofer")){
-                    val intent = Intent(this, HomeActivity::class.java)
-                    /*intent.putExtra("email", "isaiasa42@gmail.com")*/
-                    this.startActivity(intent)
-                }else{
-                    Toast.makeText(this, "Perfil no reconocido", Toast.LENGTH_SHORT).show()
-                }
+            /*Log.d("TAG", cadenaSeparada.toString())*/
+
+
+            if (tipoUsuario.equals("admin")){
+                val intent = Intent(this, AdminActivity::class.java)
+                /*intent.putExtra("email", "isaiasa42@gmail.com")*/
+                this.startActivity(intent)
             }
-            else {
-                Log.d("TAG", "No such document")
+
+            else if (tipoUsuario.equals("chofer")){
+                val intent = Intent(this, HomeActivity::class.java)
+                /*intent.putExtra("email", "isaiasa42@gmail.com")*/
+                this.startActivity(intent)
+            }else{
+                Toast.makeText(this, "Perfil no reconocido", Toast.LENGTH_SHORT).show()
             }
+
+
+
         }.addOnFailureListener { exception ->
             Log.d("TAG", "get failed with ", exception)
         }
     }
 }
+
 
 
 
