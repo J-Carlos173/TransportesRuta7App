@@ -60,10 +60,10 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun setup (){
         testButton.setOnClickListener(){
-            /*val message = mEmail
-            val intent = Intent(this, AdminActivity::class.java)
-            intent.putExtra("mensaje", message)
-            this.startActivity(intent)*/
+            //val message = mEmail
+            val intent = Intent(this, ValeDirecciones::class.java)
+            //intent.putExtra("mensaje", message)
+            this.startActivity(intent)
                 /*val mEmail = intent.getStringExtra("email")*/
 
         }

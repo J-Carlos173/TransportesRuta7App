@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".ValeDirecciones"
+            android:exported="false" />
+        <activity
+            android:name=".AutoComppleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
@@ -56,6 +62,10 @@
         <activity
             android:name=".ValeActivity"
             android:exported="false" />
+
+        <meta-data
+            android:name="api_key"
+            android:value="AIzaSyD4kBovK0swh2lQSE-rzW2xZg73FbCXvRE" />
     </application>
 
 </manifest>
