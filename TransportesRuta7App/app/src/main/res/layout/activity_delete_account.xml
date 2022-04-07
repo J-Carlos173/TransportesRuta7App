@@ -41,7 +41,7 @@
             android:text="@string/subtitle_delete_account" />
 
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/contraseñaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"

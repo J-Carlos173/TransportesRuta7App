@@ -1,128 +1,174 @@
 package com.mana.transportesruta7app
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.media.metrics.LogSessionId
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 import kotlinx.android.synthetic.main.activity_register.*
 
 
-
 class RegisterActivity : AppCompatActivity() {
-    val db = Firebase.firestore
-    val db2 = Firebase.firestore
-    lateinit var auth:FirebaseAuth
-    lateinit var usuarioCreado:FirebaseAuth
-
-
-
-    private fun reload() {
-        val intent = Intent(this, AdminActivity::class.java)
-        startActivity(intent)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        auth = Firebase.auth
-        usuarioCreado = Firebase.auth
-        setup()
+
+        registrar()
+
+    }
+    private fun registrar() {
+        registrarButton.setOnClickListener() {
+            if (nombreText.text.isEmpty()){
+                Toast.makeText(applicationContext, "Debe ingresar un nombre", Toast.LENGTH_SHORT).show()
+            }
+            else if (apellidosText.text.isEmpty()){
+                Toast.makeText(applicationContext, "Debe ingresar un apellido", Toast.LENGTH_SHORT).show()
+            }
+            else if (rutText.text.isEmpty()){
+                Toast.makeText(applicationContext, "Debe ingresar un rut", Toast.LENGTH_SHORT).show()
+            }
+            else if (telefonoText.text.isEmpty()){
+                Toast.makeText(applicationContext, "Debe ingresar una telefono", Toast.LENGTH_SHORT).show()
+            }
+            else if (correoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
+                val db = Firebase.firestore
+                val docRef = db.collection("Listas").document("Permisos")
+                docRef.get().addOnSuccessListener { document ->
+                    if (document != null) {
+                        var listaPermisos = document.data.toString()
+                        listaPermisos = listaPermisos.replace("{", "")
+                        listaPermisos = listaPermisos.replace("}", "")
+                        val arr = listaPermisos.split(",")
+                        println(arr)
+                        for (cadaCorreo in arr) {
+                            val found = cadaCorreo.indexOf("=");
+                            val correo = cadaCorreo.split("=")
+                            println()
+                            if (correo[0] == correoText.text.toString()) {
+                                showFelicidades()
+                                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                                    correoText.text.toString(),
+                                    contraseñaText.text.toString()).addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        guardar_datos(cadaCorreo.substring(found +1))
+                                        if(cadaCorreo.substring(found +1) == "chofer"){
+                                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                                        }else if(cadaCorreo.substring(found +1) == "admin") {
+                                            showAdmin(it.result?.user?.email ?: "", ProviderType.BASIC)
+                                        }else {
+                                        }
+                                    } else {
+                                        showAlertTipoUsuario()
+                                    }
+                                }
+                            } else{
+                                showAlertCorreoNoTienePermisos()
+                            }
+                        }
+                    }
+                } .addOnFailureListener { exception ->
+                    showAlert()
+                }
+            }else{
+                Toast.makeText(applicationContext, "Error en correo o contraseña", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+    private fun guardar_datos(tipo : String ) {
+        val db = FirebaseFirestore.getInstance()
+        val user = hashMapOf(
+            "usuario_nombre" to nombreText.text.toString(),
+            "usuario_rut" to rutText.text.toString(),
+            "usuario_apellido" to apellidosText.text.toString(),
+            "usuario_telefono" to telefonoText.text.toString(),
+            "usuario_tipo" to  tipo,
+            "usuario_activo" to "true"
+        )
+        //validar Registro
+        if (nombreText.text.toString() == "") {
+            Toast.makeText(applicationContext, "Debe ingresar un nombre", Toast.LENGTH_SHORT).show()
+        } else if (rutText.text.toString() == "") {
+            Toast.makeText(applicationContext, "Debe ingresar un RUT", Toast.LENGTH_SHORT).show()
+        } else if (apellidosText.text.toString() == "") {
+            Toast.makeText(applicationContext, "Debe ingresar un Apelldio", Toast.LENGTH_SHORT).show()
+        } else if (telefonoText.text.toString() == "") {
+            Toast.makeText(applicationContext, "Debe ingresar un Telefono", Toast.LENGTH_SHORT).show()
+        } else {
+
+            // agregar documento con id manual con minuscula
+
+            db.collection("Usuarios").document(correoText.text.toString().toLowerCase())
+                .set(user as Map<String, Any>).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(applicationContext, "Usuario Registrado", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        Toast.makeText(applicationContext, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+        }
+    }
+    private fun showHome(email: String, provider: ProviderType) {
+        val homeIntent = Intent(this,HomeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(homeIntent)
+    }
+    private fun showAdmin(email: String, provider: ProviderType) {
+        val homeIntent = Intent(this,AdminActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(homeIntent)
+    }
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Ingrese un correo valido")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun showAlertTipoUsuario() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("El correo creado presenta problema con el tipo de cuenta")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun showFelicidades() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Felicidades tu correo tiene permisos")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun showAlertCorreoNoTienePermisos() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Su correo no esta en la lista de permisos")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
     override fun onBackPressed() {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-
-    private fun setup(){
-        cancelarButton.setOnClickListener {
-            onBackPressed()
-        }
-        registerButton.setOnClickListener{
-            createAccount()
-        }
-        cargarPerfiles()
-    }
-    private fun createAccount() {
-        val email = emailEditText.text
-        val password = passwordEditText.text
-        println("****************** Funcion crear usuario ******************")
-        usuarioCreado.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this) { resultado ->
-            if (resultado.isSuccessful) {
-                Log.d(TAG, "Usuario creado")
-                println("******************Usuario creado ******************")
-
-                crearPeronsa(email.toString())
-
-                reload()
-            }
-            else {
-                Log.d("TAG", "******************No se pudo crear la cuenta ******************")
-                println("******************No se pudo crear la cuenta ******************")
-                Toast.makeText(this, "No se pudo crear la cuenta", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    }
-    private fun crearPeronsa(email :String){
-
-        println("****************** Crear persona ******************")
-        val rut = rutEditText.text
-        val name = nombresEditText.text
-        val lastName = apellidosEditText.text
-        val phone = telefonoEditText.text
-        val userType = tipoUsuariospn.selectedItem;
-
-        println("****************** Despues de variables *****************")
-
-        val persona = hashMapOf(
-            "Nombres" to name.toString(),
-            "Apellidos" to lastName.toString(),
-            "RUT" to rut.toString(),
-            "telefono" to phone.toString(),
-            "Tipo de Usuario" to userType.toString()
-        )
-
-        println("****************** Despues de hashmap *****************")
-
-        db2.collection("Personas").document(email).set(persona).addOnSuccessListener {
-            println("****************** FUNCIONO *****************")
-            Toast.makeText(applicationContext, "**********Funciono************", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener {
-            Toast.makeText(applicationContext, "***********No Funciono*********", Toast.LENGTH_SHORT).show()
-            println("****************** NO FUNCIONO *****************")
-        }
-        usuarioCreado.signOut()
-    }
-    private fun cargarPerfiles(){
-        val docRef = db.collection("Listas").document("Perfiles")
-        docRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                var listaPerfil = document.data.toString()
-                listaPerfil = listaPerfil.replace("{", "")
-                listaPerfil = listaPerfil.replace("}", "")
-                val arr = listaPerfil.split(",")
-                println(arr)
-                val list : MutableList<String> = ArrayList()
-                for (pLista in arr) {
-                    val found = pLista.indexOf("=");
-                    list.add(pLista.substring(found + 1))
-                }
-                val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
-                tipoUsuariospn.adapter = adapter
-            }
-            else {
-                Log.d("TAG", "No such document")
-            }
-        }.addOnFailureListener { exception ->
-            Log.d("TAG", "get failed with ", exception)
-        }
-    }
-
 
 }

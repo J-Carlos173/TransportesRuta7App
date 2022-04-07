@@ -4,13 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ValeActivity">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context=".RegisterActivity">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/fondo2"
@@ -23,148 +20,134 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/textView7"
                     android:layout_width="match_parent"
+                    android:textSize="30sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Registrar Usuario"
-                    android:textAlignment="center"
-                    android:textSize="30sp" />
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="24dp"
+                    android:text="Registrar Usuario" />
+
+
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Email" />
-
             <EditText
-                android:id="@+id/emailEditText"
+                android:id="@+id/nombreText"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left|center_vertical"
-                android:text="RUT" />
-
-            <EditText
-                android:id="@+id/rutEditText"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left|center_vertical"
-                android:text="Nombres" />
-
-            <EditText
-                android:id="@+id/nombresEditText"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg" />
-
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left|center_vertical"
-                android:text="Apellidos" />
-
-
-            <EditText
-                android:id="@+id/apellidosEditText"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left|center_vertical"
-                android:text="Teléfono Movil" />
-
-
-            <EditText
-                android:id="@+id/telefonoEditText"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
                 android:ems="10"
-                android:inputType="phone" />
+                android:hint="Nombre"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Password" />
+
 
             <EditText
-                android:id="@+id/passwordEditText"
+                android:id="@+id/apellidosText"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"  />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Tipo de Usuario" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/tipoUsuariospn"
+            <EditText
+                android:id="@+id/rutText"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/spinner_bg"
-                android:clipToPadding="false"
-                android:entries="@array/items"
-                android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="RUT"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+
+
+            <EditText
+                android:id="@+id/telefonoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+
+            <EditText
+                android:id="@+id/correoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+
+
+            <EditText
+                android:id="@+id/contraseñaText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:autofillHints="Email"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
 
             <LinearLayout
@@ -174,7 +157,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/registerButton"
+                    android:id="@+id/registrarButton"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="60dp"
@@ -183,25 +166,15 @@
                     android:backgroundTint="#FB4F18"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
+                    android:text="Registrar"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/cancelarButton"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="60dp"
-                    android:background="@drawable/ic_field"
-                    android:backgroundTint="#FB4F18"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:textColor="@color/white" />
+
 
             </LinearLayout>
 
         </LinearLayout>
 
 
-    </ScrollView>
 
 </RelativeLayout>

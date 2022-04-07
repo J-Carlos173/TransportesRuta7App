@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ExpandableListView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_admin.*
 import kotlinx.android.synthetic.main.activity_vale.*
 
@@ -17,6 +18,9 @@ class AdminActivity : AppCompatActivity() {
     }
 
     private fun setup(){
+        //val mEmail = intent.getStringExtra("mEmail").toString()
+        //Toast.makeText(baseContext, mEmail, Toast.LENGTH_SHORT).show()
+
         registrarButton.setOnClickListener(){
             val intent = Intent (this, RegisterActivity::class.java)
             this.startActivity(intent)
@@ -34,4 +38,9 @@ class AdminActivity : AppCompatActivity() {
             this.startActivity(intent)
         }
     }
+    override fun onBackPressed() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
 }

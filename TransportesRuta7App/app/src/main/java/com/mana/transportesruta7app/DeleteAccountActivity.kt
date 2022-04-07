@@ -23,10 +23,10 @@ class DeleteAccountActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
-        binding.deleteAccountAppCompatButton.setOnClickListener {
+       /* binding.deleteAccountAppCompatButton.setOnClickListener {
             val password = binding.passwordEditText.text.toString()
             deleteAccount (password)
-        }
+        }*/
 
     }
 

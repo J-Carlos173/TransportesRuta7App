@@ -104,5 +104,12 @@
             android:layout_height="60dp"
             android:text="TEST" />
 
+        <Button
+            android:id="@+id/cerrarButton"
+            android:layout_width="140dp"
+            android:layout_gravity="center"
+            android:layout_height="60dp"
+            android:text="Cerrar Session" />
+
     </LinearLayout>
 </LinearLayout>

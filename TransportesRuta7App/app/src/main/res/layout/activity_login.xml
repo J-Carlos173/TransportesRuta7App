@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo2"
+    android:id="@+id/authLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="192dp"
+        android:padding="50dp"
         app:srcCompat="@drawable/e"
         tools:srcCompat="@drawable/e"
-        android:padding="50dp"
         tools:visibility="visible" />
 
 
@@ -22,12 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/gray"
-        android:text="Login" />
-    
+        android:text="Login"
+        android:textColor="@color/gray" />
+
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="15dp"/>
+        android:layout_height="15dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -41,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/correoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
@@ -51,66 +52,70 @@
             android:drawableStart="@drawable/ic_email"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="16dp"
-            android:textColor="@color/black"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="16dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
         <EditText
-            android:onClick="forgotPassword"
-            android:id="@+id/passwordEditText"
+            android:id="@+id/contraseñaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
             android:autofillHints="Contraseña"
-            android:textColor="@color/black"
             android:background="@drawable/ic_field"
             android:drawableStart="@drawable/ic_lock"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="Contraseña"
-            android:textColorHint="@color/gray"
             android:inputType="textPassword"
-            android:padding="16dp" />
+            android:onClick="forgotPassword"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signInAppCompatButton"
-            android:onClick="Login"
+            android:id="@+id/singUpButton"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
+            android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
+            android:onClick="Login"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
-            android:background="@drawable/ic_field"
             android:text="Ingresar"
             android:textColor="@color/white" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="#FB4F18"
+            android:onClick="Login"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp"
+            android:text="Registrar"
+            android:textColor="@color/white" />
         <TextView
-            android:onClick="login"
             android:id="@+id/recoveryAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:linksClickable="false"
+            android:onClick="login"
             android:padding="13dp"
             android:text="¿Olvidó su contraseña?"
             android:textAlignment="center"
             android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/testButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ir a..." />
     </LinearLayout>
 
 </LinearLayout>

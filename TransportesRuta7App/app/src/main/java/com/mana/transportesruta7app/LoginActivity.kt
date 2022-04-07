@@ -1,146 +1,144 @@
 package com.mana.transportesruta7app
 
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import androidx.appcompat.R
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.mana.transportesruta7app.databinding.ActivityLoginBinding
-import kotlinx.android.synthetic.main.activity_fragment_vale.*
-import kotlinx.android.synthetic.main.activity_home.*
-
-
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_vale.*
 
-
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
+
     val db = Firebase.firestore
-
-    private lateinit var auth: FirebaseAuth
-
-    private lateinit var binding: ActivityLoginBinding
-    private var mEmail = ""
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        auth = Firebase.auth
+        //Cosas de FireBase
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integracion de Firebase Completa ")
+        firebaseAnalytics.logEvent("InitScreen", bundle)
 
-        binding.signInAppCompatButton.setOnClickListener {
-            mEmail = binding.emailEditText.text.toString()
-            val mPassword = binding.passwordEditText.text.toString()
-            when {
-                mEmail.isEmpty() || mPassword.isEmpty() -> {
-                    Toast.makeText(baseContext, "Correo o contraseña icorrectos.",
-                        Toast.LENGTH_SHORT).show()
-                } else -> {
-                login(mEmail, mPassword)
-                }
-            }
-
-        }
-
-        binding.recoveryAccountTextView.setOnClickListener {
-            val intent = Intent(this, AccountRecoveryActivity::class.java)
-            startActivity(intent)
-        }
-
+        // Setup
         setup()
-    }
-    private fun setup (){
-        testButton.setOnClickListener(){
-            //val message = mEmail
-            val intent = Intent(this, ValeDirecciones::class.java)
-            //intent.putExtra("mensaje", message)
-            this.startActivity(intent)
-                /*val mEmail = intent.getStringExtra("email")*/
-
-        }
+        session()
     }
 
-    public override fun onStart() {
-
+    //Layout visible
+    override fun onStart() {
         super.onStart()
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            if(currentUser.isEmailVerified) {
-                reload()
-            } else {
-                val intent = Intent(this, CheckEmailActivity::class.java)
-                startActivity(intent)
-            }
+        authLayout.visibility = View.VISIBLE
+    }
+
+    //Si existe sesion...Iniciar
+    private fun session(){
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString("email",null)
+        val provider = prefs.getString("provider", null)
+        if (email != null && provider != null){
+            authLayout.visibility = View.INVISIBLE
+            showHome(email, ProviderType.valueOf(provider) )
         }
     }
 
-    private fun login (email : String , password : String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d("TAG", "signInWithEmail:success")
-                    reload()
-                } else {
-                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Correo o contraseña icorrectos.",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
+    //Botones
+    private fun setup() {
+        //Boton Logear
+        singUpButton.setOnClickListener {
+            if (correoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
+                FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(correoText.text.toString(),
+                        contraseñaText.text.toString()).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            println("***********success************")
+                            var tipoUsuario = ""
+                            //validacion de admin o chofer
+                            val docRef = db.collection("Usuarios").document(correoText.text.toString())
+                            docRef.get().addOnSuccessListener { document ->
+                                if (document != null) {
+                                    println("***********tiene datos************")
+                                    var usuarioData = document.data.toString()
+                                        usuarioData = usuarioData.replace("}", "")
+                                        usuarioData = usuarioData.replace("{", "")
+                                    var cadenaSeparada  = usuarioData.split(",","=");
+                                    for (i in cadenaSeparada.indices) {
+                                        println(cadenaSeparada[i])
+                                        if (cadenaSeparada[i] == " usuario_tipo") {
+                                            tipoUsuario     = cadenaSeparada[i+1]
+                                            println("***********************")
+                                            println(tipoUsuario)
+                                        }
+                                    }
+                                }
+                                    if (tipoUsuario.equals("admin")){
+                                        showAdmin(it.result?.user?.email ?: "", ProviderType.BASIC)
+                                    }
+                                    else if (tipoUsuario.equals("chofer")){
+                                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                                    }else{
+                                        showAlertTipoUsuario()
+                                    }
 
-    private fun reload() {
-        var tipoUsuario = ""
-        //validacion de admin o chofer
-        val docRef = db.collection("Personas").document(mEmail)
-        docRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                var tipoPerfil = document.data.toString()
-                tipoPerfil              = tipoPerfil.replace("}", "")
-                tipoPerfil              = tipoPerfil.replace("{", "")
-                var cadenaSeparada  = tipoPerfil.split(",","=");
-                for (i in cadenaSeparada.indices) {
-                    println("**")
-                    println(cadenaSeparada[i])
-                    if (cadenaSeparada[i] == " Tipo de Usuario") {
-                        tipoUsuario     = cadenaSeparada[i+1]
-                        println(cadenaSeparada[i+1])
+                            }.addOnFailureListener { exception ->
+                                println("***********error en login************")
+                            }
 
+                        } else {
+                            showAlert()
+                        }
                     }
-                }
-                Log.d("TAG", tipoUsuario.toString())
             }
-
-            /*Log.d("TAG", cadenaSeparada.toString())*/
-
-
-            if (tipoUsuario.equals("admin")){
-                val intent = Intent(this, AdminActivity::class.java)
-                /*intent.putExtra("email", "isaiasa42@gmail.com")*/
-                this.startActivity(intent)
-            }
-
-            else if (tipoUsuario.equals("chofer")){
-                val intent = Intent(this, HomeActivity::class.java)
-                /*intent.putExtra("email", "isaiasa42@gmail.com")*/
-                this.startActivity(intent)
-            }else{
-                Toast.makeText(this, "Perfil no reconocido", Toast.LENGTH_SHORT).show()
-            }
-
-
-
-        }.addOnFailureListener { exception ->
-            Log.d("TAG", "get failed with ", exception)
         }
+        //Boton Registrar
+        registerButton.setOnClickListener {
+            val RegistrarIntent = Intent(this,RegisterActivity::class.java)
+            startActivity(RegistrarIntent)
+        }
+    }
+
+    //Alerta
+    private fun showAlertTipoUsuario() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Existe un problema con el tipo de usuario")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Se ha producido un error al autentificar al usuario")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun showHome(email: String, provider: ProviderType) {
+
+        val productoIntent = Intent(this,HomeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+
+        }
+        startActivity(productoIntent)
+    }
+    private fun showAdmin(email: String, provider: ProviderType) {
+        val homeIntent = Intent(this,AdminActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(homeIntent)
     }
 }
 

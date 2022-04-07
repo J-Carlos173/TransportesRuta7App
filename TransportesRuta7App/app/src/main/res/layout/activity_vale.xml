@@ -243,7 +243,7 @@
                 android:text="RUT Pasajero" />
 
             <EditText
-                android:id="@+id/rutEditText"
+                android:id="@+id/rutText"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="20dp"

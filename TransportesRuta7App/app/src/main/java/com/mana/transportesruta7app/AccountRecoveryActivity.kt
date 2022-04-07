@@ -18,8 +18,8 @@ class AccountRecoveryActivity : AppCompatActivity() {
         binding = ActivityAccountRecoveryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.sendEmailAppCompatButton.setOnClickListener {
-            val emailAddress = binding.emailEditText.text.toString()
+       /* binding.sendEmailAppCompatButton.setOnClickListener {
+            val emailAddress = binding.emailEd.text.toString()
             Firebase.auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener { task ->
                 if(task.isSuccessful) {
                     val intent = Intent(this, LoginActivity::class.java)
@@ -29,6 +29,6 @@ class AccountRecoveryActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
     }
 }

@@ -41,7 +41,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/correoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
