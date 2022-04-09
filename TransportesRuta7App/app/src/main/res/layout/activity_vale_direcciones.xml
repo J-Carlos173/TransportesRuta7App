@@ -204,10 +204,6 @@
                             android:layout_height="match_parent"
                             android:layout_margin="5dp" />
 
-
-
-
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -235,15 +231,25 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <LinearLayout
+                    android:id="@+id/linealMapaValeFragment"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
-                    android:padding="10dp"
-                    android:background="@color/quantum_googred"
-                    tools:srcCompat="@tools:sample/avatars"
-                    android:layout_gravity="center"
-                    android:visibility="visible"/>
+                    android:layout_gravity="center">
+                    <fragment
+                        android:id="@+id/mapaValeFragment"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="220dp"
+                        android:layout_height="220dp"
+
+                        android:padding="10dp"
+                        android:visibility="visible"
+                        tools:context=".ValeDirecciones">
+
+                    </fragment>
+                </LinearLayout>
+
+
 
             </LinearLayout>
 

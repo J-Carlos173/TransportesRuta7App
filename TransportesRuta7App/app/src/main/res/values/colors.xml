@@ -12,4 +12,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF5722</color>
     <color name="gray">#EE5C5C5C</color>
+    <color name="map_polyline_stroke">#FFBB86FC</color>
 </resources>

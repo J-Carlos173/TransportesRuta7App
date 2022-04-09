@@ -4,12 +4,14 @@ buildscript {
         // Check that you have the following line (if not, add it):
         google()// Google's Maven repository
         mavenCentral()
+        jcenter()
 
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.10'
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.0"
 
     }
 

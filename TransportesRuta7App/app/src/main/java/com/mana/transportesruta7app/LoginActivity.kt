@@ -100,6 +100,11 @@ class LoginActivity : AppCompatActivity() {
             val RegistrarIntent = Intent(this,RegisterActivity::class.java)
             startActivity(RegistrarIntent)
         }
+
+        testButton.setOnClickListener() {
+            val RegistrarIntent = Intent(this,ValeDirecciones::class.java)
+            startActivity(RegistrarIntent)
+        }
     }
     //Alerta
     private fun showAlertTipoUsuario() {
@@ -133,6 +138,11 @@ class LoginActivity : AppCompatActivity() {
             putExtra("provider", provider.name)
         }
         startActivity(homeIntent)
+    }
+
+    override fun onBackPressed() {
+        //O bajar app y dejar session activa**********************************
+        finishAffinity()
     }
 }
 
