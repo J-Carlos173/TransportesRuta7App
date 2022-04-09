@@ -1,11 +1,7 @@
 package com.mana.transportesruta7app
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.media.metrics.LogSessionId
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -52,8 +48,11 @@ class RegisterActivity : AppCompatActivity() {
                         for (cadaCorreo in arr) {
                             val found = cadaCorreo.indexOf("=");
                             val correo = cadaCorreo.split("=")
-                            println()
-                            if (correo[0] == correoText.text.toString()) {
+                            //println("*******************************************")
+                            //println(correo[0].trim())
+                            //println(correoText.text.toString().replace(".", "_"))
+
+                            if (correo[0].trim() == correoText.text.toString().replace(".", "_")) {
                                 showFelicidades()
                                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                                     correoText.text.toString(),

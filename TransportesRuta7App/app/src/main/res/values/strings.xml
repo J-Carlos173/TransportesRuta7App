@@ -11,13 +11,13 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="MAPS_API_KEY">AIzaSyD4kBovK0swh2lQSE-rzW2xZg73FbCXvRE</string>
     <string name="prefs_file">com.mana.transportesruta7app.PREFERENCE_FILE_KEY</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="admin">Admin</string>
     <string name="registrar">Registrar Usuario</string>
+    <string name="desactivarUsuario">Desactivar / Activar Usuario</string>
     <string name="eliminar">Eliminar Usuario</string>
     <string name="modificar">Modificar Usuario</string>
     <string name="ver_vales">Var Vales</string>

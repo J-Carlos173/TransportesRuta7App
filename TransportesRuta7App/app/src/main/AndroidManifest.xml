@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".PermitirUsuario"
+            android:exported="false" />
+        <activity
             android:name=".ValeDirecciones"
             android:exported="false" />
         <activity
@@ -40,7 +43,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteAccountActivity"
+            android:name=".DesactivarCuentaActivity"
             android:exported="false"
             android:label="@string/title_activity_delete_account"
             android:theme="@style/NoActionBar" />

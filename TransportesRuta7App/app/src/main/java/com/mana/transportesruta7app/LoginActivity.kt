@@ -5,16 +5,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_vale.*
 
 @Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
@@ -34,13 +32,11 @@ class LoginActivity : AppCompatActivity() {
         setup()
         session()
     }
-
     //Layout visible
     override fun onStart() {
         super.onStart()
         authLayout.visibility = View.VISIBLE
     }
-
     //Si existe sesion...Iniciar
     private fun session(){
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
@@ -51,7 +47,6 @@ class LoginActivity : AppCompatActivity() {
             showHome(email, ProviderType.valueOf(provider) )
         }
     }
-
     //Botones
     private fun setup() {
         //Boton Logear
@@ -106,7 +101,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(RegistrarIntent)
         }
     }
-
     //Alerta
     private fun showAlertTipoUsuario() {
         val builder = AlertDialog.Builder(this)

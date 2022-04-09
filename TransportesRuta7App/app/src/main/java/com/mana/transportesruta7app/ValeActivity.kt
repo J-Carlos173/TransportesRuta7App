@@ -1,16 +1,11 @@
 package com.mana.transportesruta7app
 
 import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_vale.*
@@ -23,10 +18,6 @@ class ValeActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
-
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vale)
@@ -69,7 +60,7 @@ class ValeActivity : AppCompatActivity() {
                 "Direccion Inicio"  to spnDireccionInicio.getItemAtPosition(spnDireccionInicio.selectedItemPosition),
                 "Direccion Final"   to spnDireccionFin.getItemAtPosition(spnDireccionFin.selectedItemPosition),
                 "Cliente"           to pasajeroEditText.text.toString(),
-                "Rut"               to rutEditText.text.toString(),
+                "Rut"               to rutText.text.toString(),
                 "Firma"             to "Firma.png"
         )
 

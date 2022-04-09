@@ -29,7 +29,7 @@
             android:textSize="24sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registrarButton"
+            android:id="@+id/agregarUsuarioButton"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
@@ -41,21 +41,10 @@
             android:text="@string/registrar"
             android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/modificarButton"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="@color/orange"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp"
-            android:text="@string/modificar"
-            android:textColor="@color/white" />
+
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/eliminarButton"
+            android:id="@+id/desactivarUsuarioButton"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
@@ -64,7 +53,7 @@
             android:backgroundTint="@color/orange"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
-            android:text="@string/eliminar"
+            android:text="@string/desactivarUsuario"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton

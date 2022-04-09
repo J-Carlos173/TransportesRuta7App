@@ -3,44 +3,59 @@ package com.mana.transportesruta7app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ExpandableListView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_admin.*
-import kotlinx.android.synthetic.main.activity_vale.*
+
 
 class AdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
 
-        setup()
+        val bundle = intent.extras
+        val email = bundle?.getString("email")
+        val provider = bundle?.getString("provider")
+        setup(email ?: "", provider ?: "")
 
     }
 
-    private fun setup(){
-        //val mEmail = intent.getStringExtra("mEmail").toString()
-        //Toast.makeText(baseContext, mEmail, Toast.LENGTH_SHORT).show()
+    private fun setup(email: String, provider: String) {
 
-        registrarButton.setOnClickListener(){
-            val intent = Intent (this, RegisterActivity::class.java)
-            this.startActivity(intent)
+        agregarUsuarioButton.setOnClickListener(){
+            showAgregarUsuario(email, provider)
         }
-        modificarButton.setOnClickListener(){
-            val intent = Intent (this, UpdatePasswordActivity::class.java)
-            this.startActivity(intent)
+        desactivarUsuarioButton.setOnClickListener(){
+            desactivarUsuario(email, provider)
         }
-        eliminarButton.setOnClickListener(){
-            val intent = Intent (this, DeleteAccountActivity::class.java)
-            this.startActivity(intent)
-        }
+
         valesButton.setOnClickListener(){
-            val intent = Intent (this, ValeActivity::class.java)
-            this.startActivity(intent)
+            vales(email, provider)
         }
     }
+
     override fun onBackPressed() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+    private fun showAgregarUsuario(email: String, provider: String) {
+        val homeIntent = Intent(this,PermitirUsuario::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(homeIntent)
+    }
+    private fun desactivarUsuario(email: String, provider: String) {
+        val homeIntent = Intent(this,DesactivarCuentaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(homeIntent)
+    }
+    private fun vales(email: String, provider: String) {
+        val homeIntent = Intent(this,AdminActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        //startActivity(homeIntent)
     }
 
 }
