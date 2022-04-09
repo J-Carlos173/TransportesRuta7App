@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         val provider = bundle?.getString("provider")
 
         setup(email ?: "", provider ?: "")
-        verificar()
+        cargarDatos(email.toString())
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -43,12 +44,12 @@ class HomeActivity : AppCompatActivity() {
         prefs.putString("provider", provider)
         prefs.apply()
 
-
-
-
         adapter = SliderAdapter(this)
         slider = findViewById(R.id.main_slider2)
         slider.adapter = adapter
+
+
+
     }
 
 
@@ -65,6 +66,12 @@ class HomeActivity : AppCompatActivity() {
         val currentDate = sdf.format(Date())
         //fechaText.text = currentDate
 
+
+        CrearvaleButton.setOnClickListener {
+
+            val valeActivity = Intent(this, ValeActivity::class.java)
+            startActivity(valeActivity)
+        }
         cerrarButton.setOnClickListener {
             //Borrar datos
             val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -76,43 +83,35 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-    private fun verificar():Boolean {
-
+    private fun cargarDatos(email : String) {
         val db = FirebaseFirestore.getInstance()
-        val email = emailTextView.text.toString()
-        var actualizado = false
+
         db.collection("usuarios").document(email)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    //*******************************CORREGIR*******************************
-                    /*val nombre = document.get("usuario_nombre")
-                    val direccion = document.get("usuario_direccion")
-                    val comuna = document.get("usuario_comuna")
-                    val telefono = document.get("usuario_telefono")
-                    val token = document.get("token")
-                    if (nombre == "" || nombre == null|| direccion == ""|| direccion == null ||
-                        comuna == "" || comuna == null|| telefono == "" || telefono == null)
-                    {
-                        println("mentira, tiene campos vacios")
-                        actualizado = false
-                        Toast.makeText(applicationContext, "Faltan Datos", Toast.LENGTH_SHORT).show()
-                        //showHome(emailTextView.text.toString(), providerTextView.text.toString())
-                    }
-                    else {
-                        println("verdad, todo correcto")
-                        actualizado = true
-                    }
-*/
+                    val nombre = document.get("usuario_nombre")
+                    val apellido = document.get("usuario_apellido")
+                    val nombre_completo = "$nombre $apellido"
 
+                    nombreText.setText(nombre_completo)
+
+                } else {
+                    showAlert()
                 }
             }
             .addOnFailureListener { exception ->
                 Log.d("Error", "get failed with ", exception)
             }
-        return actualizado
     }
-
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Se ha producido un error al cargar los datos")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
     override fun onBackPressed() {
         //cerrar session
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()

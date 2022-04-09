@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             showHome(email, ProviderType.valueOf(provider) )
         }
     }
-    //Botones
+
     private fun setup() {
         //Boton Logear
         singUpButton.setOnClickListener {
@@ -106,7 +106,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(RegistrarIntent)
         }
     }
-    //Alerta
+
+
+    //Alertas
     private fun showAlertTipoUsuario() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
@@ -123,6 +125,8 @@ class LoginActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
+    //Intent
     private fun showHome(email: String, provider: ProviderType) {
 
         val productoIntent = Intent(this,HomeActivity::class.java).apply {
