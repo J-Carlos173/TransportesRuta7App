@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -31,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         // Setup
         setup()
         session()
+
     }
     //Layout visible
     override fun onStart() {
@@ -44,7 +44,37 @@ class LoginActivity : AppCompatActivity() {
         val provider = prefs.getString("provider", null)
         if (email != null && provider != null){
             authLayout.visibility = View.INVISIBLE
-            showHome(email, ProviderType.valueOf(provider) )
+
+            var tipoUsuario = ""
+            val docRef = db.collection("Usuarios").document(email.toString())
+            docRef.get().addOnSuccessListener { document ->
+                if (document != null) {
+                    println("***********tiene datos************")
+                    var usuarioData = document.data.toString()
+                    usuarioData = usuarioData.replace("}", "")
+                    usuarioData = usuarioData.replace("{", "")
+                    var cadenaSeparada  = usuarioData.split(",","=");
+                    for (i in cadenaSeparada.indices) {
+                        println(cadenaSeparada[i])
+                        if (cadenaSeparada[i] == " usuario_tipo") {
+                            tipoUsuario     = cadenaSeparada[i+1]
+                            println("***********************")
+                            println(tipoUsuario)
+                        }
+                    }
+                }
+                if (tipoUsuario.equals("admin")){
+                    showAdmin(email, ProviderType.BASIC)
+                }
+                else if (tipoUsuario.equals("chofer")){
+                    showHome(email, ProviderType.BASIC)
+                }else{
+                    showAlertTipoUsuario()
+                }
+
+            }.addOnFailureListener { exception ->
+                println("***********error en login************")
+            }
         }
     }
 
@@ -93,6 +123,9 @@ class LoginActivity : AppCompatActivity() {
                             showAlert()
                         }
                     }
+            }else
+            {
+                showAlert()
             }
         }
         //Boton Registrar
@@ -100,7 +133,6 @@ class LoginActivity : AppCompatActivity() {
             val RegistrarIntent = Intent(this,RegisterActivity::class.java)
             startActivity(RegistrarIntent)
         }
-
         testButton.setOnClickListener() {
             val RegistrarIntent = Intent(this,ValeDirecciones::class.java)
             startActivity(RegistrarIntent)
@@ -119,8 +151,8 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error al autentificar al usuario")
+        builder.setTitle("Alerta")
+        builder.setMessage("Correo o contraseña Invalida")
         builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()

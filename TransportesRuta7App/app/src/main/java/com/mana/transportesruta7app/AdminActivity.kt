@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_admin.*
 
 
@@ -35,15 +36,19 @@ class AdminActivity : AppCompatActivity() {
         desactivarUsuarioButton.setOnClickListener(){
             desactivarUsuario(email, provider)
         }
-
         valesButton.setOnClickListener(){
             vales(email, provider)
         }
+        cerrarSessionButton.setOnClickListener(){
+            cerrarSession()
+        }
     }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+    private fun cerrarSession(){
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.clear()
+        prefs.apply()
+        FirebaseAuth.getInstance().signOut()
+        showLogin()
     }
     private fun showAgregarUsuario(email: String, provider: String) {
         val homeIntent = Intent(this,PermitirUsuario::class.java).apply {
@@ -73,5 +78,12 @@ class AdminActivity : AppCompatActivity() {
         builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+    override fun onBackPressed() {
+        finishAffinity()
+    }
+    private fun showLogin(){
+        val LoginActivity = Intent(this, LoginActivity::class.java)
+        startActivity(LoginActivity)
     }
 }

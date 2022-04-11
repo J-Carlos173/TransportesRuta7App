@@ -32,11 +32,12 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val bundle = intent.extras
-        val email = bundle?.getString("email")
+        val email = bundle?.getString("email").toString()
         val provider = bundle?.getString("provider")
 
         setup(email ?: "", provider ?: "")
-        cargarDatos(email.toString())
+        cargarDatos(email)
+        showCorreo(email)
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -51,21 +52,24 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-
+    private fun showCorreo(email: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Felicitaciones el correo es")
+        builder.setMessage(email)
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
 
     private fun setup(email: String, provider: String){
 
-        title = "Home"
-
         emailTextView.text = email
         //providerTextView.text = provider
-
         //val sdf = SimpleDateFormat("dd/M/yyyy")
         val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
         val currentDate = sdf.format(Date())
         //fechaText.text = currentDate
-
 
         CrearvaleButton.setOnClickListener {
 
@@ -78,15 +82,17 @@ class HomeActivity : AppCompatActivity() {
             prefs.clear()
             prefs.apply()
             FirebaseAuth.getInstance().signOut()
-            showAuth()
+            showLogin()
         }
 
 
     }
     private fun cargarDatos(email : String) {
-        val db = FirebaseFirestore.getInstance()
 
-        db.collection("usuarios").document(email)
+        val db = FirebaseFirestore.getInstance()
+        println("*****************email******************************")
+        println(email)
+        db.collection("Usuarios").document(email)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -113,18 +119,11 @@ class HomeActivity : AppCompatActivity() {
         dialog.show()
     }
     override fun onBackPressed() {
-        //cerrar session
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.clear()
-        prefs.apply()
-        FirebaseAuth.getInstance().signOut()
-        showAuth()
-        //O bajar app y dejar session activa**********************************
-        //finishAffinity()
+        finishAffinity()
     }
-    private fun showAuth(){
-        val AuthActivity = Intent(this, LoginActivity::class.java)
-        startActivity(AuthActivity)
+    private fun showLogin(){
+        val LoginActivity = Intent(this, LoginActivity::class.java)
+        startActivity(LoginActivity)
     }
 }
 

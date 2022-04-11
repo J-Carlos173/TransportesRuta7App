@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="142dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="15dp"
         android:animateLayoutChanges="false"
@@ -40,14 +40,15 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/nombreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
                 android:paddingLeft="15dp"
-                android:text="Isaias Andrews Marchant"
+                android:text="Isaias Andrew"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
 
         </LinearLayout>
 
@@ -109,7 +110,7 @@
             android:layout_width="140dp"
             android:layout_gravity="center"
             android:layout_height="60dp"
-            android:text="Cerrar Session" />
+            android:text="@string/cerrarSession" />
 
     </LinearLayout>
 </LinearLayout>
