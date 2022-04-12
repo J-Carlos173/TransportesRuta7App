@@ -18,67 +18,73 @@ class ValeActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vale)
-        crearValeButton.setOnClickListener() {
-            crearVale()
+
+        val bundle = intent.extras
+        val email = bundle?.getString("email").toString()
+        val provider = bundle?.getString("provider").toString()
+        setup(email)
+
+        crearValeButton.setOnClickListener(){
+            crearVale(email)
         }
-        setup()
 
     }
-    override fun onBackPressed() {
-        val mEmail = intent.getStringExtra("mEmail").toString()
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.putExtra("mEmail", mEmail)
-        this.startActivity(intent)
-    }
 
-    private fun setup() {
+    private fun setup(email: String) {
         cargarCenctrodeCostos()
         cargarDirecciones()
         cargarEmpresas()
-        cargarDatos()
+        cargarDatos(email)
 
-        crearValeButton.setOnClickListener(){
-            crearVale()
-        }
+
     }
+    private fun crearVale(email: String) {
 
-    fun crearVale() {
-        val mEmail =intent.getStringExtra("mEmail").toString()
+        //val sdf = SimpleDateFormat("dd/M/yyyy")
+        val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
+        val currentDate = sdf.format(Date())
+
+
         val vale = hashMapOf(
-                "Email"             to mEmail,
-                "Fecha"             to fechaTextView.text.toString(),
-                "Hora Inicio"       to "10:30",
-                "Hora Fin"          to "11:00",
-                "Chofer"            to choferTextView.text.toString(),
-                "Movil"             to movilTextView.text.toString(),
-                "Patente"           to patenteTextView.text.toString(),
-                "Empresa"           to spnEmpresas.getItemAtPosition(spnEmpresas.selectedItemPosition),
-                "Centro de costo"   to spnCentroCosto.getItemAtPosition(spnCentroCosto.selectedItemPosition),
-                "Direccion Inicio"  to spnDireccionInicio.getItemAtPosition(spnDireccionInicio.selectedItemPosition),
-                "Direccion Final"   to spnDireccionFin.getItemAtPosition(spnDireccionFin.selectedItemPosition),
-                "Cliente"           to pasajeroEditText.text.toString(),
-                "Rut"               to rutText.text.toString(),
-                "Firma"             to "Firma.png"
+
+                "vale_Email"            to email,
+                "vale_Fecha"            to currentDate.toString(),
+                "vale_Chofer"           to nombresValeEditText.text.toString(),
+                "vale_Rut"              to rutValeEditText.text.toString(),
+                "vale_Patente"          to patenteEditText.text.toString(),
+                "vale_Movil"            to nroMovilEditText.text.toString(),
+                "vale_Empresa"          to spnEmpresas.getItemAtPosition(spnEmpresas.selectedItemPosition),
+                "vale_CC"               to spnCentroCosto.getItemAtPosition(spnCentroCosto.selectedItemPosition),
+                "vale_Inicio"           to autocomplete_fragment1.toString(),
+                "vale_Final"            to autocomplete_fragment2.toString(),
+                "vale_cliente_nombre"   to nombreClienteText.text.toString(),
+                "vale_cliente_rut"      to rutClienteText.text.toString(),
+                "vale_Tipo"             to "Empresa",
+                "Firma"                 to "Firma.png"
         )
 
         val contador = db.collection("Vales")
         contador.get().addOnSuccessListener { documentSnapshots ->
-        val size = documentSnapshots.size() + 1
+        //val size = documentSnapshots.size() + 1
 
-        db.collection("Vales").document(size.toString()).set(vale).addOnSuccessListener {
+        db.collection("Vales").document().set(vale).addOnSuccessListener {
             Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("mEmail", mEmail)
-            this.startActivity(intent)
+            showHome(email, ProviderType.BASIC)
         }.addOnFailureListener {
             Toast.makeText(applicationContext, "No Funciono", Toast.LENGTH_SHORT).show()
         }
     }
     }
-    fun cargarCenctrodeCostos(){
+    private fun showHome(email: String, provider: ProviderType) {
+        val homeIntent = Intent(this,HomeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(homeIntent)
+    }
+    private fun cargarCenctrodeCostos(){
         val docRef = db.collection("Listas").document("CC")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -102,7 +108,7 @@ class ValeActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarEmpresas(){
+    private fun cargarEmpresas(){
         val docRef = db.collection("Listas").document("Empresas")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -126,7 +132,7 @@ class ValeActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarDirecciones(){
+    private fun cargarDirecciones(){
         val docRef = db.collection("Listas").document("Direcciones")
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -141,8 +147,8 @@ class ValeActivity : AppCompatActivity() {
                     list.add(cCosto.substring(found + 1))
                 }
                 val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
-                spnDireccionInicio.adapter = adapter
-                spnDireccionFin.adapter = adapter
+                //spnDireccionInicio.adapter = adapter
+                //spnDireccionFin.adapter = adapter
             }
             else {
                 Log.d("TAG", "No such document")
@@ -151,20 +157,21 @@ class ValeActivity : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    fun cargarDatos(){
-        val mEmail =intent.getStringExtra("mEmail").toString()
-
-        val sdf = SimpleDateFormat("dd/M/yyyy")
-        val currentDate = sdf.format(Date())
-        val docRef = db.collection("Personas").document(mEmail)
+    private fun cargarDatos(email: String){
+        println("*****************************")
+        println(email)
+        val docRef = db.collection("Usuarios").document(email)
         docRef.get().addOnSuccessListener { document ->
                 if (document != null) {
                     Log.d("TAG", "${document.id} => ${document.data}")
 
-                    choferTextView.text     = document.data?.getValue("Nombres").toString()
-                    movilTextView.text      = document.data?.getValue("Movil").toString()
-                    patenteTextView.text    = document.data?.getValue("Patente").toString()
-                    fechaTextView.text      = currentDate.toString()
+                    val nombre                  = document.data?.getValue("usuario_nombre").toString()
+                    val apellido                = document.data?.getValue("usuario_apellido").toString()
+                    nombresValeEditText.text    = "$nombre $apellido"
+                    //nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
+                    //patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
+                    rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()
+
                     Log.d("TAG", "******************Todo Correcto******************")
                     Toast.makeText(this, "Se han cargado los datos", Toast.LENGTH_SHORT).show()
                 } else {
@@ -174,9 +181,12 @@ class ValeActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d("TAG", "No se encontro el Documento", exception)
             }
-
-
-
+    }
+    override fun onBackPressed() {
+        val mEmail = intent.getStringExtra("mEmail").toString()
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.putExtra("mEmail", mEmail)
+        this.startActivity(intent)
     }
 }
 

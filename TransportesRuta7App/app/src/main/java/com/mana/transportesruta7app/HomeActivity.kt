@@ -73,8 +73,7 @@ class HomeActivity : AppCompatActivity() {
 
         CrearvaleButton.setOnClickListener {
 
-            val valeActivity = Intent(this, ValeActivity::class.java)
-            startActivity(valeActivity)
+            showCrearVale(email,ProviderType.BASIC)
         }
         cerrarButton.setOnClickListener {
             //Borrar datos
@@ -124,6 +123,13 @@ class HomeActivity : AppCompatActivity() {
     private fun showLogin(){
         val LoginActivity = Intent(this, LoginActivity::class.java)
         startActivity(LoginActivity)
+    }
+    private fun showCrearVale(email: String, provider: ProviderType) {
+        val valeIntent = Intent(this,ValeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(valeIntent)
     }
 }
 

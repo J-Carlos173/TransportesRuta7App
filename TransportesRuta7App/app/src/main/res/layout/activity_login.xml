@@ -118,6 +118,7 @@
             android:paddingRight="64dp"
             android:text="TEST"
             android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/recoveryAccountTextView"
             android:layout_width="wrap_content"

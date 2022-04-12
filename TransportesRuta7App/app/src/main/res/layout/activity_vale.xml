@@ -38,25 +38,24 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/nombre"
-                            android:layout_width="100dp"
+                            android:layout_width="75dp"
                             android:layout_height="wrap_content"
                             android:paddingLeft="15dp"
                             android:paddingTop="15dp"
-                            android:paddingEnd="10dp"
-                            android:text="Nombre:"
+                            android:text="Chofer:"
 
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/rut"
-                            android:layout_width="100dp"
+                            android:layout_width="75dp"
                             android:layout_height="wrap_content"
                             android:paddingLeft="15dp"
                             android:paddingTop="10dp"
@@ -72,7 +71,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/nombresValeDireccionesEditText"
+                            android:id="@+id/nombresValeEditText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="15dp"
@@ -81,7 +80,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/rutValeDireccionesEditText"
+                            android:id="@+id/rutValeEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dp"
@@ -100,14 +99,14 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="start"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/patente"
-                            android:layout_width="100dp"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
                             android:paddingTop="15dp"
@@ -118,7 +117,7 @@
 
                         <TextView
                             android:id="@+id/numeroMovil"
-                            android:layout_width="100dp"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
                             android:paddingTop="10dp"
@@ -137,7 +136,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/patenteDireccionesEditText"
+                            android:id="@+id/patenteEditText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="15dp"
@@ -147,7 +146,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/nroMovilDireccionesEditText"
+                            android:id="@+id/nroMovilEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dp"
@@ -198,7 +197,7 @@
 
                         <TextView
                             android:id="@+id/pruebaEditText"
-                            android:layout_width="100dp"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:paddingLeft="15dp"
@@ -209,7 +208,7 @@
 
                         <TextView
                             android:id="@+id/origenEditText"
-                            android:layout_width="100dp"
+                            android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:paddingLeft="15dp"
@@ -229,14 +228,14 @@
                             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp" />
+                            android:layout_marginTop="5dp" />
 
                         <fragment
                             android:id="@+id/autocomplete_fragment2"
                             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp" />
+                            android:layout_marginTop="5dp" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -341,12 +340,13 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnCentroCostoValeDirecciones"
+                            android:id="@+id/spnCentroCosto"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/spinner_bg"
 
+                            android:gravity="clip_vertical|center_horizontal"
                             android:paddingBottom="15dp"
                             android:popupBackground="@color/naranjo_obscuro"
                             android:spinnerMode="dropdown" />
@@ -358,28 +358,26 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnEmpresaValeDirecciones"
+                            android:id="@+id/spnEmpresas"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
                             android:background="@drawable/spinner_bg"
-                            android:paddingBottom="15dp"
-
+                            android:gravity="center_horizontal|center_vertical"
+                            android:layout_marginTop="15dp"
                             android:popupBackground="@color/naranjo_obscuro"
                             android:spinnerMode="dropdown" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/nombreClienteText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:gravity="center_horizontal|center_vertical"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray" />
@@ -395,8 +393,7 @@
                             android:id="@+id/rutClienteText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:gravity="center_horizontal|center_vertical"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/black"
                             android:textColorHint="@color/gray" />
@@ -432,7 +429,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/singUpButton"
+                android:id="@+id/crearValeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="60dp"
