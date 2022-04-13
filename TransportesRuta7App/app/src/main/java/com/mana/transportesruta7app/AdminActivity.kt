@@ -33,6 +33,9 @@ class AdminActivity : AppCompatActivity() {
         agregarUsuarioButton.setOnClickListener(){
             showAgregarUsuario(email, provider)
         }
+        agregarListaButton.setOnClickListener(){
+            showAgregarLista(email, provider)
+        }
         desactivarUsuarioButton.setOnClickListener(){
             desactivarUsuario(email, provider)
         }
@@ -56,6 +59,13 @@ class AdminActivity : AppCompatActivity() {
             putExtra("provider", provider)
         }
         startActivity(homeIntent)
+    }
+    private fun showAgregarLista(email: String, provider: String) {
+        val agregarListaIntent = Intent(this,AgregarListaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(agregarListaIntent)
     }
     private fun desactivarUsuario(email: String, provider: String) {
         val homeIntent = Intent(this,DesactivarCuentaActivity::class.java).apply {

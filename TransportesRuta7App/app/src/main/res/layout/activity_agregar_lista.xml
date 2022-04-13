@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PermitirUsuario">
+    tools:context=".AgregarListaActivity">
 
     <LinearLayout
 
@@ -13,7 +13,6 @@
         android:background="@drawable/fondo2"
         android:gravity="center"
         android:orientation="vertical">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,26 +34,8 @@
         </LinearLayout>
 
 
-        <EditText
-            android:id="@+id/correoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="24dp"
-            android:autofillHints="Email"
-            android:background="@drawable/ic_field"
-            android:drawableStart="@drawable/ic_email"
-            android:drawablePadding="16dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray" />
-
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spnPerfiles"
+            android:id="@+id/spnLista"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
@@ -73,6 +54,23 @@
             android:textColorHint="@color/gray" />
 
 
+        <EditText
+            android:id="@+id/correoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="Email"
+            android:background="@drawable/ic_field"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="Empresa, Centro de costo, perfiles..."
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +81,7 @@
                 android:id="@+id/registrarButton"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/ic_field"
                 android:backgroundTint="#FB4F18"

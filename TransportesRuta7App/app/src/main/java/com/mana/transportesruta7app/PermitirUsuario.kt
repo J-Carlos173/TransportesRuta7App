@@ -18,13 +18,16 @@ class PermitirUsuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permitir_usuario)
 
+        val bundle = intent.extras
+        val email = bundle?.getString("email").toString()
+        val provider = bundle?.getString("provider").toString()
 
-        setup()
+        setup(email,provider)
         cargarPerfiles()
     }
-    private fun setup() {
+    private fun setup(email: String, provider: String) {
        registrarButton.setOnClickListener(){
-           updateDocumentPermisos()
+           agregarCorreo(email,provider)
         }
 
     }
@@ -53,7 +56,8 @@ class PermitirUsuario : AppCompatActivity() {
             Log.d("TAG", "get failed with ", exception)
         }
     }
-    private fun updateDocumentPermisos() {
+    private fun agregarCorreo(email: String, provider: String) {
+
         val db = FirebaseFirestore.getInstance()
         val update = db.collection("Listas").document("Permisos")
         var correo = correoText.text.toString()
@@ -63,11 +67,15 @@ class PermitirUsuario : AppCompatActivity() {
         update.update(correo,perfil)
                 .addOnSuccessListener {
                     showFelicidades()
+                    showAdmin(email, provider)
                 }
-                .addOnFailureListener { showAlert() }
+                .addOnFailureListener {
+                    showAlert()
+                }
 
     }
     private fun showAdmin(email: String, provider: String) {
+
         val adminIntent = Intent(this,AdminActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider)
@@ -76,9 +84,9 @@ class PermitirUsuario : AppCompatActivity() {
     }
     override fun onBackPressed() {
         val bundle = intent.extras
-        val email = bundle?.getString("email")
-        val provider = bundle?.getString("provider")
-        showAdmin(email.toString(), provider.toString())
+        val email = bundle?.getString("email").toString()
+        val provider = bundle?.getString("provider").toString()
+        showAdmin(email, provider)
 
     }
     private fun showAlert() {

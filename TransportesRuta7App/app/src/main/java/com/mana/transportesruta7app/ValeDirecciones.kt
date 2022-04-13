@@ -112,7 +112,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
                 // Text view where we will append the information that we fetch
                 val textView = findViewById<TextView>(R.id.tv2)
-
                 // Information about the place
                 val name = place.name
                 val address = place.address
