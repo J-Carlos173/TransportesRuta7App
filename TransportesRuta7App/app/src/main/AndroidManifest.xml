@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".AgregarListaActivity"
+            android:name=".AgregarRutaActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarLista"
+            android:name=".AgregarListaActivity"
             android:exported="false" />
         <activity
             android:name=".PermitirUsuario"
@@ -31,16 +31,13 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FirmaActivity"
             android:exported="false" />
         <activity
             android:name=".PasajeroActivity"
             android:exported="false" />
         <activity
             android:name=".UpdatePasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CheckEmailActivity"
             android:exported="false" />
         <activity
             android:name=".AccountRecoveryActivity"
@@ -69,7 +66,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ValeActivity"
+            android:name=".CrearValeEmpresaActivity"
             android:exported="false" />
 
         <meta-data

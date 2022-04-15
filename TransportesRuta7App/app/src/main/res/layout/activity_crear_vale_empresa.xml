@@ -1,4 +1,4 @@
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
                 android:paddingTop="15dp"
-                android:text="Nuevo Vale Ruta Empresa"
+                android:text="Nuevo Vale"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:paddingLeft="15dp"
-                android:text="Direcciones"
+                android:text="Ruta Empresa"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -201,20 +201,11 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:paddingLeft="15dp"
-                            android:text="Ruta"
+                            android:text="☻"
 
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/origenEditText"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:paddingLeft="15dp"
-                            android:text="Destino"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -223,19 +214,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <fragment
-                            android:id="@+id/autocomplete_fragment1"
-                            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnListaEmpresaCosto"
+                            android:background="@drawable/spinner_bg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp" />
+                            android:gravity="clip_vertical|center_horizontal"
+                            android:paddingBottom="15dp"
+                            android:popupBackground="@color/naranjo_obscuro"
+                            android:spinnerMode="dropdown" />
 
-                        <fragment
-                            android:id="@+id/autocomplete_fragment2"
-                            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp" />
 
                     </LinearLayout>
                 </LinearLayout>

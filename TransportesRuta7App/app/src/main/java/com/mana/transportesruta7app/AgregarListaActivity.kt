@@ -10,10 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_agregar_lista.*
-import kotlinx.android.synthetic.main.activity_agregar_lista.correoText
 import kotlinx.android.synthetic.main.activity_agregar_lista.registrarButton
 import kotlinx.android.synthetic.main.activity_permitir_usuario.*
-import kotlinx.android.synthetic.main.activity_vale.*
+
 
 class AgregarListaActivity : AppCompatActivity() {
     val db = Firebase.firestore

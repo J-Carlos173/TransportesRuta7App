@@ -87,7 +87,7 @@
                 android:backgroundTint="#FB4F18"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Registrar"
+                android:text="Agregar"
                 android:textColor="@color/white" />
 
 

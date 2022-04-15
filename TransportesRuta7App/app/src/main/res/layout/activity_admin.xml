@@ -44,6 +44,19 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agregarRutaButton"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="@color/orange"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp"
+            android:text="Agregar Ruta Empresa"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/agregarListaButton"
             android:layout_width="300dp"
             android:layout_height="48dp"
@@ -53,9 +66,8 @@
             android:backgroundTint="@color/orange"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
-            android:text="Agregar Listas"
+            android:text="Agregar Empresa Centro Costo"
             android:textColor="@color/white" />
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/desactivarUsuarioButton"

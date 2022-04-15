@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -125,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(LoginActivity)
     }
     private fun showCrearVale(email: String, provider: ProviderType) {
-        val valeIntent = Intent(this,ValeActivity::class.java).apply {
+        val valeIntent = Intent(this,CrearValeEmpresaActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }

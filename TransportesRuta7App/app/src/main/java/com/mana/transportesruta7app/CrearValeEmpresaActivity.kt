@@ -8,18 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_vale.*
+import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ValeActivity : AppCompatActivity() {
+class CrearValeEmpresaActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vale)
+        setContentView(R.layout.activity_crear_vale_empresa)
 
         val bundle = intent.extras
         val email = bundle?.getString("email").toString()
@@ -183,10 +183,17 @@ class ValeActivity : AppCompatActivity() {
             }
     }
     override fun onBackPressed() {
-        val mEmail = intent.getStringExtra("mEmail").toString()
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.putExtra("mEmail", mEmail)
-        this.startActivity(intent)
+        val bundle = intent.extras
+        val email = bundle?.getString("email")
+        val provider = bundle?.getString("provider")
+        showAdmin(email.toString(), provider.toString())
+    }
+    private fun showAdmin(email: String, provider: String) {
+        val adminIntent = Intent(this,AdminActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(adminIntent)
     }
 }
 

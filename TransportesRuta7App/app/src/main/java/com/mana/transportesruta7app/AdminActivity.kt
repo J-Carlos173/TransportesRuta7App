@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_admin.*
 
 
 class AdminActivity : AppCompatActivity() {
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
@@ -32,6 +35,9 @@ class AdminActivity : AppCompatActivity() {
 
         agregarUsuarioButton.setOnClickListener(){
             showAgregarUsuario(email, provider)
+        }
+        agregarRutaButton.setOnClickListener(){
+            showAgregarRuta(email, provider)
         }
         agregarListaButton.setOnClickListener(){
             showAgregarLista(email, provider)
@@ -60,6 +66,13 @@ class AdminActivity : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
+    private fun showAgregarRuta(email: String, provider: String) {
+        val agregarRutaIntent = Intent(this,AgregarRutaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(agregarRutaIntent)
+    }
     private fun showAgregarLista(email: String, provider: String) {
         val agregarListaIntent = Intent(this,AgregarListaActivity::class.java).apply {
             putExtra("email", email)
@@ -75,11 +88,11 @@ class AdminActivity : AppCompatActivity() {
         startActivity(homeIntent)
     }
     private fun vales(email: String, provider: String) {
-        val homeIntent = Intent(this,AdminActivity::class.java).apply {
+        val valesIntent = Intent(this,ValesActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider)
         }
-        //startActivity(homeIntent)
+        startActivity(valesIntent)
     }
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)

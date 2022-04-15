@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class FirmaActivity : AppCompatActivity() {
     private var btnClear: Button? = null
     private var btnSave: Button? = null
     private var file: File? = null
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_firma)
         canvasLL = findViewById<View>(R.id.canvasLL) as LinearLayout
         mSignature = signature(applicationContext, null)
         mSignature!!.setBackgroundColor(Color.WHITE)
