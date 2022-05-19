@@ -23,8 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Login"
-        android:textColor="@color/gray" />
+        android:text="@string/inisesion"
+        android:textColor="#EE373333"
+        android:textSize="24sp"/>
 
     <Space
         android:layout_width="wrap_content"
@@ -47,9 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
+            android:layout_marginTop="35dp"
             android:autofillHints="Email"
             android:background="@drawable/ic_field"
-            android:drawableStart="@drawable/ic_email"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="16dp"
             android:ems="10"
@@ -68,7 +69,6 @@
             android:layout_marginRight="24dp"
             android:autofillHints="Contraseña"
             android:background="@drawable/ic_field"
-            android:drawableStart="@drawable/ic_lock"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:ems="10"
@@ -79,32 +79,44 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
+        <TextView
+            android:id="@+id/recoveryAccountTextView"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:linksClickable="false"
+            android:minHeight="48dp"
+            android:onClick="login"
+            android:padding="13dp"
+            android:text="¿Olvidó su contraseña?"
+            android:textAlignment="textEnd"
+            android:textColor="@color/gray" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/singUpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="123dp"
+            android:layout_height="33dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
             android:onClick="Login"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp"
-            android:text="Ingresar"
-            android:textColor="@color/white" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/btnlogin"
+            android:textColor="#EE373333" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="123dp"
+            android:layout_height="33dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
-            android:onClick="Login"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp"
+            android:onClick="Registrar"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:text="Registrar"
-            android:textColor="@color/white" />
+            android:textColor="#EE373333" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/testButton"
@@ -112,24 +124,13 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_field"
-            android:backgroundTint="#FB4F18"
+            android:backgroundTint="@color/gray"
             android:onClick="Login"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
             android:text="TEST"
             android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/recoveryAccountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:linksClickable="false"
-            android:onClick="login"
-            android:padding="13dp"
-            android:text="¿Olvidó su contraseña?"
-            android:textAlignment="center"
-            android:textColor="#000000" />
     </LinearLayout>
 
 </LinearLayout>

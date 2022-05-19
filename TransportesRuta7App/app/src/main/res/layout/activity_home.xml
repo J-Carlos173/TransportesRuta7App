@@ -7,22 +7,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="15dp"
         android:animateLayoutChanges="false"
-        app:cardCornerRadius="4dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp"
-        app:cardUseCompatPadding="false">
+        app:cardUseCompatPadding="false"
+        app:cardCornerRadius="20dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/orange">
 
 
             <TextView
@@ -37,7 +44,10 @@
                 android:layout_width="71dp"
                 android:layout_height="80dp"
                 android:padding="10dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/account"
+                android:background="@color/gray"
+
+                />
 
             <TextView
                 android:id="@+id/nombreText"
@@ -47,7 +57,19 @@
                 android:paddingLeft="15dp"
                 android:text="Isaias Andrew"
                 android:textSize="20sp"
+                android:textColor="#EE373333"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/cerrarButton"
+                android:layout_width="269dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="16dp"
+                android:contentDescription="@string/all"
+                app:srcCompat="@drawable/ic_sign_out"
+                tools:ignore="VectorDrawableCompat" />
 
 
         </LinearLayout>
@@ -91,26 +113,29 @@
         android:paddingHorizontal="140dp"
         android:weightSum="2">
 
-        <Button
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/CrearvaleButton"
-            android:layout_width="140dp"
-            android:layout_gravity="center"
-            android:layout_height="60dp"
-            android:text="Nuevo Vale" />
+            android:layout_width="130dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="#FB4F18"
+            android:onClick="Login"
+            android:text="@string/newticket"
+            android:textColor="#EE373333" />
 
         <Button
             android:id="@+id/test"
             android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="#FB4F18"
             android:text="TEST" />
 
-        <Button
-            android:id="@+id/cerrarButton"
-            android:layout_width="140dp"
-            android:layout_gravity="center"
-            android:layout_height="60dp"
-            android:text="@string/cerrarSession" />
+
+
 
     </LinearLayout>
 </LinearLayout>
