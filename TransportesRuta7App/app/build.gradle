@@ -22,9 +22,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lintOptions{
-        checkReleaseBuilds false
-    }
     defaultConfig {
         applicationId "com.mana.transportesruta7app"
         minSdk 21
@@ -51,6 +48,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    lint {
+        checkReleaseBuilds false
     }
 
 }

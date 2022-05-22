@@ -44,6 +44,11 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
     private var validacionOrigen = false
     private var validacionDestino = false
+    private var lat1 :Double? = 0.0
+    private var long1 :Double? = 0.0
+    private var lat2 :Double? = 0.0
+    private var long2 :Double? = 0.0
+
 
 
 
@@ -51,6 +56,7 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
     private var polyline: Polyline? = null
     private val overview = 0
     private val viewModel by viewModels<MapsViewModel>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,6 +125,8 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
                 val latlng = place.latLng
                 val latitude1 = latlng?.latitude
                 val longitude1 = latlng?.longitude
+                lat1 = latitude1
+                long1 = longitude1
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -153,8 +161,10 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
                 val address = place.address
                 //val phone = place.phoneNumber.toString()
                 val latlng = place.latLng
-                val latitude2 = latlng?.latitude
-                val longitude2 = latlng?.longitude
+                var latitude2 = latlng?.latitude
+                var longitude2 = latlng?.longitude
+                lat2 = latitude2
+                long2 = longitude2
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -172,21 +182,14 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
                         "Latitude, Longitude: $latitude , $longitude \nIs open: $isOpenStatus \n" +
                         "Rating: $rating \nUser ratings: $userRatings"*/
             }
-
             override fun onError(status: Status) {
                 Toast.makeText(applicationContext,"Some error occurred", Toast.LENGTH_SHORT).show()
             }
         })
-
-
-
-
-
     }
 
     private fun mostrarMapa(){
         if (validacionOrigen and validacionDestino){
-
             linealMapaValeFragment.visibility = View.VISIBLE
             val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.mapaValeFragment) as SupportMapFragment
@@ -209,17 +212,25 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val fromTokyo = MapsLatLng(-33.57038785474524, -70.60979397104093)
-        val toKanda = MapsLatLng(-33.4446003631385, -70.65485291707162)
-        viewModel.execute(fromTokyo, toKanda)
+
+        val fromTokyo = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
+        val toKanda = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
+        if (fromTokyo != null) {
+            if (toKanda != null) {
+                viewModel.execute(fromTokyo, toKanda)
+            }
+        }
+
     }
     private fun moveCamera() {
         // Add a marker in Sydney and move the camera
-        val tokyo = LatLng(-33.57038785474524, -70.60979397104093)
-        mMap?.apply {
-            addMarker(MarkerOptions().position(tokyo).title("Marker in Tokyo"))
+        val tokyo = lat2?.let { long2?.let { it1 -> LatLng(it, it1) } }
+
+        val marcardor1 = mMap?.apply {
+            tokyo?.let { MarkerOptions().position(it).title("Marker in Tokyo") }
+                ?.let { addMarker(it) }
             // moveCamera(CameraUpdateFactory.newLatLng(tokyo))
-            moveCamera(CameraUpdateFactory.newLatLngZoom(tokyo, ZOOM_SIZE))
+            tokyo?.let { CameraUpdateFactory.newLatLngZoom(it, ZOOM_SIZE) }?.let { moveCamera(it) }
         }
     }
 
