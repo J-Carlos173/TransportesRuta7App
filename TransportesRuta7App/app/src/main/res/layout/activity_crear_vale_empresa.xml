@@ -21,7 +21,7 @@
                 android:paddingLeft="15dp"
                 android:paddingTop="15dp"
                 android:text="Nuevo Vale"
-                android:textColor="@color/black"
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/browser_actions_text_color"
+                android:background="@drawable/ic_field"
+                android:backgroundTint="#70FDFDFD"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -50,6 +51,7 @@
                             android:paddingTop="15dp"
                             android:text="Chofer:"
 
+                            android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -61,6 +63,7 @@
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:text="Rut:"
+                            android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -77,6 +80,8 @@
                             android:paddingTop="15dp"
                             android:text="Isaias Andrews"
                             android:textSize="15sp"
+
+                            android:textColor="@color/gray"
                             android:textStyle="bold" />
 
                         <TextView
@@ -87,6 +92,8 @@
                             android:paddingBottom="10dp"
                             android:text="19229895-4"
                             android:textSize="15sp"
+
+                            android:textColor="@color/gray"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -112,6 +119,8 @@
                             android:paddingTop="15dp"
                             android:paddingEnd="10dp"
                             android:text="Patente:"
+
+                            android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -125,6 +134,8 @@
                             android:paddingBottom="10dp"
                             android:text="Movil N:"
                             android:textSize="15sp"
+
+                            android:textColor="@color/gray"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -142,6 +153,8 @@
                             android:paddingTop="15dp"
                             android:paddingRight="15dp"
                             android:text="XXXXXX"
+
+                            android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -154,6 +167,8 @@
                             android:paddingRight="15dp"
                             android:paddingBottom="10dp"
                             android:text="36"
+
+                            android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -178,7 +193,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/browser_actions_text_color"
+                android:background="@drawable/ic_field"
+                android:backgroundTint="#70FDFDFD"
                 android:orientation="vertical"
                 android:paddingVertical="15dp">
 
@@ -186,25 +202,31 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:textAlignment="center">
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:paddingRight="25dp"
+                        android:paddingLeft="25dp"
+                        android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/pruebaEditText"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:paddingLeft="15dp"
-                            android:text="☻"
 
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnRuta"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/spinner_bg"
+                            android:clipToPadding="false"
+                            android:inputType="textEmailAddress"
+                            android:spinnerMode="dropdown"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray" />
+
 
 
                     </LinearLayout>
@@ -212,17 +234,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:paddingRight="15dp">
 
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnListaEmpresaCosto"
-                            android:background="@drawable/spinner_bg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="clip_vertical|center_horizontal"
-                            android:paddingBottom="15dp"
-                            android:popupBackground="@color/naranjo_obscuro"
-                            android:spinnerMode="dropdown" />
+
+
 
 
                     </LinearLayout>
@@ -232,6 +248,7 @@
                     android:id="@+id/linealMapaValeFragment"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
+                    android:paddingTop="10dp"
                     android:layout_gravity="center">
 
                     <fragment
@@ -239,9 +256,7 @@
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="220dp"
                         android:layout_height="220dp"
-
-                        android:padding="10dp"
-                        android:visibility="visible"
+                        android:visibility="invisible"
                         tools:context=".ValeDirecciones">
 
                     </fragment>
@@ -257,7 +272,9 @@
                 android:gravity="center_horizontal"
                 android:paddingLeft="15dp"
                 android:text="Datos del viaje"
-                android:textColor="@color/black"
+
+
+                android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -266,12 +283,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/browser_actions_text_color"
+
+                android:background="@drawable/ic_field"
+                android:backgroundTint="#70FDFDFD"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+
                     android:orientation="vertical">
 
                     <TextView
@@ -282,6 +302,8 @@
                         android:paddingLeft="15dp"
                         android:text="Centro de costo"
                         android:textSize="15sp"
+
+                        android:textColor="@color/gray"
                         android:textStyle="bold" />
 
                     <TextView
@@ -290,6 +312,8 @@
                         android:layout_height="50dp"
                         android:gravity="center|left"
                         android:paddingLeft="15dp"
+
+                        android:textColor="@color/gray"
                         android:text="Empresa"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -299,7 +323,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center|left"
-
+                        android:textColor="@color/gray"
                         android:paddingLeft="15dp"
                         android:text="Nombre Cliente"
                         android:textSize="15sp"
@@ -311,6 +335,7 @@
                         android:layout_height="50dp"
                         android:gravity="center|left"
 
+                        android:textColor="@color/gray"
                         android:paddingLeft="15dp"
                         android:text="Rut Cliente"
                         android:textSize="15sp"
@@ -327,17 +352,16 @@
                         android:layout_height="50dp"
                         android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnCentroCosto"
+                        <EditText
+                            android:id="@+id/centroCostoText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/spinner_bg"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/black"
 
-                            android:gravity="clip_vertical|center_horizontal"
-                            android:paddingBottom="15dp"
-                            android:popupBackground="@color/naranjo_obscuro"
-                            android:spinnerMode="dropdown" />
+                            android:textColorHint="@color/gray" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -345,15 +369,15 @@
                         android:layout_height="50dp"
                         android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnEmpresas"
+                        <EditText
+                            android:id="@+id/EmpresaText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/spinner_bg"
                             android:gravity="center_horizontal|center_vertical"
-                            android:layout_marginTop="15dp"
-                            android:popupBackground="@color/naranjo_obscuro"
-                            android:spinnerMode="dropdown" />
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -407,13 +431,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/canvasLL"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:background="#fff"
+                    android:orientation="vertical" />
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnclear"
+                        android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/gray"
+                        android:background="@drawable/ic_field"
+                        android:text="Limpiar"
+                        android:textColor="@color/white" />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnsave"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/ic_field"
+                        android:backgroundTint="#FB4F18"
+                        android:text="Guardar firma"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

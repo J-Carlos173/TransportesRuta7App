@@ -53,25 +53,75 @@ tools:context=".AgregarRutaActivity">
         android:textColor="@color/black"
         android:textColorHint="@color/gray" />
 
-
-    <EditText
-        android:id="@+id/correoText"
+    <fragment
+        android:id="@+id/rutaInicioText"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="24dp"
-        android:autofillHints="Email"
+        android:padding="16dp"
         android:background="@drawable/ic_field"
-        android:drawableLeft="@drawable/localizacion"
+        android:drawableLeft="@drawable/iniciorace"
         android:drawableTint="@color/black"
+        />
+
+    <fragment
+        android:id="@+id/rutaFinText"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp"
+        android:padding="16dp"
+        android:background="@drawable/ic_field"
+        android:drawableLeft="@drawable/iniciorace"
+        android:drawableTint="@color/black"
+        />
+
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnEmpresas"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/spinner_bg"
+        android:clipToPadding="false"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="Cooredenadas..."
         android:inputType="textEmailAddress"
         android:padding="16dp"
+        android:spinnerMode="dropdown"
         android:textColor="@color/black"
         android:textColorHint="@color/gray" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnCentroCosto"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/spinner_bg"
+        android:clipToPadding="false"
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:padding="16dp"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,7 +130,7 @@ tools:context=".AgregarRutaActivity">
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/registrarButton"
+            android:id="@+id/AgregarRutaButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
