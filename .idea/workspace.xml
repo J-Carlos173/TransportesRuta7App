@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f458cd1-7e02-4f0a-a118-8eb1a3576ecd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/DirectionsApiHelper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/MapsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/ValeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/ValeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/ValeDirecciones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/java/com/mana/transportesruta7app/ValeDirecciones.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/layout/activity_vale_direcciones.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/layout/activity_vale_direcciones.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TransportesRuta7App/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/TransportesRuta7App/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="9f458cd1-7e02-4f0a-a118-8eb1a3576ecd" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +23,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TransportesRuta7App" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

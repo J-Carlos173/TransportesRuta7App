@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
+import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 
 class CrearValeEmpresaActivity : AppCompatActivity() {

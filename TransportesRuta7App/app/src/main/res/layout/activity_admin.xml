@@ -24,7 +24,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
             android:gravity="center"
-            android:text="@string/admin"
+            android:text="@string/AdminMode"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
