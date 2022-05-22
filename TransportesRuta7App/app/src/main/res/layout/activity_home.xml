@@ -115,24 +115,25 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/CrearvaleButton"
-            android:layout_width="130dp"
-            android:layout_height="35dp"
+            android:id="@+id/CrearvaleEmpresaButton"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Nuevo Vale Empresa"
             android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
-            android:onClick="Login"
-            android:text="@string/newticket"
-            android:textColor="#EE373333" />
+            />
 
         <Button
-            android:id="@+id/test"
+            android:id="@+id/CrearvaleButton"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
-            android:text="TEST" />
+            android:text="Nuevo Vale"/>
 
 
 

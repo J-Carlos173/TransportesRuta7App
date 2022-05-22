@@ -2,49 +2,135 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".FirmaActivity">
 
     <LinearLayout
-        android:id="@+id/canvasLL"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#fff"
-        android:orientation="vertical" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnclear"
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/ruta3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:background="@drawable/ic_field"
-            android:text="Limpiar"
-            android:textColor="@color/white" />
+            android:gravity="center_horizontal"
+            android:paddingLeft="15dp"
+            android:text="Datos Cliente"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnsave"
-            android:layout_width="128dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="15dp"
             android:background="@drawable/ic_field"
-            android:backgroundTint="#FB4F18"
-            android:text="Guardar firma"
-            android:textColor="@color/white" />
+            android:backgroundTint="#70FDFDFD"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pasajeros"
+                    android:layout_width="121dp"
+                    android:layout_height="50dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="Nombre Cliente"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/nombreClienteText"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pasajeros3"
+                    android:layout_width="121dp"
+                    android:layout_height="50dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="Rut Cliente"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/rutClienteText"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/canvasLL"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnclear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_field"
+                android:backgroundTint="@color/gray"
+                android:text="Limpiar"
+                android:textColor="@color/white" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnsave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_field"
+                android:backgroundTint="#FB4F18"
+                android:text="Crear Vale"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

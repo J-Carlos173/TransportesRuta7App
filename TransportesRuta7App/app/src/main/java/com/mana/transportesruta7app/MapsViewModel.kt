@@ -16,6 +16,7 @@ class MapsViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val result = DirectionsApiHelper().execute(getApplication(), origin, destination)
             _directionsResult.value = result
+
         }
     }
 }

@@ -32,11 +32,13 @@ class LoginActivity : AppCompatActivity() {
         session()
 
     }
+
     //Layout visible
     override fun onStart() {
         super.onStart()
         authLayout.visibility = View.VISIBLE
     }
+
     //Si existe sesion...Iniciar
     private fun session(){
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
@@ -49,17 +51,14 @@ class LoginActivity : AppCompatActivity() {
             val docRef = db.collection("Usuarios").document(email.toString())
             docRef.get().addOnSuccessListener { document ->
                 if (document != null) {
-                    println("***********tiene datos************")
                     var usuarioData = document.data.toString()
                     usuarioData = usuarioData.replace("}", "")
                     usuarioData = usuarioData.replace("{", "")
                     var cadenaSeparada  = usuarioData.split(",","=");
                     for (i in cadenaSeparada.indices) {
-                        println(cadenaSeparada[i])
                         if (cadenaSeparada[i] == " usuario_tipo") {
                             tipoUsuario     = cadenaSeparada[i+1]
-                            println("***********************")
-                            println(tipoUsuario)
+
                         }
                     }
                 }
@@ -77,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun setup() {
         //Boton Logear
         singUpButton.setOnClickListener {
@@ -86,23 +84,18 @@ class LoginActivity : AppCompatActivity() {
                     .signInWithEmailAndPassword(correoText.text.toString(),
                         contraseñaText.text.toString()).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            println("***********success************")
                             var tipoUsuario = ""
                             //validacion de admin o chofer
                             val docRef = db.collection("Usuarios").document(correoText.text.toString())
                             docRef.get().addOnSuccessListener { document ->
                                 if (document != null) {
-                                    println("***********tiene datos************")
                                     var usuarioData = document.data.toString()
                                         usuarioData = usuarioData.replace("}", "")
                                         usuarioData = usuarioData.replace("{", "")
                                     var cadenaSeparada  = usuarioData.split(",","=");
                                     for (i in cadenaSeparada.indices) {
-                                        println(cadenaSeparada[i])
                                         if (cadenaSeparada[i] == " usuario_tipo") {
                                             tipoUsuario     = cadenaSeparada[i+1]
-                                            println("***********************")
-                                            println(tipoUsuario)
                                         }
                                     }
                                 }
@@ -133,12 +126,8 @@ class LoginActivity : AppCompatActivity() {
             val RegistrarIntent = Intent(this,RegisterActivity::class.java)
             startActivity(RegistrarIntent)
         }
-        testButton.setOnClickListener() {
-            val RegistrarIntent = Intent(this,ValeDirecciones::class.java)
-            startActivity(RegistrarIntent)
-        }
-    }
 
+    }
 
     //Alertas
     private fun showAlertTipoUsuario() {
@@ -175,7 +164,6 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
-
     override fun onBackPressed() {
         //O bajar app y dejar session activa**********************************
         finishAffinity()

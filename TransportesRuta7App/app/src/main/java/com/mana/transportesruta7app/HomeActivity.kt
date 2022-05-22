@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var adapter:SliderAdapter
     private lateinit var slider: ViewPager2
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -36,7 +35,6 @@ class HomeActivity : AppCompatActivity() {
 
         setup(email ?: "", provider ?: "")
         cargarDatos(email)
-        showCorreo(email)
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -48,30 +46,17 @@ class HomeActivity : AppCompatActivity() {
         slider = findViewById(R.id.main_slider2)
         slider.adapter = adapter
 
-
-
-    }
-    private fun showCorreo(email: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Felicitaciones el correo es")
-        builder.setMessage(email)
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
 
+    //Setup
     private fun setup(email: String, provider: String){
 
         emailTextView.text = email
-        //providerTextView.text = provider
-        //val sdf = SimpleDateFormat("dd/M/yyyy")
-        val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
-        val currentDate = sdf.format(Date())
-        //fechaText.text = currentDate
-
+        CrearvaleEmpresaButton.setOnClickListener {
+            showCrearValeEmpresa(email,ProviderType.BASIC)
+        }
         CrearvaleButton.setOnClickListener {
-
             showCrearVale(email,ProviderType.BASIC)
         }
         cerrarButton.setOnClickListener {
@@ -83,16 +68,26 @@ class HomeActivity : AppCompatActivity() {
             showLogin()
         }
 
+    }
 
+    //Boton Principal
+    private fun showCrearValeEmpresa(email: String, provider: ProviderType) {
+        val valeIntent = Intent(this,CrearValeEmpresaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(valeIntent)
+    }
+    private fun showCrearVale(email: String, provider: ProviderType) {
+        val valeIntent = Intent(this,CrearValeEmpresaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(valeIntent)
     }
     private fun cargarDatos(email : String) {
-
         val db = FirebaseFirestore.getInstance()
-        println("*****************email******************************")
-        println(email)
-        db.collection("Usuarios").document(email)
-            .get()
-            .addOnSuccessListener { document ->
+        db.collection("Usuarios").document(email).get().addOnSuccessListener { document ->
                 if (document != null) {
                     val nombre = document.get("usuario_nombre")
                     val apellido = document.get("usuario_apellido")
@@ -108,6 +103,9 @@ class HomeActivity : AppCompatActivity() {
                 Log.d("Error", "get failed with ", exception)
             }
     }
+
+
+    //Alertas
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
@@ -116,20 +114,16 @@ class HomeActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-    override fun onBackPressed() {
-        finishAffinity()
-    }
+
+    //Intent
     private fun showLogin(){
         val LoginActivity = Intent(this, LoginActivity::class.java)
         startActivity(LoginActivity)
     }
-    private fun showCrearVale(email: String, provider: ProviderType) {
-        val valeIntent = Intent(this,CrearValeEmpresaActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider.name)
-        }
-        startActivity(valeIntent)
+    override fun onBackPressed() {
+        finishAffinity()
     }
+
 }
 
 //

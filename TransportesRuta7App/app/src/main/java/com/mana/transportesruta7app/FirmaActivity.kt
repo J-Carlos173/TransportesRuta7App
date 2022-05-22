@@ -1,6 +1,7 @@
 package com.mana.transportesruta7app
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.os.Environment
@@ -13,6 +14,9 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_firma.*
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -28,6 +32,7 @@ class FirmaActivity : AppCompatActivity() {
     private var mSignature: signature? = null
     private var bitmap: Bitmap? = null
 
+    val db = Firebase.firestore
 
     companion object {
         const val STROKE_WIDTH = 5f
@@ -41,6 +46,22 @@ class FirmaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_firma)
+
+
+        val bundle          = intent.extras
+        val email           = bundle?.getString("email").toString()
+        val provider        = bundle?.getString("provider").toString()
+        val vale_fecha      = bundle?.getString("vale_fecha").toString()
+        val vale_Chofer     = bundle?.getString("vale_Chofer").toString()
+        val vale_Patente    = bundle?.getString("vale_Patente").toString()
+        val vale_Movil      = bundle?.getString("vale_Movil").toString()
+        val vale_Empresa    = bundle?.getString("vale_Empresa").toString()
+        val vale_CC         = bundle?.getString("vale_CC").toString()
+        val vale_Tipo       = bundle?.getString("vale_Tipo").toString()
+
+
+        setup(email)
+
         canvasLL = findViewById<View>(R.id.canvasLL) as LinearLayout
         mSignature = signature(applicationContext, null)
         mSignature!!.setBackgroundColor(Color.WHITE)
@@ -57,6 +78,30 @@ class FirmaActivity : AppCompatActivity() {
             view!!.isDrawingCacheEnabled = true
             mSignature!!.save(view, StoredPath)
             Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
+
+            val vale = hashMapOf(
+
+                "vale_Email"            to email,
+                "vale_Fecha"            to vale_fecha,
+                "vale_Chofer"           to vale_Chofer,
+                "vale_Patente"          to vale_Patente,
+                "vale_Movil"            to vale_Movil,
+                "vale_Empresa"          to vale_Empresa,
+                "vale_CC"               to vale_CC,
+                "vale_Tipo"             to vale_Tipo,
+                "vale_nombre_cliente"   to nombreClienteText.text.toString(),
+                "vale_rut_cliente"      to rutClienteText.text.toString()
+                )
+
+
+                db.collection("Vales").document().set(vale).addOnSuccessListener {
+                    Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
+                    showHome(email, ProviderType.BASIC)
+                }.addOnFailureListener {
+                    Toast.makeText(applicationContext, "No Funciono", Toast.LENGTH_SHORT).show()
+                }
+
+
         }
 
         // Metodo para crear Directorio , Si el Directorio no exixte
@@ -65,7 +110,9 @@ class FirmaActivity : AppCompatActivity() {
             file!!.mkdir()
         }
     }
+    private fun setup(email: String) {
 
+    }
     inner class signature(context: Context?, attrs: AttributeSet?) :
         View(context, attrs) {
         private val paint = Paint()
@@ -176,5 +223,13 @@ class FirmaActivity : AppCompatActivity() {
             paint.strokeJoin = Paint.Join.ROUND
             paint.strokeWidth = Companion.STROKE_WIDTH
         }
+    }
+
+    private fun showHome(email: String, provider: ProviderType) {
+        val homeIntent = Intent(this,HomeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+        }
+        startActivity(homeIntent)
     }
 }
