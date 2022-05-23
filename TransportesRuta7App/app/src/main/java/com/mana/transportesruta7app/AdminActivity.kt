@@ -46,7 +46,7 @@ class AdminActivity : AppCompatActivity() {
             desactivarUsuario(email, provider)
         }
         valesButton.setOnClickListener(){
-            vales(email, provider)
+            showExportarVales(email, provider)
         }
         cerrarSessionButton.setOnClickListener(){
             cerrarSession()
@@ -80,6 +80,13 @@ class AdminActivity : AppCompatActivity() {
         }
         startActivity(agregarListaIntent)
     }
+    private fun showExportarVales(email: String, provider: String) {
+        val exportarValesIntent = Intent(this,ValesActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(exportarValesIntent)
+    }
     private fun desactivarUsuario(email: String, provider: String) {
         val homeIntent = Intent(this,DesactivarCuentaActivity::class.java).apply {
             putExtra("email", email)
@@ -87,13 +94,7 @@ class AdminActivity : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
-    private fun vales(email: String, provider: String) {
-        val valesIntent = Intent(this,ValesActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider)
-        }
-        startActivity(valesIntent)
-    }
+
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")

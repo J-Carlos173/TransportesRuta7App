@@ -1,5 +1,6 @@
 package com.mana.transportesruta7app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
@@ -21,7 +22,17 @@ import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
-
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
+import android.widget.ImageView
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageException
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.ktx.storageMetadata
+import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
 
 class FirmaActivity : AppCompatActivity() {
     private var btnClear: Button? = null
@@ -43,6 +54,7 @@ class FirmaActivity : AppCompatActivity() {
     private var pic_name = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
     private var StoredPath = "$directory$pic_name.png"
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_firma)
@@ -91,15 +103,44 @@ class FirmaActivity : AppCompatActivity() {
                 "vale_Tipo"             to vale_Tipo,
                 "vale_nombre_cliente"   to nombreClienteText.text.toString(),
                 "vale_rut_cliente"      to rutClienteText.text.toString()
-                )
+            )
+            val storage = Firebase.storage
+            val storageRef = storage.reference
 
+            val mountainsRef = storageRef.child("mountains.jpg")
 
-                db.collection("Vales").document().set(vale).addOnSuccessListener {
-                    Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
-                    showHome(email, ProviderType.BASIC)
-                }.addOnFailureListener {
-                    Toast.makeText(applicationContext, "No Funciono", Toast.LENGTH_SHORT).show()
-                }
+            // Create a reference to 'images/mountains.jpg'
+            val mountainImagesRef = storageRef.child("images/mountains.jpg")
+
+            // While the file names are the same, the references point to different files
+            mountainsRef.name == mountainImagesRef.name // true
+            mountainsRef.path == mountainImagesRef.path // false
+            // [END upload_create_reference]
+
+            val imageView = findViewById<ImageView>(R.id.canvasLL)
+            // [START upload_memory]
+            // Get the data from an ImageView as bytes
+            imageView.isDrawingCacheEnabled = true
+            imageView.buildDrawingCache()
+            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+            var uploadTask = mountainsRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                // Handle unsuccessful uploads
+            }.addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                // ...
+            }
+
+            db.collection("Vales").document().set(vale).addOnSuccessListener {
+                Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
+                showHome(email, ProviderType.BASIC)
+            }.addOnFailureListener {
+                Toast.makeText(applicationContext, "No Funciono", Toast.LENGTH_SHORT).show()
+            }
 
 
         }
@@ -121,6 +162,7 @@ class FirmaActivity : AppCompatActivity() {
         private var lastTouchY = 0f
         private val dirtyRect = RectF()
         fun save(v: View?, StoredPath: String?) {
+
             Log.v("log_tag", "Width: " + v!!.width)
             Log.v("log_tag", "Height: " + v.height)
             if (bitmap == null) {

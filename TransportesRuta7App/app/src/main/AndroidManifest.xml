@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -41,6 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".AccountRecoveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValesActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

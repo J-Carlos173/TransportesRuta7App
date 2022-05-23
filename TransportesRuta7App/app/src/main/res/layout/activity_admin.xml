@@ -92,7 +92,7 @@
             android:backgroundTint="@color/orange"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
-            android:text="@string/ver_vales"
+            android:text="Exportar vales"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
