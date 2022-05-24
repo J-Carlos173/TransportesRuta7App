@@ -24,7 +24,7 @@
     <string name="desactivarUsuario">Desactivar / Activar Usuario</string>
     <string name="eliminar">Eliminar Usuario</string>
     <string name="modificar">Modificar Usuario</string>
-    <string name="ver_vales">Var Vales</string>
+    <string name="ver_vales">Ver Vales</string>
     <string name="password">Contraseña</string>
     <string name="new_password">Nueva contraseña</string>
     <string name="current_password">Contraseña actual</string>
