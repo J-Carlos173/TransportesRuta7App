@@ -10,14 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
@@ -38,8 +36,8 @@ import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
-        private const val ZOOM_SIZE = 14f
-        private const val POLYLINE_WIDTH = 12f
+        const val ZOOM_SIZE = 14f
+        const val POLYLINE_WIDTH = 12f
     }
 
     private var validacionOrigen = false
@@ -100,7 +98,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
         autocompleteSupportFragment2!!.setPlaceFields(
             listOf(
-
                 Place.Field.NAME,
                 Place.Field.ADDRESS,
                 Place.Field.PHONE_NUMBER,
@@ -212,7 +209,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         val fromTokyo = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
         val toKanda = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
         if (fromTokyo != null) {

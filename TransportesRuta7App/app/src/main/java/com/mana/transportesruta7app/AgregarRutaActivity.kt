@@ -39,6 +39,9 @@ class AgregarRutaActivity : AppCompatActivity() {
     private var long1 :Double? = 0.0
     private var lat2 :Double? = 0.0
     private var long2 :Double? = 0.0
+    private var origenNombre:String? = ""
+    private var destinoNombre :String? = ""
+
 
 
     val db = Firebase.firestore
@@ -116,6 +119,7 @@ class AgregarRutaActivity : AppCompatActivity() {
                 val longitude1 = latlng?.longitude
                 lat1 = latitude1
                 long1 = longitude1
+                origenNombre = address
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -154,6 +158,7 @@ class AgregarRutaActivity : AppCompatActivity() {
                 var longitude2 = latlng?.longitude
                 lat2 = latitude2
                 long2 = longitude2
+                destinoNombre = address
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -233,6 +238,8 @@ class AgregarRutaActivity : AppCompatActivity() {
                 "ruta_nombre"       to rutaText.text.toString(),
                 "ruta_inicio"       to "["+lat1.toString()+","+long1.toString()+"]",
                 "ruta_fin"          to "["+lat2.toString()+","+long2.toString()+"]",
+                "origen"  to origenNombre.toString(),
+                "destino"  to destinoNombre.toString(),
                 "ruta_empresa"      to spnEmpresas.getItemAtPosition(spnEmpresas.selectedItemPosition),
                 "ruta_centrocosto"  to spnCentroCosto.getItemAtPosition(spnCentroCosto.selectedItemPosition)
             )
