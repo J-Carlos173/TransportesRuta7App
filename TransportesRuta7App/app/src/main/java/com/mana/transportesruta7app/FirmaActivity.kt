@@ -70,7 +70,8 @@ class FirmaActivity : AppCompatActivity() {
         val vale_Empresa    = bundle?.getString("vale_Empresa").toString()
         val vale_CC         = bundle?.getString("vale_CC").toString()
         val vale_Tipo       = bundle?.getString("vale_Tipo").toString()
-
+        val vale_Inicio     = bundle?.getString("vale_Inicio").toString()
+        val vale_Fin        = bundle?.getString("vale_Fin").toString()
 
         setup(email)
 
@@ -89,7 +90,6 @@ class FirmaActivity : AppCompatActivity() {
         btnSave!!.setOnClickListener {
             view!!.isDrawingCacheEnabled = true
             mSignature!!.save(view, StoredPath)
-            Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
 
             val vale = hashMapOf(
 
@@ -101,39 +101,13 @@ class FirmaActivity : AppCompatActivity() {
                 "vale_Empresa"          to vale_Empresa,
                 "vale_CC"               to vale_CC,
                 "vale_Tipo"             to vale_Tipo,
+                "vale_Inicio"           to vale_Inicio,
+                "vale_Fin"              to vale_Fin,
                 "vale_nombre_cliente"   to nombreClienteText.text.toString(),
                 "vale_rut_cliente"      to rutClienteText.text.toString()
             )
-            val storage = Firebase.storage
-            val storageRef = storage.reference
 
-            val mountainsRef = storageRef.child("mountains.jpg")
-
-            // Create a reference to 'images/mountains.jpg'
-            val mountainImagesRef = storageRef.child("images/mountains.jpg")
-
-            // While the file names are the same, the references point to different files
-            mountainsRef.name == mountainImagesRef.name // true
-            mountainsRef.path == mountainImagesRef.path // false
-            // [END upload_create_reference]
-
-            val imageView = findViewById<ImageView>(R.id.canvasLL)
-            // [START upload_memory]
-            // Get the data from an ImageView as bytes
-            imageView.isDrawingCacheEnabled = true
-            imageView.buildDrawingCache()
-            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-            val data = baos.toByteArray()
-
-            var uploadTask = mountainsRef.putBytes(data)
-            uploadTask.addOnFailureListener {
-                // Handle unsuccessful uploads
-            }.addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                // ...
-            }
+            Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
 
             db.collection("Vales").document().set(vale).addOnSuccessListener {
                 Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()

@@ -86,8 +86,10 @@ class ValesActivity : AppCompatActivity() {
                     val vale_email          = ""
                     val vale_chofer         = ""
                     val vale_cc             = ""
+                    val vale_inicio         = ""
+                    val vale_fin            = ""
 
-                    list.add("vale_nombre_cliente,vale_rut_cliente,vale_tipo,vale_patente,vale_movil,vale_fecha,vale_empresa,vale_email,vale_chofer,vale_cc")
+                    list.add("cliente,rut cliente,tipo vale,patente,movil,fecha,empresa,email,chofer,cc, inicio, fin")
                     val array: Array<String> = list.toTypedArray()
                     csvWriter.writeNext(array)
                     list.clear()
@@ -104,6 +106,8 @@ class ValesActivity : AppCompatActivity() {
                     list.add(document.data.get("vale_Email").toString())
                     list.add(document.data.get("vale_Chofer").toString())
                     list.add(document.data.get("vale_CC").toString())
+                    list.add(document.data.get("vale_Inicio").toString())
+                    list.add(document.data.get("vale_Fin").toString())
 
                     val array: Array<String> = list.toTypedArray()
                     csvWriter.writeNext(array)

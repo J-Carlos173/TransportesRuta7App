@@ -207,11 +207,13 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         val vale_Chofer     = nombresValeEditText.text.toString()
         val vale_Patente    = patenteEditText.text.toString()
         val vale_Movil      = nroMovilEditText.text.toString()
-        val vale_Empresa    = centroCostoText.text.toString()
-        val vale_CC         = EmpresaText.text.toString()
+        val vale_CC         = centroCostoText.text.toString()
+        val vale_Empresa    = EmpresaText.text.toString()
         val vale_Tipo       = "Empresa"
+        val ruta_Inicio     = rutaInicioText.text.toString()
+        val ruta_Fin        = rutaFinText.text.toString()
 
-        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo)
+        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo,ruta_Inicio,ruta_Fin)
 
 
     }
@@ -234,7 +236,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         startActivity(homeIntent)
     }
-    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String) {
+    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String, inicio: String, fin: String) {
         val firmaIntent = Intent(this,FirmaActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
@@ -243,8 +245,10 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
             putExtra("vale_Patente", patente)
             putExtra("vale_Movil", movil)
             putExtra("vale_Empresa", empresa)
-            putExtra("vale_CC", cc)
             putExtra("vale_Tipo", tipo)
+            putExtra("vale_CC", cc)
+            putExtra("vale_Inicio", inicio)
+            putExtra("vale_Fin", fin)
         }
         startActivity(firmaIntent)
     }
