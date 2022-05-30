@@ -42,6 +42,7 @@ android {
     lint {
         checkReleaseBuilds false
     }
+    namespace 'com.mana.transportesruta7app'
 
 }
 
@@ -70,6 +71,8 @@ dependencies {
     def maps_services_version='0.2.11'
     implementation "com.google.maps:google-maps-services:${maps_services_version}"
     implementation 'com.google.maps.android:android-maps-utils:2.2.0'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 }
 
 
