@@ -8,9 +8,6 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_permitir_usuario.*
-import kotlinx.android.synthetic.main.activity_permitir_usuario.correoText
-import kotlinx.android.synthetic.main.activity_permitir_usuario.registrarButton
-
 
 
 class PermitirUsuario : AppCompatActivity() {
@@ -60,7 +57,7 @@ class PermitirUsuario : AppCompatActivity() {
 
         val db = FirebaseFirestore.getInstance()
         val update = db.collection("Listas").document("Permisos")
-        var correo = correoText.text.toString()
+        var correo = datoText.text.toString()
         correo = correo.replace(".", "_")
         val perfil = spnPerfiles.getItemAtPosition(spnPerfiles.selectedItemPosition)
 

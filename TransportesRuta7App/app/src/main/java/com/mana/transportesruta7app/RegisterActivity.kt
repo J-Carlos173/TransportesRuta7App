@@ -8,10 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
 import kotlinx.android.synthetic.main.activity_register.*
-
-
 class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
             else if (telefonoText.text.isEmpty()){
                 Toast.makeText(applicationContext, "Debe ingresar una telefono", Toast.LENGTH_SHORT).show()
             }
-            else if (correoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
+            else if (datoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
                 val db = Firebase.firestore
                 val docRef = db.collection("Listas").document("Permisos")
                 docRef.get().addOnSuccessListener { document ->
@@ -48,14 +45,11 @@ class RegisterActivity : AppCompatActivity() {
                         for (cadaCorreo in arr) {
                             val found = cadaCorreo.indexOf("=");
                             val correo = cadaCorreo.split("=")
-                            //println("*******************************************")
-                            //println(correo[0].trim())
-                            //println(correoText.text.toString().replace(".", "_"))
 
-                            if (correo[0].trim() == correoText.text.toString().replace(".", "_")) {
+                            if (correo[0].trim() == datoText.text.toString().replace(".", "_")) {
                                 showFelicidades()
                                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                                    correoText.text.toString(),
+                                    datoText.text.toString(),
                                     contraseñaText.text.toString()).addOnCompleteListener {
                                     if (it.isSuccessful) {
                                         guardar_datos(cadaCorreo.substring(found +1))
@@ -106,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
 
             // agregar documento con id manual con minuscula
 
-            db.collection("Usuarios").document(correoText.text.toString().toLowerCase())
+            db.collection("Usuarios").document(datoText.text.toString().toLowerCase())
                 .set(user as Map<String, Any>).addOnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(applicationContext, "Usuario Registrado", Toast.LENGTH_SHORT).show()

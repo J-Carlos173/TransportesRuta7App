@@ -78,7 +78,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(valeIntent)
     }
     private fun showCrearVale(email: String, provider: ProviderType) {
-        val valeIntent = Intent(this,CrearValeEmpresaActivity::class.java).apply {
+        val valeIntent = Intent(this,ValeDirecciones::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
