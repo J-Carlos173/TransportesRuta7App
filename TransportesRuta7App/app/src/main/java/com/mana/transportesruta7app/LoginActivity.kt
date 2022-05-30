@@ -79,14 +79,14 @@ class LoginActivity : AppCompatActivity() {
     private fun setup() {
         //Boton Logear
         singUpButton.setOnClickListener {
-            if (correoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
+            if (datoText.text.isNotEmpty() && contraseñaText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(correoText.text.toString(),
+                    .signInWithEmailAndPassword(datoText.text.toString(),
                         contraseñaText.text.toString()).addOnCompleteListener {
                         if (it.isSuccessful) {
                             var tipoUsuario = ""
                             //validacion de admin o chofer
-                            val docRef = db.collection("Usuarios").document(correoText.text.toString())
+                            val docRef = db.collection("Usuarios").document(datoText.text.toString())
                             docRef.get().addOnSuccessListener { document ->
                                 if (document != null) {
                                     var usuarioData = document.data.toString()
