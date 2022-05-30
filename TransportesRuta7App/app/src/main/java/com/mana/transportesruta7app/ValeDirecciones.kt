@@ -27,7 +27,6 @@ import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
-import kotlinx.android.synthetic.main.activity_login.*
 import com.google.maps.model.LatLng as MapsLatLng
 import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 

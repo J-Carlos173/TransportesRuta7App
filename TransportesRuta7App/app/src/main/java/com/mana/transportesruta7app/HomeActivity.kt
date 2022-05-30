@@ -11,8 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 import kotlinx.android.synthetic.main.activity_home.*
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 
 enum class ProviderType {

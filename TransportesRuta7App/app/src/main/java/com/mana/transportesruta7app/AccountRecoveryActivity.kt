@@ -1,12 +1,8 @@
 package com.mana.transportesruta7app
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.mana.transportesruta7app.databinding.ActivityAccountRecoveryBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class AccountRecoveryActivity : AppCompatActivity() {
 

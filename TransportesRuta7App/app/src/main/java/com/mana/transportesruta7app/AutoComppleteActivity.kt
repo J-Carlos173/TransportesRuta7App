@@ -1,13 +1,11 @@
 package com.mana.transportesruta7app
 
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Intent
+
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.common.api.Status

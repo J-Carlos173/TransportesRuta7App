@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_permitir_usuario.*
 import kotlinx.android.synthetic.main.activity_permitir_usuario.correoText
 import kotlinx.android.synthetic.main.activity_permitir_usuario.registrarButton
-import kotlinx.android.synthetic.main.activity_register.*
+
 
 
 class PermitirUsuario : AppCompatActivity() {

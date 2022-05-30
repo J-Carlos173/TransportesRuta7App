@@ -23,16 +23,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
-import android.widget.ImageView
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageException
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
-import com.google.firebase.storage.ktx.storageMetadata
-import java.io.ByteArrayOutputStream
-import java.io.FileInputStream
+
 
 class FirmaActivity : AppCompatActivity() {
     private var btnClear: Button? = null
