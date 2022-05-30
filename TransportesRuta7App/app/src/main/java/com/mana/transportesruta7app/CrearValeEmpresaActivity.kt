@@ -95,8 +95,8 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
                 val nombre                  = document.data?.getValue("usuario_nombre").toString()
                 val apellido                = document.data?.getValue("usuario_apellido").toString()
                 nombresValeEditText.text    = "$nombre $apellido"
-                //nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
-                //patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
+                nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
+                patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
                 rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()
 
                   } else {

@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
             if (nombreText.text.isEmpty()){
                 Toast.makeText(applicationContext, "Debe ingresar un nombre", Toast.LENGTH_SHORT).show()
             }
-            else if (apellidosText.text.isEmpty()){
+            else if (apellidoText.text.isEmpty()){
                 Toast.makeText(applicationContext, "Debe ingresar un apellido", Toast.LENGTH_SHORT).show()
             }
             else if (rutText.text.isEmpty()){
@@ -82,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
         val user = hashMapOf(
             "usuario_nombre" to nombreText.text.toString(),
             "usuario_rut" to rutText.text.toString(),
-            "usuario_apellido" to apellidosText.text.toString(),
+            "usuario_apellido" to apellidoText.text.toString(),
             "usuario_telefono" to telefonoText.text.toString(),
             "usuario_tipo" to  tipo,
             "usuario_activo" to "true"
@@ -92,7 +92,7 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Debe ingresar un nombre", Toast.LENGTH_SHORT).show()
         } else if (rutText.text.toString() == "") {
             Toast.makeText(applicationContext, "Debe ingresar un RUT", Toast.LENGTH_SHORT).show()
-        } else if (apellidosText.text.toString() == "") {
+        } else if (apellidoText.text.toString() == "") {
             Toast.makeText(applicationContext, "Debe ingresar un Apelldio", Toast.LENGTH_SHORT).show()
         } else if (telefonoText.text.toString() == "") {
             Toast.makeText(applicationContext, "Debe ingresar un Telefono", Toast.LENGTH_SHORT).show()

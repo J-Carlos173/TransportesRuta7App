@@ -66,5 +66,6 @@
         <item>Chofer</item>
         <item>Admin</item>
     </string-array>
+    <string name="title_activity_actualizar_datos">ActualizarDatosActivity</string>
 
 </resources>

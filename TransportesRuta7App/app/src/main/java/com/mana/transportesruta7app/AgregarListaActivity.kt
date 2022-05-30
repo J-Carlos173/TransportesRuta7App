@@ -47,7 +47,7 @@ class AgregarListaActivity : AppCompatActivity() {
         }
     }
 
-    private fun agregarDato(){
+    private fun agregarDatos(){
         val bundle = intent.extras
         val email = bundle?.getString("email").toString()
         val provider = bundle?.getString("provider").toString()
@@ -69,7 +69,7 @@ class AgregarListaActivity : AppCompatActivity() {
         cargarLista()
 
         registrarButton.setOnClickListener {
-            agregarDato()
+            agregarDatos()
         }
     }
 

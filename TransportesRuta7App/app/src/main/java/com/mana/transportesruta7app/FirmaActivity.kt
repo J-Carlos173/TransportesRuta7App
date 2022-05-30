@@ -98,10 +98,10 @@ class FirmaActivity : AppCompatActivity() {
                 "vale_rut_cliente"      to rutClienteText.text.toString()
             )
 
-            Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
-
             db.collection("Vales").document().set(vale).addOnSuccessListener {
                 Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
+
                 showHome(email, ProviderType.BASIC)
             }.addOnFailureListener {
                 Toast.makeText(applicationContext, "No Funciono", Toast.LENGTH_SHORT).show()
