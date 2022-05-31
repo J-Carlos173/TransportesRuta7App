@@ -85,6 +85,7 @@
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/profile_background.xml" value="0.1945" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/rounded.xml" value="0.296" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/roundedprofile.xml" value="0.1725" />
+        <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/shadow_corners.xml" value="0.1585" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/font/abel.xml" value="0.2824074074074074" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_account_recovery.xml" value="0.33" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_admin.xml" value="0.36666666666666664" />
@@ -93,7 +94,7 @@
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auth.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auto_compplete.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_check_email.xml" value="0.15677083333333333" />
-        <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_crear_vale_empresa.xml" value="0.33" />
+        <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_crear_vale_empresa.xml" value="0.1" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_delete_account.xml" value="0.33" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_firma.xml" value="0.3625" />
         <entry key="..\:/Users/javie/Documents/GitHub/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_fragment_vale.xml" value="0.25" />

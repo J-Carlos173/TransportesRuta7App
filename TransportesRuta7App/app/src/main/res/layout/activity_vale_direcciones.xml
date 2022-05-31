@@ -247,7 +247,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/linealMapaValeFragment"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
@@ -264,7 +264,7 @@
                         tools:context=".ValeDirecciones">
 
                     </fragment>
-                </LinearLayout>
+                </RelativeLayout>
 
 
             </LinearLayout>

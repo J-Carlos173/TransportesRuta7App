@@ -1,33 +1,36 @@
 package com.mana.transportesruta7app
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ScrollView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.libraries.places.api.Places
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
 import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
+import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,6 +55,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
 
     val db = Firebase.firestore
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_vale_empresa)
@@ -72,10 +76,25 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         val provider = bundle?.getString("provider").toString()
         setup(email)
 
+        transparent_image.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    Log.d(TAG, "ABAJO")
+                }
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(false)
+                    Log.d(TAG, "ARRIBA")
+                }
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
         crearValeButton.setOnClickListener(){
             crearVale(email)
         }
     }
+
 
     //Setup
     private fun setup(email: String) {

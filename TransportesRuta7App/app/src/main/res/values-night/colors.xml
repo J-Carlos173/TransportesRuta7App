@@ -13,7 +13,7 @@
     <color name="orange">#FF5722</color>
     <color name="gray">#EE5C5C5C</color>
     <color name="map_polyline_stroke">#FFBB86FC</color>
-
+    <color name="transparent_color">#00FFFFFF</color>
     <color name="primary">#F57F17</color>
     <color name="background">#F7F7FA</color>
     <color name="card_background">#FFFFFF</color>
