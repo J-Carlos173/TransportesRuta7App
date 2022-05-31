@@ -2,58 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/authLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/fondo2"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    tools:context=".LoginActivity"
+    android:padding="25dp"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:id="@+id/authLayout">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:padding="50dp"
-        app:srcCompat="@drawable/e"
-        tools:srcCompat="@drawable/e"
-        tools:visibility="visible" />
-
+        android:id="@+id/loginImageView"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_launcher"
+        android:transitionName="logoImageTrans"
+        android:layout_gravity="center"
+        android:contentDescription="Logo" />
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/bienvenidoLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/inisesion"
-        android:textColor="#EE373333"
-        android:textSize="24sp"/>
-
-    <Space
+        android:fontFamily="@font/abel"
+        android:textColor="@color/title_text"
+        android:text="Bienvenido"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/continuarLabel"
         android:layout_width="wrap_content"
-        android:layout_height="15dp" />
+        android:layout_height="wrap_content"
+        android:text="Inicia sesión para continuar"
+        android:textColor="@color/primary_text"
+        android:textSize="24sp"
+        android:fontFamily="@font/abel"
+        android:transitionName="iniciaSesionTextTrans"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:padding="15dp"
+        android:orientation="vertical">
         <EditText
             android:id="@+id/datoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="35dp"
-            android:autofillHints="Email"
-            android:background="@drawable/ic_field"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edt_background"
+            android:drawableTint="@color/gray_icons"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="16dp"
-            android:ems="10"
             android:hint="Email"
+            android:fontFamily="@font/abel"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColor="@color/black"
@@ -63,61 +66,53 @@
             android:id="@+id/contraseñaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="35dp"
-            android:autofillHints="Email"
-            android:background="@drawable/ic_field"
+            android:background="@drawable/edt_background"
+            android:drawableTint="@color/gray_icons"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
-            android:ems="10"
             android:hint="Contraseña"
+            app:passwordToggleEnabled="true"
+            android:fontFamily="@font/abel"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray" />
-
-
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/recoveryAccountTextView"
-            android:layout_width="352dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:linksClickable="false"
-            android:minHeight="48dp"
-            android:padding="13dp"
-            android:text="¿Olvidó su contraseña?"
-            android:textAlignment="textEnd"
-            android:textColor="@color/gray" />
+            android:textSize="20sp"
+            android:textColor="@color/gray_text"
+            android:fontFamily="@font/abel"
+            android:layout_gravity="end"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Olvidaste tu contraseña?"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/singUpButton"
-            android:layout_width="123dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="#FB4F18"
-
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/btnlogin"
-            android:textColor="#EE373333" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registerButton"
-            android:layout_width="123dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="#FB4F18"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Registrar"
-            android:textColor="#EE373333" />
-
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            style="@style/Button.Orange"
+            android:text="INGRESAR"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"/>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:fontFamily="@font/abel"
+        android:layout_margin="10dp"
+        android:textColor="@color/gray_text"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:textStyle="bold"
+        android:text="Eres nuevo? Registrate"/>
 </LinearLayout>

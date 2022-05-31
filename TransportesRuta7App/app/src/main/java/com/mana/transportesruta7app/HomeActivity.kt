@@ -10,9 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
 
 import kotlinx.android.synthetic.main.activity_home.*
-
+import kotlinx.android.synthetic.main.activity_home.nroMovilEditText
+import kotlinx.android.synthetic.main.activity_home.patenteEditText
+import kotlinx.android.synthetic.main.activity_home.rutValeEditText
 
 
 enum class ProviderType {
@@ -21,8 +26,9 @@ enum class ProviderType {
 class HomeActivity : AppCompatActivity() {
 
 
-    private lateinit var adapter:SliderAdapter
-    private lateinit var slider: ViewPager2
+//    private lateinit var adapter:SliderAdapter
+//    private lateinit var slider: ViewPager2
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,9 +48,9 @@ class HomeActivity : AppCompatActivity() {
         prefs.putString("provider", provider)
         prefs.apply()
 
-        adapter = SliderAdapter(this)
-        slider = findViewById(R.id.main_slider2)
-        slider.adapter = adapter
+//        adapter = SliderAdapter(this)
+//        slider = findViewById(R.id.main_slider2)
+//        slider.adapter = adapter
 
     }
 
@@ -71,22 +77,26 @@ class HomeActivity : AppCompatActivity() {
     }
 
     //Cargar Datos
-    private fun cargarDatos(email : String) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("Usuarios").document(email).get().addOnSuccessListener { document ->
-                if (document != null) {
-                    val nombre = document.get("usuario_nombre")
-                    val apellido = document.get("usuario_apellido")
-                    val nombre_completo = "$nombre $apellido"
+    private fun cargarDatos(email: String){
 
-                    nombreText.setText(nombre_completo)
+        val docRef = db.collection("Usuarios").document(email)
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("TAG", "${document.id} => ${document.data}")
 
-                } else {
-                    showAlert()
-                }
+                val nombre                  = document.data?.getValue("usuario_nombre").toString()
+                val apellido                = document.data?.getValue("usuario_apellido").toString()
+                nombreText.text    = "$nombre $apellido"
+                nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
+                patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
+                rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()
+
+            } else {
+                Log.d("TAG", "El documento tiene un error document")
             }
+        }
             .addOnFailureListener { exception ->
-                Log.d("Error", "get failed with ", exception)
+                Log.d("TAG", "No se encontro el Documento", exception)
             }
     }
     private fun verificar(email : String):Boolean {

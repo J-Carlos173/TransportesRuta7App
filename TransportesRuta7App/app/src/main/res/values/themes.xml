@@ -5,10 +5,18 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/primary</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
-    <style name="NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+<!--    <style name="NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
+    <style name="Button.Orange" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:background">@drawable/edt_background_orange</item>
     </style>
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+<!--    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+<!--    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 </resources>

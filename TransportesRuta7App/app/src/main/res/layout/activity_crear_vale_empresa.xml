@@ -251,6 +251,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="25dp"
                         android:paddingRight="25dp">
                         <TextView
@@ -275,6 +277,7 @@
                         android:id="@+id/linealMapaValeFragment"
                         android:layout_width="match_parent"
                         android:layout_height="300dp">
+
                         <fragment
                             android:id="@+id/mapaValeFragmentEmpresa"
                             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -282,7 +285,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="-100dp"
                             android:layout_marginBottom="-100dp"
-                            tools:context=".ValeDirecciones"/>
+                            tools:context=".ValeDirecciones" />
                         <View
                             android:id="@+id/transparent_image"
                             android:layout_width="fill_parent"
