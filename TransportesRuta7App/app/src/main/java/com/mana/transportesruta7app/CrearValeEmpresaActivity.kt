@@ -79,11 +79,11 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         transparent_image.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    scrollViewViajeEmpresa.requestDisallowInterceptTouchEvent(true)
                     Log.d(TAG, "ABAJO")
                 }
                 MotionEvent.ACTION_DOWN -> {
-                    scrollView.requestDisallowInterceptTouchEvent(false)
+                    scrollViewViajeEmpresa.requestDisallowInterceptTouchEvent(false)
                     Log.d(TAG, "ARRIBA")
                 }
             }

@@ -1,10 +1,12 @@
 package com.mana.transportesruta7app
 
+import android.content.ContentValues
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -25,11 +27,14 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
+import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
 import com.google.maps.model.LatLng as MapsLatLng
 import kotlinx.android.synthetic.main.activity_vale_direcciones.*
-
+import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
 
 
 class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
@@ -47,7 +52,7 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
     private var long2 :Double? = 0.0
 
 
-
+    val db = Firebase.firestore
 
     private var mMap: GoogleMap? = null
     private var polyline: Polyline? = null
@@ -68,6 +73,26 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
             .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
         val value = ai.metaData["api_key"]
         val apiKey = value.toString()
+
+        val bundle = intent.extras
+        val email = bundle?.getString("email").toString()
+        val provider = bundle?.getString("provider").toString()
+        setup(email)
+
+        // Mapa No Scrollable
+        transparent_image2.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollViewViaje.requestDisallowInterceptTouchEvent(true)
+                    Log.d(ContentValues.TAG, "ABAJO")
+                }
+                MotionEvent.ACTION_DOWN -> {
+                    scrollViewViaje.requestDisallowInterceptTouchEvent(false)
+                    Log.d(ContentValues.TAG, "ARRIBA")
+                }
+            }
+            v?.onTouchEvent(event) ?: true
+        }
 
         // Initializing the Places API with the help of our API_KEY
         if (!Places.isInitialized()) {
@@ -184,11 +209,39 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
+    private fun setup(email: String) {
+        cargarDatos(email)
+    }
+
+    private fun cargarDatos(email: String){
+
+        val docRef = db.collection("Usuarios").document(email)
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("TAG", "${document.id} => ${document.data}")
+
+                val nombre                  = document.data?.getValue("usuario_nombre").toString()
+                val apellido                = document.data?.getValue("usuario_apellido").toString()
+                nombresValeViajeEditText.text    = "$nombre $apellido"
+                nroMovilViajeEditText.text       = document.data?.getValue("usuario_movil").toString()
+                patenteViajeEditText.text        = document.data?.getValue("usuario_patente").toString()
+                rutValeViajeEditText.text        = document.data?.getValue("usuario_rut").toString()
+
+            } else {
+                Log.d("TAG", "El documento tiene un error document")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "No se encontro el Documento", exception)
+            }
+    }
+
+
     private fun mostrarMapa(){
         if (validacionOrigen and validacionDestino){
             linealMapaValeFragment.visibility = View.VISIBLE
             val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.mapaValeFragment) as SupportMapFragment
+                .findFragmentById(R.id.mapaValeFragmentEmpresa) as SupportMapFragment
             mapFragment.getMapAsync(this)
             observeLiveData()
         }else{

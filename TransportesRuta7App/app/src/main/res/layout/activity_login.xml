@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/fondo3"
     tools:context=".LoginActivity"
     android:padding="25dp"
-    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     android:id="@+id/authLayout">
 
@@ -50,7 +51,7 @@
             android:id="@+id/datoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/edt_background"
             android:drawableTint="@color/gray_icons"
             android:drawableLeft="@drawable/ic_email"
@@ -93,13 +94,13 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/singUpButton"
+            style="@style/Button.Orange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            style="@style/Button.Orange"
-            android:text="INGRESAR"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginBottom="50dp"
+            android:text="INGRESAR" />
     </LinearLayout>
     <TextView
         android:id="@+id/registerButton"

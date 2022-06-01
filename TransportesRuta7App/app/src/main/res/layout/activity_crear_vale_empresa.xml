@@ -203,7 +203,7 @@
     </com.google.android.material.card.MaterialCardView>
     <ScrollView
         android:background="@color/white"
-        android:id="@+id/scrollView"
+        android:id="@+id/scrollViewViajeEmpresa"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -286,6 +286,7 @@
                             android:layout_marginTop="-100dp"
                             android:layout_marginBottom="-100dp"
                             tools:context=".ValeDirecciones" />
+
                         <View
                             android:id="@+id/transparent_image"
                             android:layout_width="fill_parent"

@@ -39,8 +39,9 @@ class HomeActivity : AppCompatActivity() {
         val provider = bundle?.getString("provider")
 
         setup(email ?: "", provider ?: "")
-        cargarDatos(email)
         verificar(email)
+        cargarDatos(email)
+
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()

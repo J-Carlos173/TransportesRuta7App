@@ -1,801 +1,470 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo2"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <ScrollView
+    android:background="@color/background"
+    tools:context=".HomeActivity">
+    <View
+        android:id="@+id/viewHeaderBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        android:layout_height="@dimen/_125sdp"
+        android:background="@color/primary"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:fontFamily="@font/abel"
+        android:text="Transportes Ruta 7"
+        android:textColor="@color/title_text"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/_26sdp"
+        android:layout_height="@dimen/_26sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:src="@drawable/ic_sign_out"
+        app:layout_constraintBottom_toBottomOf="@+id/textTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textTitle"
+        android:tint="@color/ic_logout"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:cardCornerRadius="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
+        app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_14sdp"
+            android:elevation="5dp"
+            android:background="@drawable/profile_background">
+            <TextView
+                android:id="@+id/textViews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abel"
+                android:text="Bienvenido:"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/nombresValeViajeEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abel"
+                android:paddingLeft="10dp"
+                android:text="Isaias Andrews"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textViews"
+                app:layout_constraintStart_toEndOf="@id/textViews"
+                app:layout_constraintTop_toTopOf="@+id/textViews"
+                tools:layout_editor_absoluteX="73dp"/>
+            <TextView
+                android:id="@+id/rutValeViajeEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abel"
+                android:text="19229895-4"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
             <LinearLayout
-                android:layout_width="400dp"
-                android:layout_height="200dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/ic_field"
-                android:backgroundTint="#70FDFDFD"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:id="@+id/layoutImagenChofer"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@id/layoutTravels"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViews">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imagenChofer"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/Conductor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Datos del conductor y Automovil"
-                            android:textColor="@color/gray"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/nombre"
-                            android:layout_width="80dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="Nombre:"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/nombresValeDireccionesEditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="Isaias Andrews"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/rut"
-                            android:layout_width="80dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="Rut:"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/rutValeDireccionesEditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="19229895-4"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/numeroMovil"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="N° De Movil"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/nroMovilDireccionesEditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="10dp"
-                            android:text="36"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/patente"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:text="Patente"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/patenteDireccionesEditText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="10dp"
-                            android:text="DJB-075"
-                            android:textColor="@color/gray"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
+                    android:src="@drawable/ic_chofer" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutTravels"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/layoutPatente"
+                app:layout_constraintStart_toEndOf="@+id/layoutImagenChofer"
+                app:layout_constraintTop_toBottomOf="@+id/textViews">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:src="@drawable/ic_travels" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/abel"
+                    android:text="Viajes"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="748"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_16ssp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutPatente"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/layoutNumeroMovil"
+                app:layout_constraintStart_toEndOf="@+id/layoutTravels"
+                app:layout_constraintTop_toBottomOf="@+id/textViews">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:src="@drawable/ic_patente" />
+                <TextView
+                    android:id="@+id/patente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/abel"
+                    android:text="Patente"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/patenteViajeEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DGBT64"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_16sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNumeroMovil"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/layoutPatente"
+                app:layout_constraintTop_toBottomOf="@+id/textViews">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:src="@drawable/ic_drivers" />
+                <TextView
+                    android:id="@+id/textViewMovil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/abel"
+                    android:text="Movil"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/nroMovilViajeEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_16ssp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:background="@color/white"
+        android:id="@+id/scrollViewViaje"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:padding="@dimen/_16sdp"
+        android:scrollbars="none"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardHeader"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:background="@drawable/edt_background"
                 android:orientation="vertical"
-                android:paddingVertical="15dp">
-
-
+                android:padding="15dp"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:id="@+id/ruta2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUTA"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#EE373333"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
                 <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="127dp"
-                    android:background="@drawable/ic_field"
-                    android:backgroundTint="#70FDFDFD"
-                    android:orientation="vertical"
-                    android:textAlignment="center">
-
-                    <TextView
-                        android:id="@+id/ruta"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:text="RUTA"
-                        android:textColor="#EE373333"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-
-                    <LinearLayout
-                        android:layout_width="346dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:weightSum="7">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:layout_weight="2">
 
                         <TextView
-                            android:id="@+id/pruebaEditText"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Origen"
+                            android:id="@+id/rutaInicio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Origen:"
                             android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="5">
 
                         <fragment
                             android:id="@+id/autocomplete_fragment1"
                             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                            android:layout_width="220dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="345dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:weightSum="7">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:layout_weight="2">
 
                         <TextView
-                            android:id="@+id/origenEditText"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Destino"
+                            android:id="@+id/rutaFin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Destino:"
                             android:textColor="@color/gray"
                             android:textSize="15sp"
                             android:textStyle="bold" />
-
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_weight="5">
                         <fragment
                             android:id="@+id/autocomplete_fragment2"
                             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                            android:layout_width="220dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp" />
-
-                    </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/linealMapaValeFragment"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center">
-
-                    <fragment
-                        android:id="@+id/mapaValeFragment"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="220dp"
-                        android:layout_height="220dp"
-                        android:padding="10dp"
-                        android:visibility="visible"
-                        tools:context=".ValeDirecciones">
-
-                    </fragment>
-                </RelativeLayout>
-
-
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:text="Destino"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/linealMapaValeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
 
-            <TextView
-                android:id="@+id/tv3"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:text="Destino"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <fragment
+                    android:id="@+id/mapaValeFragmentEmpresa"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-100dp"
+                    android:layout_marginBottom="-100dp"
+                    tools:context=".ValeDirecciones" />
 
+                <View
+                    android:id="@+id/transparent_image2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/transparent_color" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Destino"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Destino"
+                    android:visibility="invisible"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="15dp"
-                android:background="@color/browser_actions_text_color"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/layoutEmpresa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
                         android:orientation="horizontal"
-                        android:paddingVertical="10dp">
-
+                        android:textAlignment="center">
                         <TextView
-                            android:id="@+id/centrocosto"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Centro de costo"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnCentroCostoValeDirecciones"
-                            android:layout_width="120dp"
-                            android:layout_height="35dp"
-                            android:layout_margin="5dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@drawable/spinner_bg"
-                            android:clipToPadding="false"
-                            android:popupBackground="@color/naranjo_obscuro"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="horizontal"
-                        android:paddingVertical="10dp">
-
-                        <TextView
-                            android:id="@+id/empresa"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Emresa"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnEmpresaValeDirecciones"
-                            android:layout_width="120dp"
-                            android:layout_height="35dp"
-                            android:layout_margin="5dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@drawable/spinner_bg"
-                            android:clipToPadding="false"
-                            android:popupBackground="@color/naranjo_obscuro"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="horizontal"
-                        android:paddingVertical="10dp">
-
-                        <TextView
-                            android:id="@+id/pasajeros"
+                            android:id="@+id/empresaTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="25dp"
-                            android:text="Pasajéros"
+                            android:layout_margin="5dp"
+                            android:text="Empresa"
                             android:textSize="15sp"
                             android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
+                            <androidx.appcompat.widget.AppCompatSpinner
+                                android:id="@+id/spnEmpresaValeDirecciones"
+                                android:background="@drawable/spinner_bg"
+                                android:layout_marginTop="4dp"
+                                android:layout_height="wrap_content"
+                                android:layout_width="170dp"
+                                android:layout_gravity="right"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:popupBackground="@color/naranjo_obscuro"
+                                android:spinnerMode="dropdown" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCCosto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:textAlignment="center">
+                        <TextView
+                            android:id="@+id/centroCostoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Centro de Costos"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <androidx.appcompat.widget.AppCompatSpinner
+                                android:id="@+id/spnCentroCostoValeDirecciones"
+                                android:background="@drawable/spinner_bg"
+                                android:layout_height="wrap_content"
+                                android:layout_width="170dp"
+                                android:layout_gravity="right"
+                                android:layout_marginTop="4dp"
+                                android:popupBackground="@color/naranjo_obscuro"
+                                android:spinnerMode="dropdown" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layoutPasajero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:textAlignment="center">
+                        <TextView
+                            android:id="@+id/pasajeroTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Pasajero"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                         <Button
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:background="@color/naranjo_obscuro"
                             android:text="+"
                             android:textColor="@color/black"></Button>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/pasajeros2"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingTop="15dp"
-                            android:paddingRight="25dp"
-                            android:text="No hay pasajeros registrados"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical">
 
-
+                        </LinearLayout>
                     </LinearLayout>
-
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- Content here -->
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/fondo2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ValeDirecciones">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:background="@color/browser_actions_text_color"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/Conductor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="15dp"
-                    android:text="Datos del conductor y Automovil"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="left">
-
-                <TextView
-                    android:id="@+id/nombre"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Nombre:"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/nombresValeDireccionesEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Isaias Andrews"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="left">
-
-                <TextView
-                    android:id="@+id/rut"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Rut:"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/rutValeDireccionesEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="19229895-4"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right">
-
-                <TextView
-                    android:id="@+id/numeroMovil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="N° De Movil"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/nroMovilDireccionesEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="36"
-                    android:paddingRight="10dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right">
-
-                <TextView
-                    android:id="@+id/patente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:text="Patente"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/patenteDireccionesEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:text="DJB-075"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-
-
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/browser_actions_text_color"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:textAlignment="center">
-
-            <TextView
-                android:id="@+id/ruta"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:text="RUTA"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/pruebaEditText"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:text="Origen"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <fragment
-                android:id="@+id/autocomplete_fragment1"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                />
-
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/origenEditText"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingLeft="15dp"
-                android:text="Destino"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <fragment
-                android:id="@+id/autocomplete_fragment2"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingLeft="15dp"
-        android:text="Destino"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingLeft="15dp"
-        android:text="Destino"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@color/browser_actions_text_color"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right">
-
-            <TextView
-                android:id="@+id/centro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:text="Centro de costo"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spnCentroCostoValeDirecciones"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/spinner_bg"
-                android:clipToPadding="false"
-                android:popupBackground="@color/naranjo_obscuro"
-                android:spinnerMode="dropdown"
-                android:layout_margin="5dp"/>
-        </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right">
-
-                <TextView
-                    android:id="@+id/empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="15dp"
-                    android:text="Emresa"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnEmpresaValeDirecciones"
-                    android:layout_width="120dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/spinner_bg"
-                    android:clipToPadding="false"
-                    android:popupBackground="@color/naranjo_obscuro"
-                    android:spinnerMode="dropdown"
-                    android:layout_margin="5dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="left">
-
-                <TextView
-                    android:id="@+id/pasajeros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="25dp"
-                    android:text="Pasajéros"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@color/naranjo_obscuro"
-                    android:text="+"
-                    android:textColor="@color/black">
-                </Button>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="left">
-
-                <TextView
-                    android:id="@+id/pasajeros2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="25dp"
-                    android:text="No hay pasajeros registrados"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
-
--->
-
+</androidx.constraintlayout.widget.ConstraintLayout>
