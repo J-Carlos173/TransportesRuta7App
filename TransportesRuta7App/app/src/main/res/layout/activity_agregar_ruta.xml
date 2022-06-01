@@ -10,7 +10,7 @@ tools:context=".AgregarRutaActivity">
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fondo2"
+    android:background="@drawable/fondo6"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -129,7 +129,7 @@ tools:context=".AgregarRutaActivity">
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/AgregarRutaButton"
             android:layout_width="150dp"
             android:layout_height="50dp"

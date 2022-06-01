@@ -76,19 +76,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         val provider = bundle?.getString("provider").toString()
         setup(email)
 
-        transparent_image.setOnTouchListener { v, event ->
-            when (event?.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    scrollViewViajeEmpresa.requestDisallowInterceptTouchEvent(true)
-                    Log.d(TAG, "ABAJO")
-                }
-                MotionEvent.ACTION_DOWN -> {
-                    scrollViewViajeEmpresa.requestDisallowInterceptTouchEvent(false)
-                    Log.d(TAG, "ARRIBA")
-                }
-            }
-            v?.onTouchEvent(event) ?: true
-        }
+
 
         crearValeButton.setOnClickListener(){
             crearVale(email)

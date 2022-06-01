@@ -1,82 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".LoginActivity"
-    android:padding="25dp"
-    android:layout_gravity="center_vertical"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/loginImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo_launcher"
-        android:transitionName="logoImageTrans"
-        android:layout_gravity="center"
-        android:contentDescription="Logo" />
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/abel"
-        android:text="Transportes Ruta 7"
-        android:layout_marginTop="28dp"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@color/title_text"/>
-    <TextView
-        android:id="@+id/textSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eliminar Usuario"
-        android:textSize="24sp"
-        android:fontFamily="@font/abel"
-        android:textColor="@color/primary_text"/>
-
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/secondary_text"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Por motivos de seguridad para eliminar una cuenta por completo, debes de ingresar tu contraseña." />
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo7"
+    tools:context=".UpdatePasswordActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:textSize="24sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginRight="24dp"
+            android:text="@string/title_delete_account" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:textColor="@color/gray"
+            android:text="@string/subtitle_delete_account" />
+
         <EditText
             android:id="@+id/contraseñaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edt_background"
-            android:drawableTint="@color/gray_icons"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="@string/password"
+            android:background="@drawable/ic_field"
+            android:drawableStart="@drawable/ic_lock"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
-            android:hint="Contraseña"
-            app:passwordToggleEnabled="true"
-            android:fontFamily="@font/abel"
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:textColor="@color/black"
+            android:ems="10"
+            android:hint="@string/password"
             android:textColorHint="@color/gray"
-            android:layout_marginBottom="20dp"/>
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:padding="16dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteAccountAppCompatButton"
-            style="@style/Button.Orange"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="50dp"
-            android:text="ELIMINAR" />
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_field"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
+            android:text="@string/delete"/>
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

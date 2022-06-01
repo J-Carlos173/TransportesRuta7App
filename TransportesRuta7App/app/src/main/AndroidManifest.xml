@@ -55,7 +55,6 @@
             android:name=".DesactivarCuentaActivity"
             android:exported="false"
             android:label="@string/title_activity_delete_account"/>
-<!--            android:theme="@style/NoActionBar"-->
         <activity
             android:name=".SplashScreen"
             android:exported="true">
