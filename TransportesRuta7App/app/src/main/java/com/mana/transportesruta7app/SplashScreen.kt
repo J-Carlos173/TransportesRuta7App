@@ -41,6 +41,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }, 1000) // 3500 es el delay de la app
+        }, 3000) // 3500 es el delay de la app
     }
 }

@@ -1,152 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".AgregarRutaActivity">
-
-<LinearLayout
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/fondo6"
-    android:gravity="center"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo3"
+    android:padding="25dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:id="@+id/authLayout"
+    tools:context=".AgregarRutaActivity">
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/abel"
+        android:textColor="@color/title_text"
+        android:text="Registrar Ruta Empresa"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Ingresa los datos de la ruta que deseas registrar." />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:padding="15dp"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView7"
+        <EditText
+            android:id="@+id/rutaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_background"
+            android:drawableTint="@color/gray_icons"
+            android:drawableLeft="@drawable/ruta"
+            android:drawablePadding="16dp"
+            android:hint="Nombre Ruta"
+            android:fontFamily="@font/abel"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="10dp"/>
+        <fragment
+            android:id="@+id/rutaInicioText"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
-            android:gravity="center"
-            android:text="Agregar Ruta"
+            android:layout_marginBottom="10dp"
+            android:padding="16dp"
+            android:background="@drawable/ic_field" />
+
+        <fragment
+            android:id="@+id/rutaFinText"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="10dp"
+            android:padding="16dp"
+            android:background="@drawable/ic_field" />
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spnEmpresas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg"
+            android:clipToPadding="false"
+            android:spinnerMode="dropdown"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="10dp"/>
 
-    </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/rutaText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="24dp"
-        android:autofillHints="Email"
-        android:background="@drawable/ic_field"
-        android:drawableLeft="@drawable/ruta"
-        android:drawableTint="@color/black"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:hint="Nombre Ruta"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
-
-    <fragment
-        android:id="@+id/rutaInicioText"
-        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="24dp"
-        android:padding="16dp"
-        android:background="@drawable/ic_field"
-        android:drawableLeft="@drawable/iniciorace"
-        android:drawableTint="@color/black"
-        />
-
-    <fragment
-        android:id="@+id/rutaFinText"
-        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="24dp"
-        android:padding="16dp"
-        android:background="@drawable/ic_field"
-        android:drawableLeft="@drawable/iniciorace"
-        android:drawableTint="@color/black"
-        />
-
-
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spnEmpresas"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/spinner_bg"
-        android:clipToPadding="false"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spnCentroCosto"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/spinner_bg"
-        android:clipToPadding="false"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spnCentroCosto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg"
+            android:clipToPadding="false"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/AgregarRutaButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="#FB4F18"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Agregar"
-            android:textColor="@color/white" />
-
-
+            style="@style/Button.Orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"
+            android:text="AGREGAR" />
     </LinearLayout>
-
 </LinearLayout>
-
-
-
-</RelativeLayout>

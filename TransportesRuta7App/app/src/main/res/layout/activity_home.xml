@@ -43,15 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        app:cardCornerRadius="32dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardElevation="15dp"
+        app:cardCornerRadius="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
         app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_14sdp"
-            android:elevation="5dp"
-            android:background="@drawable/profile_background">
+            android:background="@drawable/edt_background_32dp"
+            android:padding="@dimen/_14sdp">
             <TextView
                 android:id="@+id/emailTextView"
                 android:layout_width="wrap_content"

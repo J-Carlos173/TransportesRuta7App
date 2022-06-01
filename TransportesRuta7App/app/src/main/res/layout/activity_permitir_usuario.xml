@@ -1,91 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PermitirUsuario">
-
-    <LinearLayout
-
+    android:background="@drawable/fondo3"
+    android:padding="25dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:id="@+id/authLayout"
+    tools:context=".AgregarListaActivity">
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/abel"
+        android:textColor="@color/title_text"
+        android:text="Filtro de Usuarios"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/textDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/fondo3"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:gravity="center"
+        android:text="Ingresa el correo de los usuarios que pueden registrarse en Ruta 7." />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:padding="15dp"
         android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:gravity="center"
-                android:text="Permitir Usuario"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
-
-        </LinearLayout>
-
-
         <EditText
             android:id="@+id/datoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="24dp"
-            android:autofillHints="Email"
-            android:background="@drawable/ic_field"
+            android:background="@drawable/edt_background"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="16dp"
-            android:ems="10"
             android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:fontFamily="@font/abel"
+            android:inputType="text"
             android:padding="16dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray" />
-
+            android:textColorHint="@color/gray"/>
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spnPerfiles"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="24dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/spinner_bg"
             android:clipToPadding="false"
-            android:drawablePadding="16dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
             android:spinnerMode="dropdown"
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
-
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registrarButton"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
+            style="@style/Button.Orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/white"
-            android:text="Registrar" />
-
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"
+            android:text="REGISTRAR" />
     </LinearLayout>
-
-
-
-</RelativeLayout>
+</LinearLayout>

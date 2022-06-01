@@ -48,13 +48,14 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         app:cardBackgroundColor="@color/card_background"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:cardCornerRadius="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
         app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edt_background_32dp"
             android:padding="@dimen/_14sdp">
             <TextView
                 android:id="@+id/textViews"

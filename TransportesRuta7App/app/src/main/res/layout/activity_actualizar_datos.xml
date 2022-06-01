@@ -1,113 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    android:orientation="vertical"
+    android:background="@drawable/fondo3"
+    tools:context=".ActualizarDatosActivity">
+    <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ActualizarDatosActivity">
-
-        <LinearLayout
-
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abel"
+            android:text="Completa tu Cuenta"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fondo4"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:textSize="30sp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:layout_marginRight="24dp"
-                    android:text="Faltan Algunos Datos" />
-
-
-
-            </LinearLayout>
-
+            android:fontFamily="@font/abel"
+            android:text="Debes completar los datos para utilizar tu Cuenta."/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
             <EditText
                 android:id="@+id/nombreText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
+                android:background="@drawable/edt_background"
                 android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="16dp"
                 android:ems="10"
                 android:hint="Nombre"
+                android:fontFamily="@font/abel"
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
-
-
-
-
             <EditText
                 android:id="@+id/apellidoText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
                 android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="16dp"
                 android:ems="10"
                 android:hint="Apellido"
-                android:inputType="text"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"  />
-
-
-            <EditText
-                android:id="@+id/rutText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
-                android:drawableStart="@drawable/rut"
-                android:drawablePadding="16dp"
-                android:ems="10"
-                android:hint="RUT"
+                android:fontFamily="@font/abel"
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
+            <EditText
+                android:id="@+id/rutText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
+                android:drawableStart="@drawable/rut"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="RUT"
+                android:fontFamily="@font/abel"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
             <EditText
                 android:id="@+id/telefonoText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
                 android:drawableStart="@drawable/ic_call_phone"
-                android:drawableTint="@color/black"
                 android:drawablePadding="16dp"
                 android:ems="10"
                 android:hint="Telefono"
+                android:fontFamily="@font/abel"
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
@@ -117,53 +99,48 @@
                 android:id="@+id/patenteText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
-                android:drawableStart="@drawable/ic_user"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
+                android:drawableStart="@drawable/ic_movil"
                 android:drawablePadding="16dp"
                 android:ems="10"
                 android:hint="Patente"
+                android:fontFamily="@font/abel"
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
-
 
             <EditText
                 android:id="@+id/movilText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="24dp"
-                android:autofillHints="Email"
-                android:background="@drawable/ic_field"
-                android:drawableStart="@drawable/ic_user"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
+                android:drawableStart="@drawable/ic_movil"
                 android:drawablePadding="16dp"
                 android:ems="10"
-                android:hint="Movil Numero "
+                android:hint="Movil Numero"
+                android:fontFamily="@font/abel"
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/registrarButton"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/ic_field"
-                android:backgroundTint="@color/orange"
-                android:text="Actualizar"
-                android:textColor="@color/white" />
-
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registrarButton"
+            style="@style/Button.Orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ACTUALIZAR"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
+
+
+
+    </LinearLayout>

@@ -1,73 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo7"
-    tools:context=".UpdatePasswordActivity">
-
+    android:background="@drawable/fondo3"
+    android:padding="25dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:id="@+id/authLayout"
+    tools:context=".AgregarListaActivity">
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/abel"
+        android:textColor="@color/title_text"
+        android:text="Eliminar Usuario"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Por motivos de seguridad, debes ingresar tu contraseña de Administrador para continuar." />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:textSize="24sp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:layout_marginRight="24dp"
-            android:text="@string/title_delete_account" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="24dp"
-            android:textColor="@color/gray"
-            android:text="@string/subtitle_delete_account" />
-
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:padding="15dp"
+        android:orientation="vertical">
         <EditText
             android:id="@+id/contraseñaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="24dp"
-            android:autofillHints="@string/password"
-            android:background="@drawable/ic_field"
+            android:background="@drawable/edt_background"
             android:drawableStart="@drawable/ic_lock"
-            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="16dp"
-            android:ems="10"
-            android:hint="@string/password"
-            android:textColorHint="@color/gray"
-            android:inputType="textPassword"
-            android:maxLength="16"
-            android:padding="16dp" />
-
+            android:hint="Contraseña"
+            android:fontFamily="@font/abel"
+            android:inputType="text"
+            android:padding="16dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteAccountAppCompatButton"
-            android:layout_width="150dp"
+            style="@style/Button.Orange"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/ic_field"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/white"
-            android:text="@string/delete"/>
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"
+            android:text="ELIMINAR" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
