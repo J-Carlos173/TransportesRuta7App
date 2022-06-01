@@ -16,10 +16,4 @@
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:text="Exportar Vales" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center_vertical"
-            android:text="TextView" />
 </LinearLayout>

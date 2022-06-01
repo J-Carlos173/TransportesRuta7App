@@ -217,6 +217,9 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
     //Boton Crear
     private fun crearVale(email: String) {
         //val sdf = SimpleDateFormat("dd/M/yyyy")
+
+
+
         val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
         val currentDate = sdf.format(Date())
         val vale_Email      = email

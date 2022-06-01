@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_vales.*
 import java.io.OutputStream
+import java.security.Timestamp
 
 
 class ValesActivity : AppCompatActivity() {
@@ -89,9 +90,8 @@ class ValesActivity : AppCompatActivity() {
                     val array: Array<String> = list.toTypedArray()
                     csvWriter.writeNext(array)
                     list.clear()
-
                     for (document in documents) {
-
+                    println(document.data.get("timeStamp").toString())
                     list.add(document.data.get("vale_nombre_cliente").toString())
                     list.add(document.data.get("vale_rut_cliente").toString())
                     list.add(document.data.get("vale_Tipo").toString())

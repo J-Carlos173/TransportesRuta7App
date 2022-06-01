@@ -39,8 +39,9 @@ class HomeActivity : AppCompatActivity() {
         val provider = bundle?.getString("provider")
 
         setup(email ?: "", provider ?: "")
-        cargarDatos(email)
         verificar(email)
+        cargarDatos(email)
+
 
         // Guardado de datos
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -86,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
 
                 val nombre                  = document.data?.getValue("usuario_nombre").toString()
                 val apellido                = document.data?.getValue("usuario_apellido").toString()
-                nombreText.text    = "$nombre $apellido"
+                nombreText.text             = "$nombre $apellido"
                 nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
                 patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
                 rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()
