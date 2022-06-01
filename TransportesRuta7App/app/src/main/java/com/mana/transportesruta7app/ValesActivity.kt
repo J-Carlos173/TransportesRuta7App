@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -15,17 +16,18 @@ import androidx.core.app.ActivityCompat
 import androidx.documentfile.provider.DocumentFile
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.activity_agregar_lista.*
 import kotlinx.android.synthetic.main.activity_vales.*
 import java.io.OutputStream
+
 
 
 class ValesActivity : AppCompatActivity() {
 
 
-    val storage = Firebase.storage
+
     val db = Firebase.firestore
-    var counter = 1;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vales)
@@ -35,6 +37,8 @@ class ValesActivity : AppCompatActivity() {
 
 
     private fun setup() {
+        cargarMesyAno()
+
         exportarButton.setOnClickListener() {
             chooseDirectory()
         }
@@ -64,9 +68,13 @@ class ValesActivity : AppCompatActivity() {
             // For example, if you want save a txt file, you write "text/txt" and change the fileName's extension to fileName.txt
 
             try {
+                val mes = spnMes.getItemAtPosition(spnMes.selectedItemPosition).toString()
+                val ano = spnAno.getItemAtPosition(spnAno.selectedItemPosition).toString()
 
+                println(mes)
+                println(ano)
                 val list: MutableList<String> = ArrayList()
-                db.collection("Vales").get().addOnSuccessListener { documents ->
+                db.collection("Vales").document(ano).collection(mes).get().addOnSuccessListener { documents ->
 
                 val out: OutputStream = this!!.contentResolver.openOutputStream(file?.uri!!)!! // change "this" for your context
                 val csvWriter = CSVWriter(out)
@@ -89,9 +97,8 @@ class ValesActivity : AppCompatActivity() {
                     val array: Array<String> = list.toTypedArray()
                     csvWriter.writeNext(array)
                     list.clear()
-
                     for (document in documents) {
-
+                    println(document.data.get("timeStamp").toString())
                     list.add(document.data.get("vale_nombre_cliente").toString())
                     list.add(document.data.get("vale_rut_cliente").toString())
                     list.add(document.data.get("vale_Tipo").toString())
@@ -144,6 +151,34 @@ class ValesActivity : AppCompatActivity() {
         }
     }
 
+    private fun cargarMesyAno(){
+
+        val list : MutableList<String> = ArrayList()
+            list.add("Enero")
+            list.add("Febrero")
+            list.add("Marzo")
+            list.add("Abril")
+            list.add("Mayo")
+            list.add("Junio")
+            list.add("Julio")
+            list.add("Agosto")
+            list.add("Septiembre")
+            list.add("Octubre")
+            list.add("Noviembre")
+            list.add("Diciembre")
+        val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+        spnMes.adapter = adapter
+
+
+        val list2 : MutableList<String> = ArrayList()
+        list2.add("2022")
+        list2.add("2023")
+        list2.add("2024")
+        list2.add("2025")
+
+        val adapter2 = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list2)
+        spnAno.adapter = adapter2
+    }
 
 
 }

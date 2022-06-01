@@ -87,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
 
                 val nombre                  = document.data?.getValue("usuario_nombre").toString()
                 val apellido                = document.data?.getValue("usuario_apellido").toString()
-                nombreText.text    = "$nombre $apellido"
+                nombreText.text             = "$nombre $apellido"
                 nroMovilEditText.text       = document.data?.getValue("usuario_movil").toString()
                 patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
                 rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()

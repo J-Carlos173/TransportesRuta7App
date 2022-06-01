@@ -96,7 +96,7 @@
             android:id="@+id/singUpButton"
             style="@style/Button.Orange"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="50dp"

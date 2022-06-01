@@ -23,6 +23,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.Bitmap
+import com.google.firebase.firestore.FieldValue
 
 
 class FirmaActivity : AppCompatActivity() {
@@ -81,9 +82,9 @@ class FirmaActivity : AppCompatActivity() {
         btnSave!!.setOnClickListener {
             view!!.isDrawingCacheEnabled = true
             mSignature!!.save(view, StoredPath)
-
+            val createdAt = FieldValue.serverTimestamp()
             val vale = hashMapOf(
-
+                "timeStamp"             to createdAt,
                 "vale_Email"            to email,
                 "vale_Fecha"            to vale_fecha,
                 "vale_Chofer"           to vale_Chofer,
@@ -97,8 +98,25 @@ class FirmaActivity : AppCompatActivity() {
                 "vale_nombre_cliente"   to nombreClienteText.text.toString(),
                 "vale_rut_cliente"      to rutClienteText.text.toString()
             )
+            val sdf = SimpleDateFormat("yyyy")
+            val ano = sdf.format(Date())
+            val sdf2 = SimpleDateFormat("M")
+            var mes = sdf2.format(Date())
 
-            db.collection("Vales").document().set(vale).addOnSuccessListener {
+            if (mes == "1"){ mes = "Enero" }
+            else if (mes == "2"){ mes = "Febrero" }
+            else if (mes == "3"){ mes = "Marzo" }
+            else if (mes == "4"){ mes = "Abril" }
+            else if (mes == "5"){ mes = "Mayo" }
+            else if (mes == "6"){ mes = "Junio" }
+            else if (mes == "7"){ mes = "Julio" }
+            else if (mes == "8"){ mes = "Agosto" }
+            else if (mes == "9"){ mes = "Septiembre" }
+            else if (mes == "10"){ mes = "Octubre" }
+            else if (mes == "11"){ mes = "Noviembre" }
+            else  { mes = "Diciembre" }
+
+            db.collection("Vales").document(ano).collection(mes).document().set(vale).addOnSuccessListener {
                 Toast.makeText(applicationContext, "Vale Creado", Toast.LENGTH_SHORT).show()
                 Toast.makeText(applicationContext, "Guardado con exito", Toast.LENGTH_SHORT).show()
 
