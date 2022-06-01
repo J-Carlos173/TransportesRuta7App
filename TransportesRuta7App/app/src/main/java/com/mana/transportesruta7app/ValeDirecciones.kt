@@ -1,6 +1,7 @@
 package com.mana.transportesruta7app
 
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -31,10 +33,12 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
-import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
 import com.google.maps.model.LatLng as MapsLatLng
 import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
@@ -65,7 +69,8 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vale_direcciones)
 
-        linealMapaValeFragment.visibility = View.GONE
+
+
 
         // Autocompletado y mapa
         // Fetching API_KEY which we wrapped
@@ -78,7 +83,11 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         val email = bundle?.getString("email").toString()
         val provider = bundle?.getString("provider").toString()
         setup(email)
-
+        cargarEmpresas()
+        cargarCC()
+        crearValeButton.setOnClickListener() {
+            crearVale(email)
+        }
         // Mapa No Scrollable
         transparent_image2.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -208,7 +217,44 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
             }
         })
     }
+    private fun crearVale(email: String) {
+        //val sdf = SimpleDateFormat("dd/M/yyyy")
 
+
+
+        val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
+        val currentDate = sdf.format(Date())
+        val vale_Email      = email
+        val vale_Fecha      = currentDate.toString()
+        val vale_Chofer     = nombresValeViajeEditText.text.toString()
+        val vale_Patente    = patenteViajeEditText.text.toString()
+        val vale_Movil      = nroMovilViajeEditText.text.toString()
+        val vale_CC         = spnCentroCostoValeDirecciones.getItemAtPosition(spnCentroCostoValeDirecciones.selectedItemPosition).toString()
+        val vale_Empresa    = spnEmpresaValeDirecciones.getItemAtPosition(spnEmpresaValeDirecciones.selectedItemPosition).toString()
+        val vale_Tipo       = "Normal"
+        val ruta_Inicio     = autocomplete_fragment1.toString()
+        val ruta_Fin        = autocomplete_fragment2.toString()
+
+        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo,ruta_Inicio,ruta_Fin)
+
+
+    }
+    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String, inicio: String, fin: String) {
+        val firmaIntent = Intent(this,FirmaActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider.name)
+            putExtra("vale_fecha", fecha)
+            putExtra("vale_Chofer", chofer)
+            putExtra("vale_Patente", patente)
+            putExtra("vale_Movil", movil)
+            putExtra("vale_Empresa", empresa)
+            putExtra("vale_Tipo", tipo)
+            putExtra("vale_CC", cc)
+            putExtra("vale_Inicio", inicio)
+            putExtra("vale_Fin", fin)
+        }
+        startActivity(firmaIntent)
+    }
     private fun setup(email: String) {
         cargarDatos(email)
     }
@@ -245,7 +291,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
             mapFragment.getMapAsync(this)
             observeLiveData()
         }else{
-            linealMapaValeFragment.visibility = View.GONE
         }
     }
 
@@ -257,7 +302,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
             moveCamera()
         })
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -318,6 +362,53 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         polylineOptions.color(colorPrimary)
         polyline = mMap?.addPolyline(polylineOptions)
     }
-
+    private fun cargarEmpresas(){
+        val docRef = db.collection("Listas").document("Empresas")
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var listaCC = document.data.toString()
+                listaCC = listaCC.replace("{", "")
+                listaCC = listaCC.replace("}", "")
+                val arr = listaCC.split(",")
+                println(arr)
+                val list : MutableList<String> = ArrayList()
+                for (cCosto in arr) {
+                    val found = cCosto.indexOf("=");
+                    list.add(cCosto.substring(found + 1))
+                }
+                val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+                spnEmpresaValeDirecciones.adapter = adapter
+            }
+            else {
+                Log.d("TAG", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "get failed with ", exception)
+        }
+    }
+    private fun cargarCC(){
+        val docRef = db.collection("Listas").document("CC")
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var listaCC = document.data.toString()
+                listaCC = listaCC.replace("{", "")
+                listaCC = listaCC.replace("}", "")
+                val arr = listaCC.split(",")
+                println(arr)
+                val list : MutableList<String> = ArrayList()
+                for (cCosto in arr) {
+                    val found = cCosto.indexOf("=");
+                    list.add(cCosto.substring(found + 1))
+                }
+                val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+                spnCentroCostoValeDirecciones.adapter = adapter
+            }
+            else {
+                Log.d("TAG", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "get failed with ", exception)
+        }
+    }
 
 }

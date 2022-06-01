@@ -23,14 +23,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.libraries.places.api.Places
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
 import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
-import kotlinx.android.synthetic.main.activity_vale_direcciones.*
 import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
 import java.text.SimpleDateFormat
 import java.util.*
