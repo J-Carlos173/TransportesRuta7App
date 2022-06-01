@@ -10,7 +10,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fondo2"
+            android:background="@drawable/fondo4"
             android:orientation="vertical">
 
 
@@ -151,28 +151,16 @@
                 android:textColorHint="@color/gray" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registrarButton"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/registrarButton"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/ic_field"
-                    android:backgroundTint="#FB4F18"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Actualizar Datos"
-                    android:textColor="@color/white" />
-
-
-
-            </LinearLayout>
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/ic_field"
+                android:backgroundTint="@color/orange"
+                android:text="Actualizar"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

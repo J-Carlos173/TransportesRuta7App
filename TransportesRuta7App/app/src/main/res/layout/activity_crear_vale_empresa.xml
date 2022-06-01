@@ -6,50 +6,32 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context=".HomeActivity">
+
     <View
         android:id="@+id/viewHeaderBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_125sdp"
         android:background="@color/primary"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:fontFamily="@font/abel"
-        android:text="Transportes Ruta 7"
-        android:textColor="@color/title_text"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent" />
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="@dimen/_26sdp"
-        android:layout_height="@dimen/_26sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginRight="@dimen/_16sdp"
-        android:src="@drawable/ic_sign_out"
-        app:layout_constraintBottom_toBottomOf="@+id/textTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textTitle"
-        android:tint="@color/ic_logout"/>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
+        android:visibility="gone"
         app:cardCornerRadius="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
-        app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
+        app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground"
+        tools:layout_editor_absoluteX="21dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_14sdp"
+            android:background="@drawable/profile_background"
             android:elevation="5dp"
-            android:background="@drawable/profile_background">
+            android:padding="@dimen/_14sdp">
+
             <TextView
                 android:id="@+id/textViews"
                 android:layout_width="wrap_content"
@@ -60,7 +42,8 @@
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/nombresValeEditText"
                 android:layout_width="wrap_content"
@@ -74,7 +57,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textViews"
                 app:layout_constraintStart_toEndOf="@id/textViews"
                 app:layout_constraintTop_toTopOf="@+id/textViews"
-                tools:layout_editor_absoluteX="73dp"/>
+                tools:layout_editor_absoluteX="73dp" />
+
             <TextView
                 android:id="@+id/rutValeEditText"
                 android:layout_width="wrap_content"
@@ -85,7 +69,8 @@
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:id="@+id/layoutImagenChofer"
                 android:layout_width="0dp"
@@ -96,6 +81,7 @@
                 app:layout_constraintEnd_toStartOf="@id/layoutTravels"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViews">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imagenChofer"
                     android:layout_width="wrap_content"
@@ -113,10 +99,12 @@
                 app:layout_constraintEnd_toStartOf="@id/layoutPatente"
                 app:layout_constraintStart_toEndOf="@+id/layoutImagenChofer"
                 app:layout_constraintTop_toBottomOf="@+id/textViews">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
                     android:src="@drawable/ic_travels" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,6 +114,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,10 +133,12 @@
                 app:layout_constraintEnd_toStartOf="@id/layoutNumeroMovil"
                 app:layout_constraintStart_toEndOf="@+id/layoutTravels"
                 app:layout_constraintTop_toBottomOf="@+id/textViews">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
                     android:src="@drawable/ic_patente" />
+
                 <TextView
                     android:id="@+id/patente"
                     android:layout_width="wrap_content"
@@ -158,6 +149,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/patenteEditText"
                     android:layout_width="wrap_content"
@@ -177,10 +169,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/layoutPatente"
                 app:layout_constraintTop_toBottomOf="@+id/textViews">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
                     android:src="@drawable/ic_drivers" />
+
                 <TextView
                     android:id="@+id/textViewMovil"
                     android:layout_width="wrap_content"
@@ -191,6 +185,7 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/nroMovilEditText"
                     android:layout_width="wrap_content"
@@ -201,210 +196,190 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-    <ScrollView
-        android:background="@color/white"
-        android:id="@+id/scrollViewViajeEmpresa"
+
+    <LinearLayout
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/fondo3"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:padding="@dimen/_16sdp"
         android:scrollbars="none"
-        android:layout_marginBottom="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardHeader"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardMap"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="75dp"
-            app:cardCornerRadius="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
-            app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:elevation="5dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_14sdp"
-                android:elevation="5dp"
-                android:background="@drawable/profile_background">
-                <TextView
-                    android:id="@+id/datosViajeTextView"
+                android:orientation="vertical"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="18dp">
+
+                <RelativeLayout
+                    android:id="@+id/linealMapaValeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp">
+
+                    <fragment
+                        android:id="@+id/mapaValeFragmentEmpresa"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        tools:context=".ValeDirecciones" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spnRuta"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/spinner_bg"
+                        android:clipToPadding="false"
+                        android:inputType="textEmailAddress"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Datos del viaje"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/abel"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:backgroundTint="#70FDFDFD"
                     android:orientation="vertical"
-                    android:textAlignment="center"
-                    app:layout_constraintTop_toBottomOf="@id/datosViajeTextView">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ruta"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/secondary_text"/>
-                        <androidx.appcompat.widget.AppCompatSpinner
-                            android:id="@+id/spnRuta"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:background="@drawable/spinner_bg"
-                            android:clipToPadding="false"
-                            android:inputType="textEmailAddress"
-                            android:spinnerMode="dropdown"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/gray" />
-                    </LinearLayout>
+                    android:padding="5dp">
 
-                    <RelativeLayout
-                        android:id="@+id/linealMapaValeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp">
-
-                        <fragment
-                            android:id="@+id/mapaValeFragmentEmpresa"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="-100dp"
-                            android:layout_marginBottom="-100dp"
-                            tools:context=".ValeDirecciones" />
-
-                        <View
-                            android:id="@+id/transparent_image"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:background="@color/transparent_color" />
-                    </RelativeLayout>
-
-                    <LinearLayout
+                    <TableLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:backgroundTint="#70FDFDFD"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-                        <TableLayout
+                        android:layout_gravity="center_horizontal"
+                        android:stretchColumns="1,1">
+
+                        <TableRow
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:stretchColumns="1,1">
-                            <TableRow
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/rutaInicio"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:id="@+id/rutaInicio"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center|left"
-                                    android:text="Origen:"
-                                    android:textColor="@color/gray"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold"/>
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/rutaInicioText"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:inputType="textEmailAddress"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray" />
-                            </TableRow>
+                                android:layout_gravity="center|left"
+                                android:text="Origen:"
+                                android:textColor="@color/gray"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-                            <TableRow
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/rutaInicioText"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:id="@+id/rutaFin"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center|left"
-                                    android:text="Destino:"
-                                    android:textColor="@color/gray"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-                                <EditText
-                                    android:id="@+id/rutaFinText"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp"
-                                    android:textColorHint="@color/gray" />
-                            </TableRow>
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="16sp" />
+                        </TableRow>
 
-                            <TableRow
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:id="@+id/centrocosto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center|left"
-                                    android:text="Centro de Costo:"
-                                    android:textColor="@color/gray"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold"/>
-                                <EditText
-                                    android:id="@+id/centroCostoText"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:id="@+id/empresa"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center|left"
-                                    android:text="Empresa:"
-                                    android:textColor="@color/gray"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold"/>
-                                <EditText
-                                    android:id="@+id/EmpresaText"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/gray"/>
-                            </TableRow>
-                        </TableLayout>
-                    </LinearLayout>
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/crearValeButton"
+                        <TableRow
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/profile_background"
-                            android:backgroundTint="@color/primary"
-                            android:text="Firmar"
-                            android:layout_gravity="center"
-                            android:textColor="@color/white" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/rutaFin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|left"
+                                android:text="Destino:"
+                                android:textColor="@color/gray"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/rutaFinText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/centrocosto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|left"
+                                android:text="Centro de Costo:"
+                                android:textColor="@color/gray"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/centroCostoText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/empresa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|left"
+                                android:text="Empresa:"
+                                android:textColor="@color/gray"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/EmpresaText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="16sp" />
+                        </TableRow>
+                    </TableLayout>
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </ScrollView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/crearValeButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_field"
+                    android:backgroundTint="@color/orange"
+                    android:textColor="@color/white"
+                    android:text="Firmar" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
