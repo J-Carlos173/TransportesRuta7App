@@ -48,6 +48,8 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         const val POLYLINE_WIDTH = 12f
     }
 
+    private var inicio:String? = ""
+    private var fin :String? = ""
     private var validacionOrigen = false
     private var validacionDestino = false
     private var lat1 :Double? = 0.0
@@ -157,6 +159,7 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
                 val longitude1 = latlng?.longitude
                 lat1 = latitude1
                 long1 = longitude1
+                inicio = address
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -195,6 +198,7 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
                 var longitude2 = latlng?.longitude
                 lat2 = latitude2
                 long2 = longitude2
+                fin = address
 
                 val isOpenStatus : String = if(place.isOpen == true){
                     "Open"
@@ -232,14 +236,14 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         val vale_CC         = spnCentroCostoValeDirecciones.getItemAtPosition(spnCentroCostoValeDirecciones.selectedItemPosition).toString()
         val vale_Empresa    = spnEmpresaValeDirecciones.getItemAtPosition(spnEmpresaValeDirecciones.selectedItemPosition).toString()
         val vale_Tipo       = "Normal"
-        val ruta_Inicio     = autocomplete_fragment1.toString()
-        val ruta_Fin        = autocomplete_fragment2.toString()
+        //val ruta_Inicio     = autocomplete_fragment1.toString()
+        //val ruta_Fin        = autocomplete_fragment2.toString()
 
-        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo,ruta_Inicio,ruta_Fin)
+        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo)
 
 
     }
-    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String, inicio: String, fin: String) {
+    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String) {
         val firmaIntent = Intent(this,FirmaActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
