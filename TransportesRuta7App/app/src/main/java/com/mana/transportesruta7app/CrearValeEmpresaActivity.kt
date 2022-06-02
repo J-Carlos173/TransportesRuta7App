@@ -1,5 +1,6 @@
 package com.mana.transportesruta7app
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -12,9 +13,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ScrollView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.maps.*
@@ -40,13 +43,15 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         private const val ZOOM_SIZE = 14f
         private const val POLYLINE_WIDTH = 12f
+        const val REQUEST_CODE_LOCATION = 0
     }
 
     private var lat1 :Double? = 0.0
     private var long1 :Double? = 0.0
     private var lat2 :Double? = 0.0
     private var long2 :Double? = 0.0
-    private var mMap: GoogleMap? = null
+    //private var mMap: GoogleMap? = null
+    private lateinit var mMap: GoogleMap
     private var polyline: Polyline? = null
     private val overview = 0
     private val viewModel by viewModels<MapsViewModel>()
@@ -81,7 +86,6 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-
     //Setup
     private fun setup(email: String) {
         cargarDatos(email)
@@ -115,6 +119,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun cargarSpnRutas(){
         val list : MutableList<String> = ArrayList()
+        list.add("Seleccionar Ruta")
         db.collection("RutasEmpresa").get().addOnSuccessListener { documents ->
                 for (document in documents) {
                     list.add(document.id)
@@ -128,74 +133,84 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun cargarRuta(){
+
         spnRuta?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
+
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val ruta = spnRuta.getItemAtPosition(spnRuta.selectedItemPosition)
                 val db = FirebaseFirestore.getInstance()
+                println(ruta)
+                if (ruta == "Seleccionar Ruta") {
 
-                db.collection("RutasEmpresa").document(ruta.toString())
-                    .get()
-                    .addOnSuccessListener { document ->
-                        if (document != null) {
-                            val ruta_nombre     = document.get("ruta_nombre")
-                            val ruta_empresa    = document.get("ruta_empresa")
-                            var ruta_inicio     = document.get("ruta_inicio")
-                            val ruta_fin        = document.get("ruta_fin")
-                            val origen          = document.get("origen")
-                            val destino          = document.get("destino")
+                } else {
 
 
-                            // Se trabajan las latitudes de origen
-                            var latInicio = ruta_inicio.toString().replace("[", "").replace("]","").replace(" ", "")
-                            var numeroCaracteres = latInicio.length
-                            var indexComa = latInicio.indexOf(",")
-                            val latInicioDef = latInicio.subSequence(0, indexComa -1)
-                            val longInicioDef = latInicio.subSequence(indexComa+1, numeroCaracteres)
+                    db.collection("RutasEmpresa").document(ruta.toString())
+                        .get()
+                        .addOnSuccessListener { document ->
+                            if (document != null) {
+                                val ruta_nombre = document.get("ruta_nombre")
+                                val ruta_empresa = document.get("ruta_empresa")
+                                var ruta_inicio = document.get("ruta_inicio")
+                                val ruta_fin = document.get("ruta_fin")
+                                val origen = document.get("origen")
+                                val destino = document.get("destino")
 
 
-                            // Se trabajan las latitudes de destino
-                            var latFin = ruta_fin.toString().replace("[", "").replace("]","").replace(" ", "")
-                            numeroCaracteres = latFin.length
-                            indexComa = latFin.indexOf(",")
-                            val latFinDef = latFin.subSequence(0, indexComa -1)
-                            val longFinDef = latFin.subSequence(indexComa+1, numeroCaracteres)
+                                // Se trabajan las latitudes de origen
+                                var latInicio =
+                                    ruta_inicio.toString().replace("[", "").replace("]", "")
+                                        .replace(" ", "")
+                                var numeroCaracteres = latInicio.length
+                                var indexComa = latInicio.indexOf(",")
+                                val latInicioDef = latInicio.subSequence(0, indexComa - 1)
+                                val longInicioDef =
+                                    latInicio.subSequence(indexComa + 1, numeroCaracteres)
 
 
+                                // Se trabajan las latitudes de destino
+                                var latFin = ruta_fin.toString().replace("[", "").replace("]", "")
+                                    .replace(" ", "")
+                                numeroCaracteres = latFin.length
+                                indexComa = latFin.indexOf(",")
+                                val latFinDef = latFin.subSequence(0, indexComa - 1)
+                                val longFinDef = latFin.subSequence(indexComa + 1, numeroCaracteres)
 
 
-                            fun String.fullTrim() = trim().replace("\uFEFF", "")
-                            lat1 = latInicioDef.toString().fullTrim().toDouble()
-                            long1 = longInicioDef.toString().fullTrim().toDouble()
-                            lat2 = latFinDef.toString().fullTrim().toDouble()
-                            long2 = longFinDef.toString().fullTrim().toDouble()
+                                fun String.fullTrim() = trim().replace("\uFEFF", "")
+                                lat1 = latInicioDef.toString().fullTrim().toDouble()
+                                long1 = longInicioDef.toString().fullTrim().toDouble()
+                                lat2 = latFinDef.toString().fullTrim().toDouble()
+                                long2 = longFinDef.toString().fullTrim().toDouble()
 
 
-                            val ruta_ccosto     = document.get("ruta_centrocosto")
-                            centroCostoText.setText(ruta_ccosto.toString())
-                            EmpresaText.setText(ruta_empresa.toString())
-                            rutaInicioText.setText(origen.toString())
-                            rutaFinText.setText(destino.toString())
+                                val ruta_ccosto = document.get("ruta_centrocosto")
+                                centroCostoText.setText(ruta_ccosto.toString())
+                                EmpresaText.setText(ruta_empresa.toString())
+                                rutaInicioText.setText(origen.toString())
+                                rutaFinText.setText(destino.toString())
 
-                            Log.d("Latitude Inicio", longInicioDef.toString())
-                            Log.d("Longitude Inicio", longInicioDef.toString())
-                            //Obtener nombre a partir de latitude
+                                Log.d("Latitude Inicio", longInicioDef.toString())
+                                Log.d("Longitude Inicio", longInicioDef.toString())
+                                //Obtener nombre a partir de latitude
 
 
-                            mostrarMapa()
+                                mostrarMapa()
 
-                        } else {
-                            showAlert()
+                            } else {
+                                showAlert()
+                            }
                         }
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.d("Error", "get failed with ", exception)
-                    }
+                        .addOnFailureListener { exception ->
+                            Log.d("Error", "get failed with ", exception)
+                        }
 
-                println()
+                    println()
+                }
             }
-
 
         }
     }
@@ -280,17 +295,59 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
             moveCamera()
         })
     }
+    private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
+        this,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
 
+
+    private fun enableLocation(){
+        if(!::mMap.isInitialized) return
+        if(isLocationPermissionGranted()){
+            mMap.isMyLocationEnabled = true
+        }else{
+            requestLocationPermission()
+        }
+    }
+    private fun requestLocationPermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            Toast.makeText(this, "Ve a ajutes y acepta los permisos", Toast.LENGTH_SHORT).show()
+        }else{
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_CODE_LOCATION)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_CODE_LOCATION ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mMap.isMyLocationEnabled = true
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Para activar la localizacion ve a ajustes y acepta los permisos",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            else -> {}
+        }
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val fromTokyo = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
-        val toKanda = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
-        if (fromTokyo != null) {
-            if (toKanda != null) {
-                viewModel.execute(fromTokyo, toKanda)
+        val Marcador1 = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
+        val Marcador2 = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
+        if (Marcador1 != null) {
+            if (Marcador2 != null) {
+                viewModel.execute(Marcador1, Marcador2)
             }
         }
+        enableLocation()
     }
 
     private fun moveCamera() {
@@ -322,8 +379,8 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addPolyline(directionsResult: DirectionsResult, map: GoogleMap) {
         val polylineOptions = PolylineOptions()
         polylineOptions.width(ValeDirecciones.POLYLINE_WIDTH)
-        // ARGB32bit形式.
-        val colorPrimary = ContextCompat.getColor(this, R.color.map_polyline_stroke)
+        //Color de la linea
+        val colorPrimary = ContextCompat.getColor(this, R.color.black)
         polylineOptions.color(colorPrimary)
         val decodedPath = PolyUtil.decode(directionsResult.routes[overview].overviewPolyline.encodedPath)
         polyline = map.addPolyline(polylineOptions.addAll(decodedPath))

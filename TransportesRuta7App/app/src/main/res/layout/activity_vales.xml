@@ -26,7 +26,7 @@
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnMes"
-                    android:layout_width="120dp"
+                    android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
@@ -45,7 +45,7 @@
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnAno"
-                    android:layout_width="120dp"
+                    android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/spinner_bg"
@@ -55,16 +55,16 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/exportarButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/ic_field"
             android:backgroundTint="#FB4F18"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Exportar"
-            android:layout_marginBottom="50dp"
-            android:textColor="@color/white"/>
+            style="@style/Button.Orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp" />
 
 </LinearLayout>

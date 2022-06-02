@@ -217,7 +217,7 @@
                 android:id="@+id/mapaValeFragmentEmpresa"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="450dp"
                 tools:context=".ValeDirecciones" />
 
             <View
@@ -307,42 +307,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/centroCostoTextView"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:text="Centro de Costos"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnCentroCostoValeDirecciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:background="@drawable/spinner_bg"
-                    android:popupBackground="@color/naranjo_obscuro"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layoutCCosto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -364,6 +338,33 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:popupBackground="@color/naranjo_obscuro"
                     android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/centroCostoTextView"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:text="Centro de Costos"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnCentroCostoValeDirecciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@drawable/spinner_bg"
+                    android:popupBackground="@color/naranjo_obscuro"
+                    android:spinnerMode="dropdown" />
+
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

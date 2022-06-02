@@ -16,8 +16,8 @@ android {
         applicationId "com.mana.transportesruta7app"
         minSdk 21
         targetSdk 32
-        versionCode 5
-        versionName "1.5"
+        versionCode 9
+        versionName "1.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
