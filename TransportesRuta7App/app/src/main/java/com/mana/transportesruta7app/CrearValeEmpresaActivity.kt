@@ -6,6 +6,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
@@ -38,7 +39,7 @@ import java.util.*
 import com.google.maps.model.LatLng as MapsLatLng
 
 
-class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
+class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     companion object {
         private const val ZOOM_SIZE = 14f
@@ -152,12 +153,12 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
                         .get()
                         .addOnSuccessListener { document ->
                             if (document != null) {
-                                val ruta_nombre = document.get("ruta_nombre")
-                                val ruta_empresa = document.get("ruta_empresa")
-                                var ruta_inicio = document.get("ruta_inicio")
-                                val ruta_fin = document.get("ruta_fin")
-                                val origen = document.get("origen")
-                                val destino = document.get("destino")
+                                val ruta_nombre     = document.get("ruta_nombre")
+                                val ruta_empresa    = document.get("ruta_empresa")
+                                var ruta_inicio     = document.get("ruta_inicio")
+                                val ruta_fin    = document.get("ruta_fin")
+                                val origen      = document.get("origen")
+                                val destino         = document.get("destino")
 
 
                                 // Se trabajan las latitudes de origen
@@ -340,6 +341,8 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setOnMyLocationButtonClickListener(this)
+        mMap.setOnMyLocationClickListener(this)
         val Marcador1 = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
         val Marcador2 = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
         if (Marcador1 != null) {
@@ -387,6 +390,23 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        if(!::mMap.isInitialized) return
+        if(isLocationPermissionGranted()){
+            mMap.isMyLocationEnabled = true
+            Toast.makeText(this,"Para activar la localizacion ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onMyLocationButtonClick(): Boolean {
+        return false
+        Toast.makeText(this,"Obteniendo Ubicacion...", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onMyLocationClick(p0: Location) {
+        Toast.makeText(this,"Estas en  ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
+    }
 
 }
 
