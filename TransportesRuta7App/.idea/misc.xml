@@ -19,10 +19,11 @@
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/direccion.xml" value="0.2735" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/edt_background.xml" value="0.226" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/edt_backgroundDireccion.xml" value="0.226" />
+        <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/edt_direccion.xml" value="0.1" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/drawable/ruta.xml" value="0.1" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_agregar_ruta.xml" value="0.23777173913043478" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_auto_compplete.xml" value="0.23777173913043478" />
-        <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_crear_vale_empresa.xml" value="0.264945652173913" />
+        <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_crear_vale_empresa.xml" value="0.1" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_firma.xml" value="0.22" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_fragment_vale.xml" value="0.23777173913043478" />
         <entry key="..\:/Users/Cato/Desktop/Desa/TransportesRuta7App/TransportesRuta7App/app/src/main/res/layout/activity_vale_direcciones.xml" value="0.3278985507246377" />

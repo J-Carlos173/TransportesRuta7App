@@ -240,7 +240,9 @@
                 android:text="Firmar"
                 android:textColor="@color/white" />
 
-            <fragment
+
+
+            <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/rutaInicioText"
                 android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 android:layout_width="wrap_content"
@@ -251,11 +253,13 @@
                 android:layout_marginStart="29dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="54dp"
-
-                android:ems="10"
+                android:background="@drawable/edt_direccion"
+                android:drawableTint="@color/black"
                 android:inputType="textPostalAddress"
-                android:padding="8dp" />
+                android:padding="8dp" >
 
+
+            </androidx.fragment.app.FragmentContainerView>
         </RelativeLayout>
 
     </LinearLayout>

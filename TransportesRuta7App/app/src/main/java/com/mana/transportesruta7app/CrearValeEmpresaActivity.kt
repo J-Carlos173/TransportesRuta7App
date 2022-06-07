@@ -91,8 +91,8 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
 
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
-        val autocompleteSupportFragment1 = supportFragmentManager.findFragmentById(R.id.rutaInicioText) as AutocompleteSupportFragment?
-        autocompleteSupportFragment1!!.setPlaceFields(
+        val direccionAutocompletada = supportFragmentManager.findFragmentById(R.id.rutaInicioText) as AutocompleteSupportFragment?
+        direccionAutocompletada!!.setPlaceFields(
             listOf(
 
                 Place.Field.NAME,
@@ -105,7 +105,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
             )
         )
-        autocompleteSupportFragment1.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+        direccionAutocompletada.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
 
                 // Informacion del lugar
@@ -131,10 +131,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
     //Setup
     private fun setup(email: String) {
         cargarDatos(email)
-        //cargarSpnRutas()
-        //cargarRuta()
         mostrarMapa()
-
     }
 
     //funciones
