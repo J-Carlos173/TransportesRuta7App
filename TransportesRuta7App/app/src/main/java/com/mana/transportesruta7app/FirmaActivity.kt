@@ -11,9 +11,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -23,7 +20,10 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.Bitmap
+import android.widget.*
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
 
 
 class FirmaActivity : AppCompatActivity() {
@@ -137,6 +137,23 @@ class FirmaActivity : AppCompatActivity() {
     private fun setup(email: String) {
 
     }
+    private fun cargarSpnRutas(){
+        val list : MutableList<String> = ArrayList()
+        list.add("Seleccionar Ruta")
+        db.collection("RutasEmpresa").get().addOnSuccessListener { documents ->
+            for (document in documents) {
+                list.add(document.id)
+            }
+            val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+            spnRuta.adapter = adapter
+        }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+    }
+
+
+
     inner class signature(context: Context?, attrs: AttributeSet?) :
         View(context, attrs) {
         private val paint = Paint()
@@ -239,8 +256,31 @@ class FirmaActivity : AppCompatActivity() {
         }
 
 
+        //Boton Crear
+        /*
+        private fun crearVale(email: String) {
+            //val sdf = SimpleDateFormat("dd/M/yyyy")
 
 
+
+            val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
+            val currentDate = sdf.format(Date())
+            val vale_Email      = email
+            val vale_Fecha      = currentDate.toString()
+            val vale_Chofer     = nombresValeEditText.text.toString()
+            val vale_Patente    = patenteEditText.text.toString()
+            val vale_Movil      = nroMovilEditText.text.toString()
+            val vale_CC         = centroCostoText.text.toString()
+            val vale_Empresa    = EmpresaText.text.toString()
+            val vale_Tipo       = "Empresa"
+            val ruta_Inicio     = rutaInicioText.text.toString()
+            val ruta_Fin        = rutaFinText.text.toString()
+
+            showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo,ruta_Inicio,ruta_Fin)
+
+
+        }
+        */
         init {
             paint.isAntiAlias = true
             paint.color = Color.BLACK

@@ -21,18 +21,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
 import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
+import kotlinx.android.synthetic.main.activity_firma.*
 import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,20 +49,22 @@ import com.google.maps.model.LatLng as MapsLatLng
 class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     companion object {
-        private const val ZOOM_SIZE = 14f
-        private const val POLYLINE_WIDTH = 12f
         const val REQUEST_CODE_LOCATION = 0
     }
 
-    private var lat1 :Double? = 0.0
-    private var long1 :Double? = 0.0
-    private var lat2 :Double? = 0.0
-    private var long2 :Double? = 0.0
-    //private var mMap: GoogleMap? = null
-    private lateinit var mMap: GoogleMap
+    private var lat1 :Double?       = 0.0
+    private var long1 :Double?      = 0.0
+    private var lat2 :Double?       = 0.0
+    private var long2 :Double?      = 0.0
+    private val overview            = 0
     private var polyline: Polyline? = null
-    private val overview = 0
-    private val viewModel by viewModels<MapsViewModel>()
+
+    private var origenNombre:String?    = ""
+    private var destinoNombre :String?  = ""
+
+
+    private lateinit var mMap: GoogleMap
+    private lateinit var fusedLocation: FusedLocationProviderClient
 
     val db = Firebase.firestore
 
@@ -81,17 +90,51 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         setup(email)
 
 
+        fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+        val autocompleteSupportFragment1 = supportFragmentManager.findFragmentById(R.id.rutaInicioText) as AutocompleteSupportFragment?
+        autocompleteSupportFragment1!!.setPlaceFields(
+            listOf(
 
-        crearValeButton.setOnClickListener(){
-            crearVale(email)
-        }
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.PHONE_NUMBER,
+                Place.Field.LAT_LNG,
+                Place.Field.OPENING_HOURS,
+                Place.Field.RATING,
+                Place.Field.USER_RATINGS_TOTAL
+
+            )
+        )
+        autocompleteSupportFragment1.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+
+                // Informacion del lugar
+                val name        = place.name
+                val address     = place.address
+                val latlng      = place.latLng
+                val latitude1   = latlng?.latitude
+                val longitude1  = latlng?.longitude
+                lat1            = latitude1
+                long1           = longitude1
+                origenNombre    = address
+
+
+
+            }
+
+            override fun onError(status: Status) {
+                Toast.makeText(applicationContext,"Some error occurred", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     //Setup
     private fun setup(email: String) {
         cargarDatos(email)
-        cargarSpnRutas()
-        cargarRuta()
+        //cargarSpnRutas()
+        //cargarRuta()
+        mostrarMapa()
+
     }
 
     //funciones
@@ -116,128 +159,6 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
             .addOnFailureListener { exception ->
                 Log.d("TAG", "No se encontro el Documento", exception)
             }
-    }
-
-    private fun cargarSpnRutas(){
-        val list : MutableList<String> = ArrayList()
-        list.add("Seleccionar Ruta")
-        db.collection("RutasEmpresa").get().addOnSuccessListener { documents ->
-                for (document in documents) {
-                    list.add(document.id)
-                }
-            val adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
-            spnRuta.adapter = adapter
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
-    }
-
-    private fun cargarRuta(){
-
-        spnRuta?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val ruta = spnRuta.getItemAtPosition(spnRuta.selectedItemPosition)
-                val db = FirebaseFirestore.getInstance()
-                println(ruta)
-                if (ruta == "Seleccionar Ruta") {
-
-                } else {
-
-
-                    db.collection("RutasEmpresa").document(ruta.toString())
-                        .get()
-                        .addOnSuccessListener { document ->
-                            if (document != null) {
-                                val ruta_nombre     = document.get("ruta_nombre")
-                                val ruta_empresa    = document.get("ruta_empresa")
-                                var ruta_inicio     = document.get("ruta_inicio")
-                                val ruta_fin    = document.get("ruta_fin")
-                                val origen      = document.get("origen")
-                                val destino         = document.get("destino")
-
-
-                                // Se trabajan las latitudes de origen
-                                var latInicio =
-                                    ruta_inicio.toString().replace("[", "").replace("]", "")
-                                        .replace(" ", "")
-                                var numeroCaracteres = latInicio.length
-                                var indexComa = latInicio.indexOf(",")
-                                val latInicioDef = latInicio.subSequence(0, indexComa - 1)
-                                val longInicioDef =
-                                    latInicio.subSequence(indexComa + 1, numeroCaracteres)
-
-
-                                // Se trabajan las latitudes de destino
-                                var latFin = ruta_fin.toString().replace("[", "").replace("]", "")
-                                    .replace(" ", "")
-                                numeroCaracteres = latFin.length
-                                indexComa = latFin.indexOf(",")
-                                val latFinDef = latFin.subSequence(0, indexComa - 1)
-                                val longFinDef = latFin.subSequence(indexComa + 1, numeroCaracteres)
-
-
-                                fun String.fullTrim() = trim().replace("\uFEFF", "")
-                                lat1 = latInicioDef.toString().fullTrim().toDouble()
-                                long1 = longInicioDef.toString().fullTrim().toDouble()
-                                lat2 = latFinDef.toString().fullTrim().toDouble()
-                                long2 = longFinDef.toString().fullTrim().toDouble()
-
-
-                                val ruta_ccosto = document.get("ruta_centrocosto")
-                                centroCostoText.setText(ruta_ccosto.toString())
-                                EmpresaText.setText(ruta_empresa.toString())
-                                rutaInicioText.setText(origen.toString())
-                                rutaFinText.setText(destino.toString())
-
-                                Log.d("Latitude Inicio", longInicioDef.toString())
-                                Log.d("Longitude Inicio", longInicioDef.toString())
-                                //Obtener nombre a partir de latitude
-
-
-                                mostrarMapa()
-
-                            } else {
-                                showAlert()
-                            }
-                        }
-                        .addOnFailureListener { exception ->
-                            Log.d("Error", "get failed with ", exception)
-                        }
-
-                    println()
-                }
-            }
-
-        }
-    }
-
-    //Boton Crear
-    private fun crearVale(email: String) {
-        //val sdf = SimpleDateFormat("dd/M/yyyy")
-
-
-
-        val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss ss")
-        val currentDate = sdf.format(Date())
-        val vale_Email      = email
-        val vale_Fecha      = currentDate.toString()
-        val vale_Chofer     = nombresValeEditText.text.toString()
-        val vale_Patente    = patenteEditText.text.toString()
-        val vale_Movil      = nroMovilEditText.text.toString()
-        val vale_CC         = centroCostoText.text.toString()
-        val vale_Empresa    = EmpresaText.text.toString()
-        val vale_Tipo       = "Empresa"
-        val ruta_Inicio     = rutaInicioText.text.toString()
-        val ruta_Fin        = rutaFinText.text.toString()
-
-        showFirma(vale_Email, ProviderType.BASIC,vale_Fecha,vale_Chofer,vale_Patente,vale_Movil,vale_Empresa,vale_CC,vale_Tipo,ruta_Inicio,ruta_Fin)
-
-
     }
 
     //Alertas
@@ -283,19 +204,12 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
     private fun mostrarMapa(){
             linealMapaValeFragment.visibility = View.VISIBLE
-            val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.mapaValeFragmentEmpresa) as SupportMapFragment
+            val mapFragment = supportFragmentManager.findFragmentById(R.id.mapaValeFragmentEmpresa) as SupportMapFragment
             mapFragment.getMapAsync(this)
-            observeLiveData()
+
     }
 
-    private fun observeLiveData() {
-        viewModel.directionsResult.observe(this, Observer {
-            Log.d(CrearValeEmpresaActivity::class.java.simpleName, "result: $it")
-            updatePolyline(it, mMap)
-            moveCamera()
-        })
-    }
+
     private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
         this,
         Manifest.permission.ACCESS_FINE_LOCATION
@@ -343,26 +257,28 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         mMap = googleMap
         mMap.setOnMyLocationButtonClickListener(this)
         mMap.setOnMyLocationClickListener(this)
-        val Marcador1 = lat1?.let { long1?.let { it1 -> MapsLatLng(it, it1) } }
-        val Marcador2 = lat2?.let { long2?.let { it1 -> MapsLatLng(it, it1) } }
-        if (Marcador1 != null) {
-            if (Marcador2 != null) {
-                viewModel.execute(Marcador1, Marcador2)
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        mMap.isMyLocationEnabled = true
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        fusedLocation.lastLocation.addOnSuccessListener { location ->
+            if (location != null){
+                val ubicacion = LatLng(location.latitude,location.longitude)
+                mMap.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(ubicacion,15f))
             }
-        }
-        enableLocation()
-    }
 
-    private fun moveCamera() {
-        // Add a marker in Sydney and move the camera
-        val tokyo = lat2?.let { long2?.let { it1 -> LatLng(it, it1) } }
-
-        val marcardor1 = mMap?.apply {
-            tokyo?.let { MarkerOptions().position(it).title("Marker in Tokyo") }
-                ?.let { addMarker(it) }
-            // moveCamera(CameraUpdateFactory.newLatLng(tokyo))
-            tokyo?.let { CameraUpdateFactory.newLatLngZoom(it, ValeDirecciones.ZOOM_SIZE) }?.let { moveCamera(it) }
-        }
+       }
     }
 
 
@@ -389,7 +305,6 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         polyline = map.addPolyline(polylineOptions.addAll(decodedPath))
     }
 
-
     override fun onResumeFragments() {
         super.onResumeFragments()
         if(!::mMap.isInitialized) return
@@ -404,9 +319,14 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         Toast.makeText(this,"Obteniendo Ubicacion...", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onMyLocationClick(p0: Location) {
+    override fun onMyLocationClick(p0: Location)  {
         Toast.makeText(this,"Estas en  ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
+
+        var ubicacionActual = LatLng(p0.latitude,-p0.longitude)
+
     }
+
+
 
 }
 
