@@ -2,25 +2,20 @@ package com.mana.transportesruta7app
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -39,11 +34,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.maps.android.PolyUtil
 import com.google.maps.model.DirectionsResult
 import kotlinx.android.synthetic.main.activity_crear_vale_empresa.*
-import kotlinx.android.synthetic.main.activity_firma.*
+
 import kotlinx.android.synthetic.main.activity_vale_direcciones.linealMapaValeFragment
-import java.text.SimpleDateFormat
 import java.util.*
-import com.google.maps.model.LatLng as MapsLatLng
 
 
 class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
@@ -51,20 +44,21 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
     companion object {
         const val REQUEST_CODE_LOCATION = 0
     }
-
-    private var lat1 :Double?       = 0.0
-    private var long1 :Double?      = 0.0
-    private var lat2 :Double?       = 0.0
-    private var long2 :Double?      = 0.0
-    private val overview            = 0
-    private var polyline: Polyline? = null
-
     private var origenNombre:String?    = ""
     private var destinoNombre :String?  = ""
+    private var latDestino :Double?     = 0.0
+    private var longDestino :Double?    = 0.0
+    private var latOrigen :Double?      = 0.0
+    private var longOrigen :Double?     = 0.0
+    private val overview                = 0
 
+    private var polyline: Polyline?     = null
+    private var validacionOrigen        = false
+    private var validacionDestino       = false
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocation: FusedLocationProviderClient
+    private val viewModel by viewModels<MapsViewModel>()
 
     val db = Firebase.firestore
 
@@ -75,8 +69,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
         // Autocompletado y mapa
         // Fetching API_KEY which we wrapped
-        val ai: ApplicationInfo = applicationContext.packageManager
-            .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
+        val ai: ApplicationInfo = applicationContext.packageManager.getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
         val value = ai.metaData["api_key"]
         val apiKey = value.toString()
 
@@ -91,10 +84,10 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
 
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+
         val direccionAutocompletada = supportFragmentManager.findFragmentById(R.id.rutaInicioText) as AutocompleteSupportFragment?
         direccionAutocompletada!!.setPlaceFields(
             listOf(
-
                 Place.Field.NAME,
                 Place.Field.ADDRESS,
                 Place.Field.PHONE_NUMBER,
@@ -102,7 +95,6 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
                 Place.Field.OPENING_HOURS,
                 Place.Field.RATING,
                 Place.Field.USER_RATINGS_TOTAL
-
             )
         )
         direccionAutocompletada.setOnPlaceSelectedListener(object : PlaceSelectionListener {
@@ -114,11 +106,12 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
                 val latlng      = place.latLng
                 val latitude1   = latlng?.latitude
                 val longitude1  = latlng?.longitude
-                lat1            = latitude1
-                long1           = longitude1
+                latDestino      = latitude1
+                longDestino     = longitude1
                 origenNombre    = address
+                validacionDestino = true
 
-
+                mostrarMapa()
 
             }
 
@@ -149,23 +142,12 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
                 patenteEditText.text        = document.data?.getValue("usuario_patente").toString()
                 rutValeEditText.text        = document.data?.getValue("usuario_rut").toString()
 
-                  } else {
+            } else {
                 Log.d("TAG", "El documento tiene un error document")
             }
-        }
-            .addOnFailureListener { exception ->
+        }.addOnFailureListener { exception ->
                 Log.d("TAG", "No se encontro el Documento", exception)
-            }
-    }
-
-    //Alertas
-    private fun showAlert() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Se ha producido un error al cargar la ruta")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+        }
     }
 
     //Cambio de ventana
@@ -176,22 +158,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         }
         startActivity(homeIntent)
     }
-    private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String, inicio: String, fin: String) {
-        val firmaIntent = Intent(this,FirmaActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider.name)
-            putExtra("vale_fecha", fecha)
-            putExtra("vale_Chofer", chofer)
-            putExtra("vale_Patente", patente)
-            putExtra("vale_Movil", movil)
-            putExtra("vale_Empresa", empresa)
-            putExtra("vale_Tipo", tipo)
-            putExtra("vale_CC", cc)
-            putExtra("vale_Inicio", inicio)
-            putExtra("vale_Fin", fin)
-        }
-        startActivity(firmaIntent)
-    }
+
     override fun onBackPressed() {
         val bundle = intent.extras
         val email = bundle?.getString("email")
@@ -199,19 +166,26 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         showHome(email.toString(), ProviderType.BASIC)
     }
 
+
     private fun mostrarMapa(){
             linealMapaValeFragment.visibility = View.VISIBLE
             val mapFragment = supportFragmentManager.findFragmentById(R.id.mapaValeFragmentEmpresa) as SupportMapFragment
             mapFragment.getMapAsync(this)
+            observeLiveData()
 
     }
-
+    private fun observeLiveData() {
+        viewModel.directionsResult.observe(this, Observer {
+            Log.d(ValeDirecciones::class.java.simpleName, "result: $it")
+            updatePolyline(it, mMap)
+            moveCamera()
+        })
+    }
 
     private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
         this,
         Manifest.permission.ACCESS_FINE_LOCATION
     ) == PackageManager.PERMISSION_GRANTED
-
 
     private fun enableLocation(){
         if(!::mMap.isInitialized) return
@@ -220,7 +194,9 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         }else{
             requestLocationPermission()
         }
+
     }
+
     private fun requestLocationPermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
             Toast.makeText(this, "Ve a ajutes y acepta los permisos", Toast.LENGTH_SHORT).show()
@@ -240,11 +216,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mMap.isMyLocationEnabled = true
                 } else {
-                    Toast.makeText(
-                        this,
-                        "Para activar la localizacion ve a ajustes y acepta los permisos",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Para activar la localizacion ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
                 }
             else -> {}
         }
@@ -252,6 +224,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        enableLocation()
         mMap.setOnMyLocationButtonClickListener(this)
         mMap.setOnMyLocationClickListener(this)
 
@@ -268,16 +241,43 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         mMap.isMyLocationEnabled = true
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isCompassEnabled = true
+
         fusedLocation.lastLocation.addOnSuccessListener { location ->
             if (location != null){
                 val ubicacion = LatLng(location.latitude,location.longitude)
-                mMap.animateCamera(
-                    CameraUpdateFactory.newLatLngZoom(ubicacion,15f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacion,15f))
+
+                val latitude1   = location.latitude
+                val longitude1  = location.longitude
+                latOrigen       = latitude1
+                longOrigen      = longitude1
+                //origenNombre    = address
+                validacionOrigen = true
             }
 
        }
+        val origen = latOrigen?.let { longOrigen?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
+        val destino = latDestino?.let { longDestino?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
+        if (origen != null) {
+            if (destino != null) {
+                //viewModel.execute(origen, destino)
+            }
+        }
+
     }
 
+
+    private fun moveCamera() {
+        // Add a marker in Sydney and move the camera
+        val marcador = latDestino?.let { longDestino?.let { it1 -> LatLng(it, it1) } }
+
+        val marcardor1 = mMap?.apply {
+            marcador?.let { MarkerOptions().position(it).title("Marker in Tokyo") }
+                ?.let { addMarker(it) }
+            // moveCamera(CameraUpdateFactory.newLatLng(tokyo))
+            marcador?.let { CameraUpdateFactory.newLatLngZoom(it, ValeDirecciones.ZOOM_SIZE) }?.let { moveCamera(it) }
+        }
+    }
 
     private fun updatePolyline(directionsResult: DirectionsResult?, googleMap: GoogleMap?) {
         googleMap ?: return
@@ -307,7 +307,7 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         if(!::mMap.isInitialized) return
         if(isLocationPermissionGranted()){
             mMap.isMyLocationEnabled = true
-            Toast.makeText(this,"Para activar la localizacion ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Permisos activos", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -247,7 +247,23 @@ class FirmaActivity : AppCompatActivity() {
                 dirtyRect.bottom = historicalY
             }
         }
-
+        /*
+        private fun showFirma(email: String, provider: ProviderType, fecha: String, chofer: String, patente: String, movil: String, empresa: String, cc: String, tipo: String, inicio: String, fin: String) {
+            val firmaIntent = Intent(this,FirmaActivity::class.java).apply {
+                putExtra("email", email)
+                putExtra("provider", provider.name)
+                putExtra("vale_fecha", fecha)
+                putExtra("vale_Chofer", chofer)
+                putExtra("vale_Patente", patente)
+                putExtra("vale_Movil", movil)
+                putExtra("vale_Empresa", empresa)
+                putExtra("vale_Tipo", tipo)
+                putExtra("vale_CC", cc)
+                putExtra("vale_Inicio", inicio)
+                putExtra("vale_Fin", fin)
+            }
+            startActivity(firmaIntent)
+        }*/
         private fun resetDirtyRect(eventX: Float, eventY: Float) {
             dirtyRect.left = Math.min(lastTouchX, eventX)
             dirtyRect.right = Math.max(lastTouchX, eventX)
