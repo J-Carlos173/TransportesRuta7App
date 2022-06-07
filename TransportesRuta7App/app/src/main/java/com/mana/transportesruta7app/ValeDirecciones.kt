@@ -72,8 +72,6 @@ class ValeDirecciones : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_vale_direcciones)
 
 
-
-
         // Autocompletado y mapa
         // Fetching API_KEY which we wrapped
         val ai: ApplicationInfo = applicationContext.packageManager

@@ -177,8 +177,13 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
     private fun observeLiveData() {
         viewModel.directionsResult.observe(this, Observer {
             Log.d(ValeDirecciones::class.java.simpleName, "result: $it")
-            updatePolyline(it, mMap)
-            moveCamera()
+            if(validacionDestino){
+                updatePolyline(it, mMap)
+                moveCamera()
+            }else{
+                // Mapa Normal
+
+            }
         })
     }
 
@@ -222,8 +227,9 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+
+
+    private fun obtenerUbicacionActual(){
         enableLocation()
         mMap.setOnMyLocationButtonClickListener(this)
         mMap.setOnMyLocationClickListener(this)
@@ -255,14 +261,26 @@ class CrearValeEmpresaActivity : AppCompatActivity(), OnMapReadyCallback, Google
                 validacionOrigen = true
             }
 
-       }
-        val origen = latOrigen?.let { longOrigen?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
-        val destino = latDestino?.let { longDestino?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
-        if (origen != null) {
-            if (destino != null) {
-                //viewModel.execute(origen, destino)
-            }
         }
+
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        if(validacionDestino){
+            //Cargando latitudes para mapa
+            val origen = latOrigen?.let { longOrigen?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
+            val destino = latDestino?.let { longDestino?.let { it1 -> com.google.maps.model.LatLng(it, it1) } }
+            if (origen != null) {
+                if (destino != null) {
+                    viewModel.execute(origen, destino)
+                }
+            }
+        }else{
+            obtenerUbicacionActual()
+        }
+
+
 
     }
 
